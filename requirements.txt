@@ -6,6 +6,7 @@ django-cors-headers==1.1.0
 django-heroku-memcacheify==0.8
 django-suit==0.3a1
 boto==2.38.0
+pylibmc==1.5.0
 django-environ==0.4.0
 gunicorn==19.3.0
 django-storages==1.1.8
