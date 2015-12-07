@@ -7,7 +7,6 @@ class StateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = State
-        exclude = ('id', 'bands')
 
 
 class JurisdictionSerializer(serializers.ModelSerializer):
