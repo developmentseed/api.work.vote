@@ -1,0 +1,51 @@
+# Basics
+*.py[cod]
+*.pyc
+__pycache__
+
+# Logs
+*.log
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+
+# Translations
+*.mo
+*.pot
+
+# Pycharm
+.idea
+
+# Vim
+
+*~
+*.swp
+*.swo
+
+# npm
+node_modules/
+
+# Compass
+.sass-cache
+
+# Sublime
+*.sublime-workspace
+
+# Database
+*.sqlite3
+
+#Django
+media
+staticfiles
+setEnv.sh
+.DS_Store
+celerybeat-schedule.db
+.env
+.production
+.local
+celerybeat-schedule
+cache_dir
+.python-version
