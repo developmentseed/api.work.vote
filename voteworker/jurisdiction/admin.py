@@ -17,6 +17,8 @@ class JurisdictionAdmin(admin.ModelAdmin):
 
     search_fields = ('name', 'state__name', 'telephone',)
 
+    ordering = ['name']
+
 
 admin.site.register(State)
 admin.site.register(Jurisdiction, JurisdictionAdmin)
