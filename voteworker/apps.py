@@ -8,5 +8,24 @@ class DjangoSuit(DjangoSuitConfig):
     list_per_page = 50
 
     menu = (
-            # Rename app and set icon
-        )
+        # Rename app and set icon
+        {
+            'label': 'States',
+            'models': (
+                'jurisdiction.state',
+            )
+        },
+        {
+            'label': 'Jurisdictions',
+            'models': (
+                'jurisdiction.jurisdiction',
+            )
+        },
+        {
+            'label': 'Users & Groups',
+            'models': (
+                'auth.user',
+                'auth.group',
+            )
+        }
+    )
