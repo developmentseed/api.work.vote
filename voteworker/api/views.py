@@ -27,7 +27,7 @@ class JurisdictionViewSet(viewsets.ReadOnlyModelViewSet):
         if 'contains' in request.GET:
             coords = request.GET.get('contains').split(',')
             coords = map(float, coords)
-            pnt = Point(coords[1], coords[0])
+            pnt = Point(*coords)
             queryset = queryset.filter(geometry__contains=pnt)
 
         if 'name' in request.GET:
