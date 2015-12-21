@@ -30,4 +30,12 @@ class JurisdictionViewSet(viewsets.ReadOnlyModelViewSet):
             pnt = Point(coords[1], coords[0])
             queryset = queryset.filter(geometry__contains=pnt)
 
+        if 'name' in request.GET:
+            name = request.GET.get('name')
+            queryset = queryset.filter(name=name)
+
+        if 'state' in request.GET:
+            state = request.GET.get('state')
+            queryset = queryset.filter(state__name=state)
+
         return queryset
