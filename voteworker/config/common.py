@@ -25,6 +25,7 @@ DJANGO_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
 
     # Useful template tags:
     # 'django.contrib.humanize',
@@ -109,6 +110,7 @@ DATABASES = {
     'default': env.db("DATABASE_URL", default='sqlite:///%s' % str(BASE_DIR.path('db.sqlite3'))),
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
+DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 
 # END DATABASE CONFIGURATION
 
@@ -254,16 +256,14 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
     ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 50
 }
 # END REST FRAMEWORK CONFIGURATION
 
 
 # Django CORS
 CORS_ORIGIN_ALLOW_ALL = env.bool('DJANGO_CORS_ORIGIN_ALLOW_ALL', True)
-CORS_URLS_REGEX = r'^/v[0-9]/.*$'
-CORS_ALLOW_METHODS = (
-    'GET', 'PUT', 'DELETE', 'POST',
-)
 CORS_ALLOW_CREDENTIALS = env.bool('DJANGO_CORS_ALLOW_CREDENTIALS', True)
 
 # End Django CORS

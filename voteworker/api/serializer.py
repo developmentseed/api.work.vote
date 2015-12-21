@@ -7,9 +7,13 @@ class StateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = State
+        exclude = ['created_at', 'updated_at']
 
 
 class JurisdictionSerializer(serializers.ModelSerializer):
 
+    state = StateSerializer()
+
     class Meta:
         model = Jurisdiction
+        exclude = ['geometry', 'bbox', 'notes', 'created_at', 'updated_at']
