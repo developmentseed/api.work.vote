@@ -8,9 +8,9 @@ Local Configurations
 
 # read .env file first
 import environ
-ROOT_DIR = environ.Path(__file__) - 3  # (/a/myfile.py - 2 = /)
-BASE_DIR = ROOT_DIR.path('voteworker')
-environ.Env.read_env(str(BASE_DIR.path('config/.local')))
+BASE_DIR = environ.Path(__file__) - 3  # (/a/myfile.py - 2 = /)
+CONFIG_DIR = BASE_DIR.path('config')
+environ.Env.read_env(str(CONFIG_DIR.path('env/.local')))
 
 from .common import *  # noqa
 

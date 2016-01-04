@@ -11,8 +11,8 @@ from __future__ import absolute_import, unicode_literals
 
 import environ
 
-ROOT_DIR = environ.Path(__file__) - 3  # (/a/myfile.py - 2 = /)
-BASE_DIR = ROOT_DIR.path('voteworker')
+BASE_DIR = environ.Path(__file__) - 3  # (/a/myfile.py - 2 = /)
+CONFIG_DIR = BASE_DIR.path('config')
 
 env = environ.Env()
 
@@ -31,7 +31,7 @@ DJANGO_APPS = (
     # 'django.contrib.humanize',
 
     # Admin
-    'apps.DjangoSuit',
+    'config.apps.DjangoSuit',
     'django.contrib.admin',
 )
 THIRD_PARTY_APPS = (
@@ -82,7 +82,7 @@ SECRET_KEY = 'CHANGEME!!!'
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-FIXTURE_DIRS
 
 FIXTURE_DIRS = (
-    str(BASE_DIR.path('fixtures')),
+    str(CONFIG_DIR.path('fixtures')),
 )
 
 
@@ -107,7 +107,7 @@ MANAGERS = ADMINS
 
 DATABASES = {
     # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
-    'default': env.db("DATABASE_URL", default='sqlite:///%s' % str(BASE_DIR.path('db.sqlite3'))),
+    'default': env.db("DATABASE_URL", default='sqlite:///%s' % str(CONFIG_DIR.path('db.sqlite3'))),
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
@@ -120,7 +120,7 @@ DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': str(BASE_DIR.path('cache_dir/django_cache')),
+        'LOCATION': str(CONFIG_DIR.path('cache_dir/django_cache')),
     }
 }
 # END CACHING
@@ -161,7 +161,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
 TEMPLATE_DIRS = (
-    str(BASE_DIR.path('templates')),
+    str(CONFIG_DIR.path('templates')),
 )
 
 TEMPLATE_LOADERS = (
@@ -171,14 +171,14 @@ TEMPLATE_LOADERS = (
 
 # STATIC FILE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
-STATIC_ROOT = str(BASE_DIR.path('staticfiles'))
+STATIC_ROOT = str(CONFIG_DIR.path('staticfiles'))
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = '/static/'
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = (
-    str(BASE_DIR.path('static')),
+    str(CONFIG_DIR.path('static')),
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
@@ -190,17 +190,17 @@ STATICFILES_FINDERS = (
 
 # MEDIA CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-root
-MEDIA_ROOT = str(BASE_DIR.path('media'))
+MEDIA_ROOT = str(CONFIG_DIR.path('media'))
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = '/media/'
 # END MEDIA CONFIGURATION
 
 # URL Configuration
-ROOT_URLCONF = 'urls'
+ROOT_URLCONF = 'config.urls'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
-WSGI_APPLICATION = 'wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 # End URL Configuration
 
 # AUTHENTICATION CONFIGURATION
