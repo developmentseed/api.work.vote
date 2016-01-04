@@ -4,6 +4,7 @@ from django.contrib.gis.db import models
 class State(models.Model):
 
     name = models.CharField('State', max_length=250)
+    alpha = models.CharField('Alpha-2 Code', max_length=2)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
