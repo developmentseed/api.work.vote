@@ -16,4 +16,4 @@ class JurisdictionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Jurisdiction
-        exclude = ['geometry', 'bbox', 'notes', 'created_at', 'updated_at']
+        exclude = ['geometry', 'notes', 'created_at', 'updated_at']

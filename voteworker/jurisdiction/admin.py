@@ -11,9 +11,10 @@ class JurisdictionAdmin(admin.ModelAdmin):
         'website',
         'telephone',
         'email',
+        'city',
     )
 
-    list_filter = ('state',)
+    list_filter = ('state', 'city',)
 
     search_fields = ('name', 'state__name', 'telephone',)
 
