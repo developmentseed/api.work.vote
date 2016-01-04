@@ -14,9 +14,9 @@ class JurisdictionAdmin(admin.ModelAdmin):
         'city',
     )
 
-    list_filter = ('state',)
+    list_filter = ('state', 'city',)
 
-    search_fields = ('name', 'state__name', 'telephone', 'city')
+    search_fields = ('name', 'state__name', 'telephone',)
 
     ordering = ['name']
 
