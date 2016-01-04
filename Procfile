@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath="$PWD/voteworker" wsgi:application
+web: gunicorn config.wsgi:application
