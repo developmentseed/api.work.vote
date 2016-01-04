@@ -3,7 +3,7 @@ from suit.apps import DjangoSuitConfig
 
 class DjangoSuit(DjangoSuitConfig):
 
-    admin_name = 'VoteWorker'
+    admin_name = 'Work the Election API Admin'
 
     list_per_page = 50
 

@@ -54,7 +54,7 @@ class Command(BaseCommand):
     help = 'Import jurisdiction boundaries'
 
     def handle(self, *args, **options):
-        p = prepare(str(settings.BASE_DIR.path('jurisdiction/voteworker.geojson')))
+        p = prepare(str(settings.BASE_DIR.path('apps/jurisdiction/voteworker.geojson')))
         s = save_geometry(p)
 
         for k, v in s.iteritems():
