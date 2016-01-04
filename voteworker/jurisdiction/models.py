@@ -53,6 +53,7 @@ class Jurisdiction(models.Model):
     notes = models.TextField('Notes', null=True, blank=True)
     geometry = models.PolygonField('Jurisdiction Geometry', null=True, blank=True)
     bbox = models.PolygonField('Bounding Box', null=True, blank=True)
+    city = models.BooleanField('Whether the jurisdiction is a city', default=False)
 
     def __unicode__(self):
         return self.name
