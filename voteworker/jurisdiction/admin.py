@@ -11,11 +11,12 @@ class JurisdictionAdmin(admin.ModelAdmin):
         'website',
         'telephone',
         'email',
+        'city',
     )
 
     list_filter = ('state',)
 
-    search_fields = ('name', 'state__name', 'telephone',)
+    search_fields = ('name', 'state__name', 'telephone', 'city')
 
     ordering = ['name']
 
