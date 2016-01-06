@@ -11,3 +11,4 @@ django-environ==0.4.0
 gunicorn==19.3.0
 django-storages==1.1.8
 gevent==1.1rc1
+geocoder==1.7.1
