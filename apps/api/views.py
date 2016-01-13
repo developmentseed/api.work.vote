@@ -30,7 +30,7 @@ def geocode(address, required_precision_km=1.):
 
 class StateViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    queryset = State.objects.filter(is_active=True)
+    queryset = State.objects.filter(is_active=True).order_by('name')
     serializer_class = StateSerializer
 
 
