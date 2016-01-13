@@ -30,13 +30,13 @@ def geocode(address, required_precision_km=1.):
 
 class StateViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    queryset = State.objects.all()
+    queryset = State.objects.filter(is_active=True)
     serializer_class = StateSerializer
 
 
 class JurisdictionViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    queryset = Jurisdiction.objects.all()
+    queryset = Jurisdiction.objects.filter(state__is_active=True)
     serializer_class = JurisdictionSerializer
 
     # Build the queryset based on params
