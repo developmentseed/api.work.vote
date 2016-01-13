@@ -7,6 +7,7 @@ class State(models.Model):
     alpha = models.CharField('Alpha-2 Code', max_length=2)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField('Wheter state is active', default=True)
 
     def __unicode__(self):
         return self.name
