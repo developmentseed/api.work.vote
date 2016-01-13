@@ -33,3 +33,9 @@ Launch:
 Replace the geojson file at `apps/jurisdiction/voteworker.geojson`, then run:
 
     $ python manage.py boundaries
+
+To generate jurisdiction png files run:
+
+    $ python manage.py rasterize
+
+PNG files are stored at `config/static/jurisdictions`
