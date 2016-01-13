@@ -21,7 +21,7 @@ class JurisdictionSerializer(serializers.ModelSerializer):
 
         if not match:
             if instance.city:
-                context['name'] = '%s City' % instance.name
+                context['name'] = '%s (city)' % instance.name
             else:
                 context['name'] = '%s County' % instance.name
 
