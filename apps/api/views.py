@@ -73,6 +73,10 @@ class JurisdictionViewSet(viewsets.ReadOnlyModelViewSet):
 
         if 'state' in request.GET:
             state = request.GET.get('state')
-            queryset = queryset.filter(state__name=state)
+            queryset = queryset.filter(state__istartswith=state)
+
+        if 'state_id' in request.GET:
+            state_id = request.GET.get('state_id')
+            queryset = queryset.filter(state_id=state_id)
 
         return queryset
