@@ -7,6 +7,7 @@ class State(models.Model):
     alpha = models.CharField('Alpha-2 Code', max_length=2)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField('Wheter state is active', default=True)
 
     def __unicode__(self):
         return self.name
@@ -30,6 +31,8 @@ class Jurisdiction(models.Model):
                                            '- Input: S or J', null=True, blank=True)
     pre_registration = models.TextField('If pre-registration is available, is it required for 16/17 yo\'s?' +
                                         ' - Input: Y or N', null=True, blank=True)
+    voter_registration_url = models.CharField('Website for online voter regisration', max_length=300,
+                                              blank=True, null=True)
     minimum_age = models.CharField('Minimum age - Input: ##', max_length=250, null=True, blank=True)
     high_school_student = models.TextField('Can high school students work? - Input: Y or N', null=True, blank=True)
     hours_start = models.CharField('Hours start', max_length=250, null=True, blank=True)
