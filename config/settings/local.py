@@ -14,6 +14,11 @@ environ.Env.read_env(str(CONFIG_DIR.path('env/.local')))
 
 from .common import *  # noqa
 
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+EMAIL_BACKEND = env('EMAIL_BACKEND',
+                    default='django.core.mail.backends.console.EmailBackend')
+
 # DEBUG
 DEBUG = env.bool('DJANGO_DEBUG', default=True)
 TEMPLATE_DEBUG = DEBUG
