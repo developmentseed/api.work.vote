@@ -5,6 +5,7 @@ class State(models.Model):
 
     name = models.CharField('State', max_length=250)
     alpha = models.CharField('Alpha-2 Code', max_length=2)
+    pollworker_webiste = models.CharField('State Poll worker website', max_length=400, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField('Wheter state is active', default=True)
