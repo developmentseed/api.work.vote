@@ -21,5 +21,18 @@ class JurisdictionAdmin(admin.ModelAdmin):
     ordering = ['name']
 
 
-admin.site.register(State)
+class StateAdmin(admin.ModelAdmin):
+
+    list_display = (
+        'name',
+        'alpha',
+        'pollworker_website',
+    )
+
+    search_fields = ('name', 'alpha',)
+
+    ordering = ['name']
+
+
+admin.site.register(State, StateAdmin)
 admin.site.register(Jurisdiction, JurisdictionAdmin)
