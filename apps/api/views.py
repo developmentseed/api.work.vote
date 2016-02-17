@@ -50,8 +50,6 @@ class JurisdictionViewSet(viewsets.ReadOnlyModelViewSet):
             search = request.GET.get('search')
             county = queryset.filter(name__istartswith=search)
 
-            print county
-
             if not county:
                 coords = geocode(search)
 
