@@ -24,8 +24,11 @@ def geocode(address, required_precision_km=1.):
         {'lat': 38.89767579999999, 'lon': -77.0364827}
     """
     geocoded = geocoder.google(address)
-    (lat, lon) = geocoded.geometry['coordinates']
-    return [lat, lon]
+    try:
+        (lat, lon) = geocoded.geometry['coordinates']
+        return [lat, lon]
+    except KeyError:
+        return []
 
 
 class StateViewSet(viewsets.ReadOnlyModelViewSet):
