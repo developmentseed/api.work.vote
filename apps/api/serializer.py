@@ -39,8 +39,6 @@ class JurisdictionSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         context = super(JurisdictionSerializer, self).to_representation(instance)
-        match = re.search('(city|county|City|County)', instance.name)
-
         context['name'] = add_city_string(instance)
 
         return context
@@ -48,3 +46,16 @@ class JurisdictionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Jurisdiction
         exclude = ['geometry', 'notes', 'created_at', 'updated_at']
+
+
+class JurisdictionSummarySerializer(serializers.ModelSerializer):
+
+    def to_representation(self, instance):
+        context = super(JurisdictionSummarySerializer, self).to_representation(instance)
+        context['name'] = add_city_string(instance)
+
+        return context
+
+    class Meta:
+        model = Jurisdiction
+        fields = ['id', 'name']

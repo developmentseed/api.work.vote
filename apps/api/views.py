@@ -4,7 +4,7 @@ from django.contrib.gis.geos import Point
 from rest_framework.response import Response
 from rest_framework import viewsets, permissions, status
 
-from .serializer import StateSerializer, JurisdictionSerializer, add_city_string
+from .serializer import StateSerializer, JurisdictionSerializer, add_city_string, JurisdictionSummarySerializer
 from jurisdiction.models import State, Jurisdiction
 
 
@@ -44,6 +44,28 @@ class JurisdictionViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     queryset = Jurisdiction.objects.filter(state__is_active=True)
     serializer_class = JurisdictionSerializer
+
+    def get_serializer(self, *args, **kwargs):
+        """
+        Return the serializer instance that should be used for validating and
+        deserializing input, and for serializing output.
+        """
+
+        summary = self.request.GET.get('summary', False)
+
+        if summary:
+            kwargs['context'] = self.get_serializer_context()
+            return JurisdictionSummarySerializer(*args, **kwargs)
+        else:
+            return super(JurisdictionViewSet, self).get_serializer(*args, **kwargs)
+
+    def paginate_queryset(self, queryset):
+        summary = self.request.GET.get('summary', False)
+
+        if summary:
+            return None
+        else:
+            return super(JurisdictionViewSet, self).paginate_queryset(queryset)
 
     # Build the queryset based on params
     def get_queryset(self):
