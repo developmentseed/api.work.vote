@@ -11,9 +11,16 @@ class StateSerializer(serializers.ModelSerializer):
         exclude = ['created_at', 'updated_at']
 
 
+class StateSummarySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = State
+        fields = ['alpha']
+
+
 class JurisdictionSerializer(serializers.ModelSerializer):
 
-    state = StateSerializer()
+    state = StateSummarySerializer()
 
     def to_representation(self, instance):
         context = super(JurisdictionSerializer, self).to_representation(instance)

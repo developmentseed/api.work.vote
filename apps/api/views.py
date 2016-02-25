@@ -1,7 +1,7 @@
 import geocoder
+from django.db.models import Q
 from django.contrib.gis.geos import Point
 from rest_framework.response import Response
-from django.core.urlresolvers import reverse
 from rest_framework import viewsets, permissions, status
 
 from .serializer import StateSerializer, JurisdictionSerializer
@@ -34,7 +34,9 @@ def geocode(address, required_precision_km=1.):
 
 class StateViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    queryset = State.objects.order_by('name')
+    queryset = State.objects.filter(
+        Q(is_active=True) | ~Q(pollworker_website='') | Q(pollworker_website__isnull=True)
+    ).order_by('name')
     serializer_class = StateSerializer
 
 
