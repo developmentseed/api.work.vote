@@ -75,6 +75,16 @@ TEMPLATE_LOADERS = (
 )
 # END TEMPLATE CONFIGURATION
 
+# EMAIL
+EMAIL_HOST = env.str('EMAIL_HOST', 'smtp.sendgrid.com')
+EMAIL_HOST_PASSWORD = env('SENDGRID_PASSWORD')
+EMAIL_HOST_USER = env('SENDGRID_USERNAME')
+EMAIL_PORT = env.int('EMAIL_PORT', 587)
+EMAIL_USE_TLS = True
+SERVER_EMAIL = EMAIL_HOST_USER
+# END EMAIL
+
+
 # CACHING
 # Only do this here because thanks to django-pylibmc-sasl and pylibmc
 # memcacheify is painful to install on windows.

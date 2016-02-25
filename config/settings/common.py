@@ -43,6 +43,7 @@ THIRD_PARTY_APPS = (
 # Apps specific for this project go here.
 LOCAL_APPS = (
     'jurisdiction',
+    'survey',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -94,13 +95,18 @@ EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND', default='django.core.mail.backends.s
 
 # MANAGER CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#admins
+ADMIN_EMAIL = env('ADMIN_EMAIL', default='test@example.com')
+
 ADMINS = (
-    ("""DevOps""", 'alireza@developmentseed.org'),
+    ("""DevOps""", ADMIN_EMAIL),
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
 # END MANAGER CONFIGURATION
+
+# Contact us email
+CONTACT_US = env('CONTACT_US', default='test@example.com')
 
 # DATABASE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
