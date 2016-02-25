@@ -1,7 +1,8 @@
-from rest_framework import viewsets
-from rest_framework import permissions
-from django.contrib.gis.geos import Point
 import geocoder
+from django.contrib.gis.geos import Point
+from rest_framework.response import Response
+from django.core.urlresolvers import reverse
+from rest_framework import viewsets, permissions, status
 
 from .serializer import StateSerializer, JurisdictionSerializer
 from jurisdiction.models import State, Jurisdiction
@@ -33,7 +34,7 @@ def geocode(address, required_precision_km=1.):
 
 class StateViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    queryset = State.objects.filter(is_active=True).order_by('name')
+    queryset = State.objects.order_by('name')
     serializer_class = StateSerializer
 
 
@@ -81,3 +82,52 @@ class JurisdictionViewSet(viewsets.ReadOnlyModelViewSet):
             queryset = queryset.filter(state_id=state_id)
 
         return queryset
+
+
+class SearchViewSet(viewsets.ViewSet):
+    permission_classes = (permissions.AllowAny,)
+
+    def list(self, request):
+
+        response = []
+        if 'q' in request.GET:
+                    # statees
+            states = State.objects.order_by('name')
+
+            # jurisdictions
+            jurisdictions = Jurisdiction.objects.filter(state__is_active=True).extra(order_by=['name'])
+
+            query = request.GET.get('q')
+
+            # look for counties
+            filtered_jurisdictions = jurisdictions.filter(name__istartswith=query)
+
+            # also search by coordinates
+            if not filtered_jurisdictions:
+                coords = geocode(query)
+
+                if coords:
+                    pnt = Point(*coords)
+                    filtered_jurisdictions = jurisdictions.filter(geometry__contains=pnt)
+
+            if filtered_jurisdictions:
+                for jur in filtered_jurisdictions:
+                    response.append({
+                        'type': 'jurisdiction',
+                        'id': jur.id,
+                        'name': jur.name,
+                        'state_id': jur.state.id,
+                        'state_alpha': jur.state.alpha
+                    })
+
+            # look for states
+            filtered_states = states.filter(name__istartswith=query)
+            if filtered_states:
+                for state in filtered_states:
+                    response.append({
+                        'type': 'state',
+                        'id': state.id,
+                        'name': state.name
+                    })
+
+        return Response(response, status=status.HTTP_200_OK)
