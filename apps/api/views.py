@@ -4,7 +4,7 @@ from django.contrib.gis.geos import Point
 from rest_framework.response import Response
 from rest_framework import viewsets, permissions, status
 
-from .serializer import StateSerializer, JurisdictionSerializer
+from .serializer import StateSerializer, JurisdictionSerializer, add_city_string
 from jurisdiction.models import State, Jurisdiction
 
 
@@ -114,10 +114,11 @@ class SearchViewSet(viewsets.ViewSet):
 
             if filtered_jurisdictions:
                 for jur in filtered_jurisdictions:
+
                     response.append({
                         'type': 'jurisdiction',
                         'id': jur.id,
-                        'name': jur.name,
+                        'name': add_city_string(jur),
                         'state_id': jur.state.id,
                         'state_alpha': jur.state.alpha
                     })

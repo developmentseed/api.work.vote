@@ -4,6 +4,21 @@ from rest_framework import serializers
 from jurisdiction.models import Jurisdiction, State
 
 
+def add_city_string(obj):
+
+    match = re.search('(city|county|City|County)', obj.name)
+
+    if not match:
+        if obj.city:
+            name = '%s (city)' % obj.name
+        else:
+            name = '%s County' % obj.name
+    else:
+        name = obj.name
+
+    return name
+
+
 class StateSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -26,11 +41,7 @@ class JurisdictionSerializer(serializers.ModelSerializer):
         context = super(JurisdictionSerializer, self).to_representation(instance)
         match = re.search('(city|county|City|County)', instance.name)
 
-        if not match:
-            if instance.city:
-                context['name'] = '%s (city)' % instance.name
-            else:
-                context['name'] = '%s County' % instance.name
+        context['name'] = add_city_string(instance)
 
         return context
 
