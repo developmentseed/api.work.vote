@@ -10,7 +10,7 @@ def add_city_string(obj):
 
     if not match:
         if obj.city:
-            name = '%s (city)' % obj.name
+            name = '%s (City)' % obj.name
         else:
             name = '%s County' % obj.name
     else:
