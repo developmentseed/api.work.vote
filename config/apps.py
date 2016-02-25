@@ -22,6 +22,12 @@ class DjangoSuit(DjangoSuitConfig):
             )
         },
         {
+            'label': 'Surveys',
+            'models': (
+                'survey.survey',
+            )
+        },
+        {
             'label': 'Users & Groups',
             'models': (
                 'auth.user',

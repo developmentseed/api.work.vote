@@ -14,7 +14,7 @@ class SurveyAdmin(admin.ModelAdmin):
 
     list_filter = ('age_range',)
 
-    ordering = [-'created_at']
+    ordering = ['-created_at']
 
 
 admin.site.register(Survey, SurveyAdmin)
