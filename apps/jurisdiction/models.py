@@ -3,7 +3,6 @@ from django.contrib.gis.db import models
 
 class State(models.Model):
 
-    state_id = models.IntegerField('state ID', null=True, blank=True, unique=True)
     name = models.CharField('State', max_length=250)
     alpha = models.CharField('Alpha-2 Code', max_length=2)
     pollworker_website = models.CharField('State Poll worker website', max_length=400, null=True, blank=True)
@@ -60,4 +59,4 @@ class Jurisdiction(models.Model):
     city = models.BooleanField('Whether the jurisdiction is a city', default=False)
 
     def __unicode__(self):
-        return self.name
+        return self.name + ', ' + self.state.name

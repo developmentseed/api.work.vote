@@ -26,11 +26,10 @@ class StateAdmin(admin.ModelAdmin):
     list_display = (
         'name',
         'alpha',
-        'state_id',
         'pollworker_website',
     )
 
-    search_fields = ('name', 'alpha', 'state_id',)
+    search_fields = ('name', 'alpha',)
 
     ordering = ['name']
 

@@ -1,10 +1,10 @@
 import geocoder
+from django.db.models import Q
 from django.contrib.gis.geos import Point
 from rest_framework.response import Response
-from django.core.urlresolvers import reverse
 from rest_framework import viewsets, permissions, status
 
-from .serializer import StateSerializer, JurisdictionSerializer
+from .serializer import StateSerializer, JurisdictionSerializer, add_city_string, JurisdictionSummarySerializer
 from jurisdiction.models import State, Jurisdiction
 
 
@@ -34,7 +34,9 @@ def geocode(address, required_precision_km=1.):
 
 class StateViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    queryset = State.objects.order_by('name')
+    queryset = State.objects.filter(
+        Q(is_active=True) | ~Q(pollworker_website='') | Q(pollworker_website__isnull=True)
+    ).order_by('name')
     serializer_class = StateSerializer
 
 
@@ -42,6 +44,28 @@ class JurisdictionViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     queryset = Jurisdiction.objects.filter(state__is_active=True)
     serializer_class = JurisdictionSerializer
+
+    def get_serializer(self, *args, **kwargs):
+        """
+        Return the serializer instance that should be used for validating and
+        deserializing input, and for serializing output.
+        """
+
+        summary = self.request.GET.get('summary', False)
+
+        if summary:
+            kwargs['context'] = self.get_serializer_context()
+            return JurisdictionSummarySerializer(*args, **kwargs)
+        else:
+            return super(JurisdictionViewSet, self).get_serializer(*args, **kwargs)
+
+    def paginate_queryset(self, queryset):
+        summary = self.request.GET.get('summary', False)
+
+        if summary:
+            return None
+        else:
+            return super(JurisdictionViewSet, self).paginate_queryset(queryset)
 
     # Build the queryset based on params
     def get_queryset(self):
@@ -112,10 +136,11 @@ class SearchViewSet(viewsets.ViewSet):
 
             if filtered_jurisdictions:
                 for jur in filtered_jurisdictions:
+
                     response.append({
                         'type': 'jurisdiction',
                         'id': jur.id,
-                        'name': jur.name,
+                        'name': add_city_string(jur),
                         'state_id': jur.state.id,
                         'state_alpha': jur.state.alpha
                     })
