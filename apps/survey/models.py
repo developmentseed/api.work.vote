@@ -2,6 +2,8 @@ from jsonfield import JSONField
 from django_enumfield import enum
 from django.contrib.gis.db import models
 
+from jurisdiction.models import Jurisdiction
+
 
 class AgeRange(enum.Enum):
 
@@ -17,6 +19,9 @@ class Application(models.Model):
     """ Model for handling survey questions """
 
     created_at = models.DateTimeField(auto_now_add=True)
+    jurisdiction = models.ForeignKey(Jurisdiction, related_name='app_jurisdiction')
+    city = models.TextField('city', null=True, blank=True)
+    county = models.TextField('county', null=True, blank=True)
     age_range = enum.EnumField(AgeRange, null=True, blank=True)
     languages = JSONField('What languages do you speak other than English?', null=True, blank=True)
     familiarity_w_technology = models.IntegerField(
