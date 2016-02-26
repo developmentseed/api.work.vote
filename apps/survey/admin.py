@@ -1,9 +1,9 @@
 from django.contrib import admin
 
-from .models import Survey
+from .models import Application
 
 
-class SurveyAdmin(admin.ModelAdmin):
+class ApplicationAdmin(admin.ModelAdmin):
 
     list_display = (
         'created_at',
@@ -17,4 +17,4 @@ class SurveyAdmin(admin.ModelAdmin):
     ordering = ['-created_at']
 
 
-admin.site.register(Survey, SurveyAdmin)
+admin.site.register(Application, ApplicationAdmin)

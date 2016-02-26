@@ -22,9 +22,9 @@ class DjangoSuit(DjangoSuitConfig):
             )
         },
         {
-            'label': 'Surveys',
+            'label': 'Application & Surveys',
             'models': (
-                'survey.survey',
+                'survey.application',
             )
         },
         {

@@ -7,7 +7,7 @@ from rest_framework.decorators import list_route
 from django.conf import settings
 from django.core.mail import send_mail
 
-from survey.models import Survey
+from survey.models import Application
 from jurisdiction.models import Jurisdiction
 
 
@@ -112,7 +112,8 @@ class ContactViewSet(viewsets.ViewSet):
         msg = msg + 'Email: %s \n\n' % data.get('email', 'N/A')
         msg = msg + 'Phone: %s \n\n' % data.get('phone', 'N/A')
         msg = msg + 'What is your age?: \n %s \n\n' % age
-        msg = msg + 'What languages do you speak other than English?: \n %s \n\n' % ", ".join(data.get('languages', []))
+        msg = msg + 'What languages do you speak other than English?: \n %s \n\n' % ", ".join(data.get('languages',
+                                                                                                       []))
         msg = msg + ('How familiar are you with working with computer technology on a scale of 1 to 10?' +
                      ' 1 being "not familiar at all" and 10 being "extremely familiar."\n')
         msg = msg + '%s \n\n' % technology
@@ -124,7 +125,7 @@ class ContactViewSet(viewsets.ViewSet):
             fail_silently=False
         )
 
-        Survey.objects.create(
+        Application.objects.create(
             age_range=int(data.get('age')),
             languages=data.get('languages'),
             familiarity_w_technology=technology

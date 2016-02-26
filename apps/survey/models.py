@@ -13,7 +13,7 @@ class AgeRange(enum.Enum):
     A65_older = 5
 
 
-class Survey(models.Model):
+class Application(models.Model):
     """ Model for handling survey questions """
 
     created_at = models.DateTimeField(auto_now_add=True)
