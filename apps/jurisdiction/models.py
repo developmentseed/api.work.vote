@@ -59,4 +59,4 @@ class Jurisdiction(models.Model):
     city = models.BooleanField('Whether the jurisdiction is a city', default=False)
 
     def __unicode__(self):
-        return self.name
+        return self.name + ', ' + self.state.name

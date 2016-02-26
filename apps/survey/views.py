@@ -126,6 +126,9 @@ class ContactViewSet(viewsets.ViewSet):
         )
 
         Application.objects.create(
+            jurisdiction=jurisdiction,
+            city=data.get('city'),
+            county=data.get('county'),
             age_range=int(data.get('age')),
             languages=data.get('languages'),
             familiarity_w_technology=technology
