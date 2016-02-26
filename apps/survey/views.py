@@ -86,7 +86,7 @@ class ContactViewSet(viewsets.ViewSet):
 
         # make sure languages is a list
         if not isinstance(data.get('languages'), list):
-            return Response({'detail': 'Technology field must be a list'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'detail': 'Languages field must be a list'}, status=status.HTTP_400_BAD_REQUEST)
 
         # get jurisdiction
         try:
