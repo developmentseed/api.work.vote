@@ -8,7 +8,6 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
 from __future__ import absolute_import, unicode_literals
-
 import environ
 
 BASE_DIR = environ.Path(__file__) - 3  # (/a/myfile.py - 2 = /)
@@ -44,6 +43,7 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     'jurisdiction',
     'survey',
+    'mailman'
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -106,7 +106,7 @@ MANAGERS = ADMINS
 # END MANAGER CONFIGURATION
 
 # Contact us email
-CONTACT_US = env('CONTACT_US', default='test@example.com')
+CONTACT_US = env('CONTACT_US', default='info@fairelectionsnetwork.com')
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='info@fairelectionsnetwork.com')
 TEST_TO_EMAIL = env('TEST_TO_EMAIL', default=None)
 
@@ -168,14 +168,30 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
-TEMPLATE_DIRS = (
-    str(CONFIG_DIR.path('templates')),
-)
-
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-)
+TEMPLATES = [{
+    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+    'APP_DIRS': False,
+    'DIRS': [
+        str(BASE_DIR.path('config/templates')),
+    ],
+    'OPTIONS': {
+        'loaders': [
+            'django.template.loaders.filesystem.Loader',
+            'django.template.loaders.app_directories.Loader',
+        ],
+        'debug': DEBUG,
+        'context_processors': [
+            'django.contrib.auth.context_processors.auth',
+            'django.core.context_processors.debug',
+            'django.core.context_processors.i18n',
+            'django.core.context_processors.media',
+            'django.core.context_processors.static',
+            'django.core.context_processors.tz',
+            'django.contrib.messages.context_processors.messages',
+            'django.core.context_processors.request',
+        ],
+    },
+}]
 
 # STATIC FILE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
@@ -244,11 +260,20 @@ LOGGING = {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
         }
     },
     'loggers': {
         'django.request': {
             'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['console'],
             'level': 'ERROR',
             'propagate': True,
         },
