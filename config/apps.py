@@ -28,6 +28,12 @@ class DjangoSuit(DjangoSuitConfig):
             )
         },
         {
+            'label': 'Pages',
+            'models': (
+                'pages.page',
+            )
+        },
+        {
             'label': 'Users & Groups',
             'models': (
                 'auth.user',
