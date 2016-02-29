@@ -4,8 +4,10 @@ from django.contrib.gis.geos import Point
 from rest_framework.response import Response
 from rest_framework import viewsets, permissions, status
 
-from .serializer import StateSerializer, JurisdictionSerializer, add_city_string, JurisdictionSummarySerializer
+from pages.models import Page
 from jurisdiction.models import State, Jurisdiction
+from .serializer import (StateSerializer, JurisdictionSerializer, add_city_string, JurisdictionSummarySerializer,
+                         PageSerializer)
 
 
 def geocode(address, required_precision_km=1.):
@@ -38,6 +40,12 @@ class StateViewSet(viewsets.ReadOnlyModelViewSet):
         Q(is_active=True) | ~Q(pollworker_website='') | Q(pollworker_website__isnull=True)
     ).order_by('name')
     serializer_class = StateSerializer
+
+
+class PageViewSet(viewsets.ReadOnlyModelViewSet):
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = Page.objects.filter(is_active=True)
+    serializer_class = PageSerializer
 
 
 class JurisdictionViewSet(viewsets.ReadOnlyModelViewSet):

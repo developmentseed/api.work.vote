@@ -1,0 +1,34 @@
+The following information was provided at workelections.com by a person who is interested in serving as a poll worker in your jurisdiction.  Workelections.com is a nonpartisan project which has collected poll worker information and applications for hundreds of counties and other jurisdictions nationwide, making it easy for local election officials and potential workers to connect. Workelections.com does not retain the personal or contact information of any user submitting this form.
+
+
+For more information or if you have any questions, please go to workelections.com</a> or email us at info@fairelectionsnetwork.com. Thank you.
+
+-----------------------------
+Application for {{jurisdiction.name}}, {{jurisdiction.state.alpha}}
+
+First Name: {{first_name|default_if_none:'Not provided'}}
+
+Last Name: {{last_name|default_if_none:'Not provided'}}
+
+City: {{city|default_if_none:'Not provided'}}
+
+County: {{county|default_if_none:'Not provided'}}
+
+State: {{jurisdiction.state.name}}
+
+Email: {{email|default_if_none:'Not provided'}}
+
+Phone: {{phone|default_if_none:'Not provided'}}
+
+What is your age?
+{{age|default_if_none:'Not provided'}}
+
+What languages do you speak other than English?
+{{languages|default_if_none:'Not provided'}}
+
+How familiar are you with working with computer technology on a scale of 1 to 10? 1 being "not familiar at all" and 10 being "extremely familiar."
+{{technology|default_if_none:'Not provided'}}
+
+
+www.workelections.com
+

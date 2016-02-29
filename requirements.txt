@@ -14,3 +14,4 @@ gevent==1.1rc1
 geocoder==1.7.1
 jsonfield==1.0.3
 django-enumfield==1.3b2
+django-tinymce==2.2.0

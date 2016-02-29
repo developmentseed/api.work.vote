@@ -1,6 +1,7 @@
 import re
 from rest_framework import serializers
 
+from pages.models import Page
 from jurisdiction.models import Jurisdiction, State
 
 
@@ -17,6 +18,12 @@ def add_city_string(obj):
         name = obj.name
 
     return name
+
+
+class PageSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Page
 
 
 class StateSerializer(serializers.ModelSerializer):

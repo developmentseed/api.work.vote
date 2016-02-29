@@ -8,6 +8,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 
 from survey.models import Application
+from mailman.mailer import MailMaker
 from jurisdiction.models import Jurisdiction
 
 
@@ -102,28 +103,21 @@ class ContactViewSet(viewsets.ViewSet):
             return Response({'detail': 'There is no email on file for the jurisdiction'},
                             status=status.HTTP_400_BAD_REQUEST)
 
-        # Send an email to admin
-        msg = 'We have received the following applicaiton for Arlington County. \n\n'
-        msg = msg + 'First Name: %s \n\n' % data.get('first_name', 'N/A')
-        msg = msg + 'Last Name: %s \n\n' % data.get('last_name', 'N/A')
-        msg = msg + 'City: %s \n\n' % data.get('city', 'N/A')
-        msg = msg + 'County: %s \n\n' % data.get('county', 'N/A')
-        msg = msg + 'State: %s \n\n' % 'Virginia'
-        msg = msg + 'Email: %s \n\n' % data.get('email', 'N/A')
-        msg = msg + 'Phone: %s \n\n' % data.get('phone', 'N/A')
-        msg = msg + 'What is your age?: \n %s \n\n' % age
-        msg = msg + 'What languages do you speak other than English?: \n %s \n\n' % ", ".join(data.get('languages',
-                                                                                                       []))
-        msg = msg + ('How familiar are you with working with computer technology on a scale of 1 to 10?' +
-                     ' 1 being "not familiar at all" and 10 being "extremely familiar."\n')
-        msg = msg + '%s \n\n' % technology
-        send_mail(
-            '[workelections.com] Poll Worker Request',
-            msg,
-            'info@workelections.com',
-            [settings.CONTACT_US],
-            fail_silently=False
-        )
+        context = {
+            'first_name': data.get('first_name', None),
+            'last_name': data.get('last_name', None),
+            'city': data.get('city', None),
+            'county': data.get('county', None),
+            'email': data.get('email', None),
+            'phone': data.get('phone', None),
+            'age': age,
+            'technology': technology,
+            'languages': ', '.join(data.get('languages', []))
+        }
+
+        # send email
+        mail = MailMaker(jurisdiction, **context)
+        mail.send()
 
         Application.objects.create(
             jurisdiction=jurisdiction,
