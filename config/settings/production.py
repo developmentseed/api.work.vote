@@ -65,15 +65,6 @@ AWS_HEADERS = {
 STATIC_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
 # END STORAGE CONFIGURATION
 
-# TEMPLATE CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
-TEMPLATE_LOADERS = (
-    ('django.template.loaders.cached.Loader', (
-        'django.template.loaders.filesystem.Loader',
-        'django.template.loaders.app_directories.Loader',
-    )),
-)
-# END TEMPLATE CONFIGURATION
 
 # EMAIL
 EMAIL_HOST = env.str('EMAIL_HOST', 'smtp.sendgrid.com')

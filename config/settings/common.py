@@ -36,14 +36,16 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
     'rest_framework',  # REST Framework
     'rest_framework.authtoken',
-    'corsheaders'
+    'corsheaders',
+    'tinymce'
 )
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
     'jurisdiction',
     'survey',
-    'mailman'
+    'mailman',
+    'pages'
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -67,10 +69,6 @@ MIDDLEWARE_CLASSES = (
 # DEBUG
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
 DEBUG = env.bool('DJANGO_DEBUG', False)
-
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
-TEMPLATE_DEBUG = DEBUG
-# END DEBUG
 
 # SECRET CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
@@ -152,20 +150,6 @@ USE_L10N = True
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
 USE_TZ = True
 # END GENERAL CONFIGURATION
-
-# TEMPLATE CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#template-context-processors
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.media',
-    'django.core.context_processors.static',
-    'django.core.context_processors.tz',
-    'django.contrib.messages.context_processors.messages',
-    'django.core.context_processors.request',
-    # Your stuff: custom template context processers go here
-)
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
 TEMPLATES = [{
@@ -299,5 +283,15 @@ REST_FRAMEWORK = {
 # Django CORS
 CORS_ORIGIN_ALLOW_ALL = env.bool('DJANGO_CORS_ORIGIN_ALLOW_ALL', True)
 CORS_ALLOW_CREDENTIALS = env.bool('DJANGO_CORS_ALLOW_CREDENTIALS', True)
-
 # End Django CORS
+
+# TINY MCE
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': "table,spellchecker,paste,searchreplace",
+    'theme': "advanced",
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
+    'width': 600,
+    'height': 500,
+}
+# END TINY MCE
