@@ -81,9 +81,13 @@ class ContactViewSet(viewsets.ViewSet):
         # make sure age and technology has a correct value
         try:
             age = age_range[int(data.get('age'))]
+        except (TypeError, ValueError):
+            age = None
+
+        try:
             technology = int(data.get('technology'))
         except (TypeError, ValueError):
-            return Response({'detail': 'Incorrect value for age or technology'}, status=status.HTTP_400_BAD_REQUEST)
+            technology = None
 
         # make sure languages is a list
         if not isinstance(data.get('languages'), list):
