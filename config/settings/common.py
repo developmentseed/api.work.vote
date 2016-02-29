@@ -107,6 +107,8 @@ MANAGERS = ADMINS
 
 # Contact us email
 CONTACT_US = env('CONTACT_US', default='test@example.com')
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='info@fairelectionsnetwork.com')
+TEST_TO_EMAIL = env('TEST_TO_EMAIL', default=None)
 
 # DATABASE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
