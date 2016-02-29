@@ -428,19 +428,19 @@ line-height:150% !important;
 
                             <hr />
                             <p><b>Application for {{jurisdiction.name}}, {{jurisdiction.state.alpha}}</b></p>
-                            <p>First Name: {{first_name|default: 'Not provided'}}</p>
-                            <p>Last Name: {{last_name|default: 'Not provided'}}</p>
-                            <p>City: {{city|default: 'Not provided'}}</p>
-                            <p>County: {{county|default: 'Not provided'}}</p>
-                            <p>State: {{jurisdiction.state.name}}</p>
-                            <p>Email: {{email|default: 'Not provided'}}</p>
-                            <p>Phone: {{phone|default: 'Not provided'}}</p>
-                            <p>What is your age? <br/>
-                               {{age|default: 'Not provided'}}</p>
-                            <p>What languages do you speak other than English? <br>
-                               {{languages|default: 'Not provided'}}</p>
-                            <p>How familiar are you with working with computer technology on a scale of 1 to 10? 1 being "not familiar at all" and 10 being "extremely familiar." <br />
-                               {{technology|default: 'Not provided'}}</p>
+                            <p><b>First Name:</b> {{first_name|default_if_none:'Not provided'}}</p>
+                            <p><b>Last Name:</b> {{last_name|default_if_none:'Not provided'}}</p>
+                            <p><b>City:</b> {{city|default_if_none:'Not provided'}}</p>
+                            <p><b>County:</b> {{county|default_if_none:'Not provided'}}</p>
+                            <p><b>State:</b> {{jurisdiction.state.name}}</p>
+                            <p><b>Email:</b> {{email|default_if_none:'Not provided'}}</p>
+                            <p><b>Phone:</b> {{phone|default_if_none:'Not provided'}}</p>
+                            <p><b>What is your age?</b> <br/>
+                               {{age|default_if_none:'Not provided'}}</p>
+                            <p><b>What languages do you speak other than English?</b> <br>
+                               {{languages|default_if_none:'Not provided'}}</p>
+                            <p><b>How familiar are you with working with computer technology on a scale of 1 to 10?</b> <em>1 being "not familiar at all" and 10 being "extremely familiar."</em> <br />
+                               {{technology|default_if_none:'Not provided'}}</p>
 
                         </td>
                     </tr>

@@ -6,28 +6,28 @@ For more information or if you have any questions, please go to workelections.co
 -----------------------------
 Application for {{jurisdiction.name}}, {{jurisdiction.state.alpha}}
 
-First Name: {{first_name|default: 'Not provided'}}
+First Name: {{first_name|default_if_none:'Not provided'}}
 
-Last Name: {{last_name|default: 'Not provided'}}
+Last Name: {{last_name|default_if_none:'Not provided'}}
 
-City: {{city|default: 'Not provided'}}
+City: {{city|default_if_none:'Not provided'}}
 
-County: {{county|default: 'Not provided'}}
+County: {{county|default_if_none:'Not provided'}}
 
 State: {{jurisdiction.state.name}}
 
-Email: {{email|default: 'Not provided'}}
+Email: {{email|default_if_none:'Not provided'}}
 
-Phone: {{phone|default: 'Not provided'}}
+Phone: {{phone|default_if_none:'Not provided'}}
 
 What is your age?
-{{age|default: 'Not provided'}}
+{{age|default_if_none:'Not provided'}}
 
 What languages do you speak other than English?
-{{languages|default: 'Not provided'}}
+{{languages|default_if_none:'Not provided'}}
 
 How familiar are you with working with computer technology on a scale of 1 to 10? 1 being "not familiar at all" and 10 being "extremely familiar."
-{{technology|default: 'Not provided'}}
+{{technology|default_if_none:'Not provided'}}
 
 
 www.workelections.com
