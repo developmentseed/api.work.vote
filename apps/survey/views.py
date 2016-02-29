@@ -9,6 +9,7 @@ from django.core.mail import send_mail
 
 from survey.models import Application
 from mailman.mailer import MailMaker
+from api.serializer import add_city_string
 from jurisdiction.models import Jurisdiction
 
 
@@ -80,14 +81,16 @@ class ContactViewSet(viewsets.ViewSet):
 
         # make sure age and technology has a correct value
         try:
-            age = age_range[int(data.get('age'))]
+            age_id = int(data.get('age'))
+            age = age_range[age_id]
         except (TypeError, ValueError):
+            age_id = None
             age = None
 
         try:
             technology = int(data.get('technology'))
         except (TypeError, ValueError):
-            technology = None
+            technology = 0
 
         # make sure languages is a list
         if not isinstance(data.get('languages'), list):
@@ -108,6 +111,7 @@ class ContactViewSet(viewsets.ViewSet):
                             status=status.HTTP_400_BAD_REQUEST)
 
         context = {
+            'jurisdiction_name': add_city_string(jurisdiction),
             'first_name': data.get('first_name', None),
             'last_name': data.get('last_name', None),
             'city': data.get('city', None),
@@ -127,7 +131,7 @@ class ContactViewSet(viewsets.ViewSet):
             jurisdiction=jurisdiction,
             city=data.get('city'),
             county=data.get('county'),
-            age_range=int(data.get('age')),
+            age_range=age_id,
             languages=data.get('languages'),
             familiarity_w_technology=technology
         )
