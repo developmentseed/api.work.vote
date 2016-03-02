@@ -25,6 +25,7 @@ class DjangoSuit(DjangoSuitConfig):
             'label': 'Application & Surveys',
             'models': (
                 'survey.application',
+                'survey.survey',
             )
         },
         {

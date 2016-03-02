@@ -15,8 +15,20 @@ class AgeRange(enum.Enum):
     A65_older = 5
 
 
-class Application(models.Model):
+class Survey(models.Model):
     """ Model for handling survey questions """
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    age_range = enum.EnumField(AgeRange, null=True, blank=True)
+    languages = JSONField('What languages do you speak other than English?', null=True, blank=True)
+    familiarity_w_technology = models.IntegerField(
+        'How familiar are you with working with computer technology on a scale of 1 to 10?'
+        ' 1 being "not familiar at all" and 10 being "extremely familiar."',
+        default=0)
+
+
+class Application(models.Model):
+    """ Model for handling application questions """
 
     created_at = models.DateTimeField(auto_now_add=True)
     jurisdiction = models.ForeignKey(Jurisdiction, related_name='app_jurisdiction')
