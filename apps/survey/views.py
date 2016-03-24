@@ -1,8 +1,8 @@
 from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
-from rest_framework.decorators import list_route
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.decorators import list_route, permission_classes as pm
 
 from django.conf import settings
 from django.core.mail import send_mail
@@ -11,6 +11,7 @@ from survey.models import Application, Survey
 from mailman.mailer import MailMaker
 from api.serializer import add_city_string
 from jurisdiction.models import Jurisdiction
+from survey.export import export_applications, export_surveys
 
 
 class ContactViewSet(viewsets.ViewSet):
@@ -181,3 +182,13 @@ class ContactViewSet(viewsets.ViewSet):
         )
 
         return Response({'detail': 'Thank you.'}, status=status.HTTP_200_OK)
+
+    @list_route()
+    @pm((IsAuthenticated, ))
+    def applications_export(self, request):
+        return export_applications()
+
+    @list_route()
+    @pm((IsAuthenticated, ))
+    def surveys_export(self, request):
+        return export_surveys()
