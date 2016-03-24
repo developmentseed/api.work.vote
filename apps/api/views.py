@@ -2,9 +2,8 @@ import geocoder
 from django.db.models import Q
 from django.contrib.gis.geos import Point
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import list_route
 from rest_framework import viewsets, permissions, status
-from rest_framework.decorators import list_route, permission_classes as pm
 
 from pages.models import Page
 from jurisdiction.models import State, Jurisdiction
@@ -57,9 +56,12 @@ class JurisdictionViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = JurisdictionSerializer
 
     @list_route()
-    @pm((IsAuthenticated, ))
     def emails(self, request):
-        return export_jurisdiction_emails()
+        if request.user.is_authenticated():
+            return export_jurisdiction_emails()
+        else:
+            return Response({'detail': 'Not allowed'},
+                            status=status.HTTP_401_UNAUTHORIZED)
 
     def get_serializer(self, *args, **kwargs):
         """

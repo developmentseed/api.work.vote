@@ -1,8 +1,8 @@
 from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework.decorators import list_route, permission_classes as pm
+from rest_framework.permissions import AllowAny
+from rest_framework.decorators import list_route
 
 from django.conf import settings
 from django.core.mail import send_mail
@@ -184,11 +184,17 @@ class ContactViewSet(viewsets.ViewSet):
         return Response({'detail': 'Thank you.'}, status=status.HTTP_200_OK)
 
     @list_route()
-    @pm((IsAuthenticated, ))
     def applications_export(self, request):
-        return export_applications()
+        if request.user.is_authenticated():
+            return export_applications()
+        else:
+            return Response({'detail': 'Not allowed'},
+                            status=status.HTTP_401_UNAUTHORIZED)
 
     @list_route()
-    @pm((IsAuthenticated, ))
     def surveys_export(self, request):
-        return export_surveys()
+        if request.user.is_authenticated():
+            return export_surveys()
+        else:
+            return Response({'detail': 'Not allowed'},
+                            status=status.HTTP_401_UNAUTHORIZED)
