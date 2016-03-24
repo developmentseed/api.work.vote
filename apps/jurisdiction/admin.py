@@ -20,6 +20,15 @@ class JurisdictionAdmin(admin.ModelAdmin):
 
     ordering = ['name']
 
+    def changelist_view(self, request, extra_context=None):
+        extra_context = {
+            'export_url': '/jurisdictions/emails',
+            'export_caption': 'Download Jurisdiction Emails',
+            'show_export_button': True
+        }
+
+        return super(JurisdictionAdmin, self).changelist_view(request, extra_context)
+
 
 class StateAdmin(admin.ModelAdmin):
 
