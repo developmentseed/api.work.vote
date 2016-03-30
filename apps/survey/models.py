@@ -37,6 +37,6 @@ class Application(models.Model):
     age_range = enum.EnumField(AgeRange, null=True, blank=True)
     languages = JSONField('What languages do you speak other than English?', null=True, blank=True)
     familiarity_w_technology = models.IntegerField(
-        'How familiar are you with working with computer technology on a scale of 1 to 10?'
-        ' 1 being "not familiar at all" and 10 being "extremely familiar."',
+        'How familiar are you with working with computer technology on a scale of 1 to 5?'
+        ' 1 being "not familiar at all" and 5 being "extremely familiar."',
         default=0)
