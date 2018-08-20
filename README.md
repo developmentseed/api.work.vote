@@ -8,12 +8,17 @@ This is the API for the Work the Elections project. The project is sponsored by 
 
 - Python 2.7.10
 - Postgres 9.4 with PostGIS support
+- Libmemcached (`brew install libmemcached`)
 
 #### Steps
 
 Install dependencies:
 
     $ pip install -r requirements
+
+Run database server:
+
+    $ brew services start postgresql
 
 Setup database:
 

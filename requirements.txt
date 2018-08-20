@@ -1,10 +1,11 @@
-django==1.8.6
+django==1.11.5
 django-secure==1.0.1
-psycopg2==2.6.1
-djangorestframework==3.3.0
+django-tinymce==2.6.0
+psycopg2==2.7.1
+djangorestframework==3.5.0
 django-cors-headers==1.1.0
 django-heroku-memcacheify==0.8
-django-suit==0.3a1
+django-suit==0.3a3
 boto==2.38.0
 pylibmc==1.5.0
 django-environ==0.4.0
@@ -14,4 +15,3 @@ gevent==1.1rc1
 geocoder==1.7.1
 jsonfield==1.0.3
 django-enumfield==1.3b2
--e git://github.com/aljosa/django-tinymce.git@tinymce4#egg=tinymce4
