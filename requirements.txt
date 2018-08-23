@@ -1,6 +1,6 @@
 django==1.8.6
 django-secure==1.0.1
-psycopg2==2.6.1
+psycopg2==2.7.1
 djangorestframework==3.3.0
 django-cors-headers==1.1.0
 django-heroku-memcacheify==0.8
