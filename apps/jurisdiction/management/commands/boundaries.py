@@ -4,7 +4,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.contrib.gis.geos import GEOSGeometry
 
-from state_dict import state_name_crosswalk
+from state_func import state_name_crosswalk
 
 from jurisdiction.models import Jurisdiction, State
 
@@ -51,7 +51,7 @@ def save_geometry(obj):
                         continue
                 # Set display option to "No" since we don't have any real data yet
                 j = Jurisdiction(state_id=int(state), name=name, city=city, display = 'N')
-
+            
             mpolygons = GEOSGeometry(json.dumps(geometry))
             j.geometry = mpolygons
             j.save()
