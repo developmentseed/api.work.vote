@@ -66,7 +66,7 @@ def rasterize(
                 raise Exception
 
             if disjoint_bounds(geojson_bounds, template_ds.bounds):
-                print "GeoJSON outside bounds of --like raster. "
+                print('GeoJSON outside bounds of --like raster.')
 
             kwargs = template_ds.meta.copy()
             kwargs['count'] = 1

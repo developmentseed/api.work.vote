@@ -45,7 +45,7 @@ def save_geometry(obj):
 
         except Jurisdiction.DoesNotExist:
             s = State.objects.get(id=int(state))
-            print '%s was not found in %s' % (name, s)
+            print('%s was not found in %s' % (name, s))
 
     return resp
 

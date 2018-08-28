@@ -49,3 +49,4 @@ celerybeat-schedule.db
 celerybeat-schedule
 cache_dir
 .python-version
+.tmp

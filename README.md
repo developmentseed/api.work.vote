@@ -2,41 +2,50 @@
 
 This is the API for the Work the Elections project. The project is sponsored by the Knight Foundation is developed by the Development Seed and [FELN](http://fairelectionsnetwork.com/)
 
-### Local Installation
+## Local Installation
 
-#### Dependencies
+### Dev Dependencies
 
-- Python 2.7.10
-- Postgres 9.4 with PostGIS support
+- Python 3.6.3 
+- Postgres 9.6 with PostGIS support
+- docker
 
-#### Steps
+### Setup Docker Environment
 
-Install dependencies:
+Build the docker image:
 
-    $ pip install -r requirements
+     $ docker-compose build base
 
-Setup database:
+### Prepare the database
 
-    $ python manage.py migrate
-    $ python manage.py createsuperuser
+     $ docker-compose run --rm migrate
 
-Launch:
+### Create Super User
 
-    $ python manage.py runserver
+     $ docker-compose run --rm createsuperuser
 
-### Deployment
+### Serve the API
 
-`master` branch is deployed to Heroku. To deploy, PR to `master`. Direct push to master is disabled.
+     $ docker-compose run --rm --service-ports serve
 
 ### Adding boundaries
 
 Replace the geojson file at `apps/jurisdiction/voteworker.geojson`, then run:
 
-    $ python manage.py boundaries
+     $ docker-compose run --rm boundaries
 
 To generate jurisdiction png files run:
 
-    $ pip install rasterio
-    $ python manage.py rasterize
+     $ docker-compose run --rm rasterize
 
 PNG files are stored at `config/static/jurisdictions`
+
+### Django shell
+
+To access django shell run
+
+     $ docker-compose run --rm shell
+
+## Deployment
+
+`master` branch is deployed to Heroku. To deploy, PR to `master`. Direct push to master is disabled.
