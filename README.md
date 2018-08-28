@@ -16,6 +16,20 @@ Build the docker image:
 
      $ docker-compose build base
 
+### Populate the db from a backup
+
+Make sure the db container is stopped:
+
+     $ docker-compose stop db
+    
+Delete the database files
+
+     $ rm -rf .tmp
+
+Put your backup file in the root folder and rename to `backup.sql`, then run
+
+     $ docker-compose run --rm restore
+
 ### Prepare the database
 
      $ docker-compose run --rm migrate

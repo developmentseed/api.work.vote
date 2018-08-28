@@ -50,3 +50,4 @@ celerybeat-schedule
 cache_dir
 .python-version
 .tmp
+backup.sql

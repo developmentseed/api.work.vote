@@ -29,6 +29,10 @@ services:
   bash:
     <<: *base_django_setup
     entrypoint: /bin/bash
+  
+  restore:
+    <<: *base_django_setup
+    command: pg_restore --no-acl --no-owner --clean --host db --username test --dbname test backup.sql
 
   shell:
     <<: *base_django_setup
