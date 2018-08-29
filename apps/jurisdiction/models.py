@@ -1,5 +1,5 @@
 from django.contrib.gis.db import models
-
+from django_mysql.models import ListCharField
 
 class State(models.Model):
 
@@ -65,3 +65,18 @@ class Jurisdiction(models.Model):
 
     def __unicode__(self):
         return self.name + ', ' + self.state.name
+
+
+class SurveyEmail(models.Model):
+
+    name = models.CharField('Email label', max_length=250)
+    recipients = ListCharField(
+        base_field=models.CharField(max_length=250),
+        size = 25,
+        max_length=62500)
+    
+    states = models.ManyToManyField(State, verbose_name="Send links to all jurisdictions in these states:")
+    jurisdictions = models.ManyToManyField(Jurisdiction, verbose_name="Send links to all these jurisdictions:")
+
+    def __unicode__(self):
+        return self.name
