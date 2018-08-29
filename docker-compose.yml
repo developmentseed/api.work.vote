@@ -1,0 +1,72 @@
+version: '2'
+
+services:
+  base_django_setup: &base_django_setup
+    image: developmentseed/api.work.vote:latest
+    environment:
+      DJANGO_DB_NAME: test
+      DJANGO_SECRET_KEY: test
+      DJANGO_DB_HOST: db
+      DJANGO_DB_USER: test
+      DJANGO_DB_PASS: test
+    volumes:
+      - '.:/home/fec/api'
+    depends_on:
+      - db
+    links:
+      - db
+
+  base:
+    build: .
+    image: developmentseed/api.work.vote:latest
+
+  serve:
+    <<: *base_django_setup
+    ports:
+      - 8000:8000
+    command: python manage.py runserver 0.0.0.0:8000
+
+  bash:
+    <<: *base_django_setup
+    entrypoint: /bin/bash
+  
+  restore:
+    <<: *base_django_setup
+    command: pg_restore --no-acl --no-owner --clean --host db --username test --dbname test backup.sql
+
+  shell:
+    <<: *base_django_setup
+    command: python manage.py shell
+
+  collectstatic:
+    <<: *base_django_setup
+    command: python manage.py collectstatic --noinput -l
+
+  createsuperuser:
+    <<: *base_django_setup
+    command: python manage.py createsuperuser
+
+  migrate:
+    <<: *base_django_setup
+    command: python manage.py migrate
+
+  makemigrations:
+    <<: *base_django_setup
+    command: python manage.py makemigrations
+  
+  boundaries:
+    <<: *base_django_setup
+    command: python manage.py boundaries
+
+  rasterize:
+    <<: *base_django_setup
+    command: python manage.py rasterize
+
+  db:
+    image: mdillon/postgis:9.6-alpine
+    environment:
+      POSTGRES_PASSWORD: test
+      POSTGRES_USER: test
+      POSTGRES_DB: test
+    volumes:
+      - './.tmp/pg:/var/lib/postgresql/data'
