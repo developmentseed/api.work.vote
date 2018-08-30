@@ -51,3 +51,4 @@ cache_dir
 .python-version
 .tmp
 backup.sql
+config.txt
