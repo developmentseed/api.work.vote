@@ -37,6 +37,7 @@ THIRD_PARTY_APPS = (
     'rest_framework',  # REST Framework
     'rest_framework.authtoken',
     'corsheaders',
+    'smart_selects',
     'tinymce'
 )
 
@@ -296,3 +297,23 @@ TINYMCE_DEFAULT_CONFIG = {
     'height': 500,
 }
 # END TINY MCE
+
+JET_SIDE_MENU_ITEMS = [  # A list of application or custom item dicts
+    {'label': 'Jurisdictions', 'app_label': 'jurisdiction', 'items': [
+        {'name': 'jurisdiction.state'},
+        {'name': 'jurisdiction.jurisdiction'},
+        {'name': 'jurisdiction.surveyemail'},
+    ]},
+    {'label': 'Pages', 'app_label': 'pages', 'items': [
+        {'name': 'pages.page'},
+    ]},
+    {'label': 'Surveys', 'app_label': 'survey', 'items': [
+        {'name': 'survey.survey'},
+        {'name': 'survey.application'},
+    ]},
+]
+
+SITE_TITLE = env.str('SITE_TITLE', 'FEC')
+SITE_HEADER = env.str('SITE_HEADER', 'Work Elections')
+SITE_URL = env.str('SITE_URL', 'https://workelections.com')
+JQUERY_URL = False

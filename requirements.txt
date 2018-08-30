@@ -11,4 +11,5 @@ geocoder==1.7.1
 jsonfield==1.0.3
 django-enumfield==1.3b2
 django-jet==1.0.7
+-e git+https://github.com/digi604/django-smart-selects.git@js-unlinting-fixes#egg=smart_selects
 -e git://github.com/aljosa/django-tinymce.git@tinymce4#egg=tinymce4

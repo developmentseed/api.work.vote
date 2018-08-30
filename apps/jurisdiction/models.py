@@ -1,4 +1,5 @@
 from django.contrib.gis.db import models
+from smart_selects.db_fields import ChainedManyToManyField
 
 
 class State(models.Model):
@@ -10,7 +11,7 @@ class State(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField('Wheter state is active', default=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 DISPLAY_OPTIONS = (
@@ -72,7 +73,12 @@ class SurveyEmail(models.Model):
 
     name = models.CharField('Email label', max_length=250)
     recipients = models.TextField('List of emails', help_text='Use comma, semicolon or line break to separate emails')
-    jurisdictions = models.ManyToManyField(Jurisdiction, verbose_name="Send links to all these jurisdictions:")
+    state = models.ForeignKey(State)
+    jurisdiction = ChainedManyToManyField(
+        Jurisdiction,
+        chained_field='state',
+        chained_model_field='state',
+    )
 
     def __unicode__(self):
         return self.name
