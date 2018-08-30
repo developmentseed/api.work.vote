@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from .models import Jurisdiction, State
+from .models import Jurisdiction, State, SurveyEmail
+
 
 
 class JurisdictionAdmin(admin.ModelAdmin):
@@ -43,5 +44,11 @@ class StateAdmin(admin.ModelAdmin):
     ordering = ['name']
 
 
+class SurveyEmailAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+    )
+
 admin.site.register(State, StateAdmin)
+admin.site.register(SurveyEmail, SurveyEmailAdmin)
 admin.site.register(Jurisdiction, JurisdictionAdmin)
