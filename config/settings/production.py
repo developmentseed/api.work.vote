@@ -74,17 +74,3 @@ EMAIL_PORT = env.int('EMAIL_PORT', 587)
 EMAIL_USE_TLS = True
 SERVER_EMAIL = EMAIL_HOST_USER
 # END EMAIL
-
-
-# CACHING
-# Only do this here because thanks to django-pylibmc-sasl and pylibmc
-# memcacheify is painful to install on windows.
-try:
-    # See: https://github.com/rdegges/django-heroku-memcacheify
-    from memcacheify import memcacheify
-    CACHES = memcacheify()
-except ImportError:
-    CACHES = env.cache_url('DJANGO_CACHES', default="memcached://127.0.0.1:11211")
-# END CACHING
-
-# Your production stuff: Below this line define 3rd party library settings

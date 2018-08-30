@@ -3,6 +3,7 @@ version: '2'
 services:
   base_django_setup: &base_django_setup
     image: developmentseed/api.work.vote:latest
+    entrypoint: ./bin/entrypoint.sh
     environment:
       DJANGO_DB_NAME: test
       DJANGO_SECRET_KEY: test
@@ -25,6 +26,17 @@ services:
     ports:
       - 8000:8000
     command: python manage.py runserver 0.0.0.0:8000
+
+  prod:
+    image: developmentseed/api.work.vote:latest
+    volumes:
+      - '.:/home/fec/api'
+    environment:
+      PORT: 5000
+    ports:
+      - 8000:5000
+    # env_file:
+     # - config.txt
 
   bash:
     <<: *base_django_setup

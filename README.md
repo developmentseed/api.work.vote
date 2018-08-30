@@ -26,9 +26,11 @@ Delete the database files
 
      $ rm -rf .tmp
 
-Put your backup file in the root folder and rename to `backup.sql`, then run
+Put your backup file in the root folder and rename to `backup.sql`, then run:
 
      $ docker-compose run --rm restore
+
+The password is `test`.
 
 ### Prepare the database
 
@@ -60,6 +62,36 @@ To access django shell run
 
      $ docker-compose run --rm shell
 
+### Serve Production
+
+**WARNING:** this is NOT recommended and could damage the production website.
+
+To serve the website with the Heroku environment locally, first download all the environment variables:
+
+     $ heroku config -s -a workelections > config.txt
+
+Then run:
+
+     $ docker-compose run --rm --service-ports prod
+
 ## Deployment
 
 `master` branch is deployed to Heroku. To deploy, PR to `master`. Direct push to master is disabled.
+
+### Manual Deployment
+
+We use [Heroku Containers](https://blog.heroku.com/container-registry-and-runtime) for deploying this application to Heroku.
+
+To get started, make sure you are logged in by running `heroku container:login`.
+
+#### Build and Push
+
+     $ heroku container:push web
+
+#### Release
+
+     $ heroku container:release web
+
+#### Migrations
+
+     $ heroku run python manage.py migrate
