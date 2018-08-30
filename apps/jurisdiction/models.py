@@ -1,5 +1,6 @@
 from django.contrib.gis.db import models
-
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 class State(models.Model):
 
@@ -71,8 +72,9 @@ class SurveyEmail(models.Model):
     """ Model for tracking and sending emails to election officials """
 
     name = models.CharField('Email label', max_length=250)
-    recipients = models.TextField('List of emails', help_text='Use comma, semicolon or line break to separate emails')
+    recipients = models.TextField('List of emails, separated by commas', help_text='Use comma, semicolon or line break to separate emails')
     jurisdictions = models.ManyToManyField(Jurisdiction, verbose_name="Send links to all these jurisdictions:")
+    send_email = models.BooleanField('Send e-mail?', default = False)
 
     def __unicode__(self):
         return self.name
