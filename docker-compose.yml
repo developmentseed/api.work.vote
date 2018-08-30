@@ -35,8 +35,8 @@ services:
       PORT: 5000
     ports:
       - 8000:5000
-    env_file:
-      - config.txt
+    # env_file:
+     # - config.txt
 
   bash:
     <<: *base_django_setup
