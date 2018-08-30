@@ -30,7 +30,7 @@ DJANGO_APPS = (
     # 'django.contrib.humanize',
 
     # Admin
-    'config.apps.DjangoSuit',
+    'jet',
     'django.contrib.admin',
 )
 THIRD_PARTY_APPS = (

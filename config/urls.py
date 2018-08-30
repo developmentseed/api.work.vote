@@ -15,6 +15,7 @@ admin.autodiscover()
 urlpatterns = patterns(
     '',
     # Uncomment the next line to enable the admin:
+    url(r'^jet/', include('jet.urls', 'jet')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^', include(urls)),

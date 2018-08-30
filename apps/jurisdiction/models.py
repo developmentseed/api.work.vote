@@ -63,5 +63,16 @@ class Jurisdiction(models.Model):
     city = models.BooleanField('Whether the jurisdiction is a city', default=False)
     display = models.CharField(max_length = 1, choices = DISPLAY_OPTIONS, default='Y')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name + ', ' + self.state.name
+
+
+class SurveyEmail(models.Model):
+    """ Model for tracking and sending emails to election officials """
+
+    name = models.CharField('Email label', max_length=250)
+    recipients = models.TextField('List of emails', help_text='Use comma, semicolon or line break to separate emails')
+    jurisdictions = models.ManyToManyField(Jurisdiction, verbose_name="Send links to all these jurisdictions:")
+
+    def __unicode__(self):
+        return self.name
