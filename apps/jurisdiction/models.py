@@ -79,7 +79,7 @@ class SurveyEmail(models.Model):
         chained_field='state',
         chained_model_field='state',
     )
-    send_email = models.BooleanField('Sent email?', help_text = 'Can only be set to TRUE once this has been saved', default = False)
+    send_email = models.BooleanField('Sent email?', help_text = 'To edit this field, use the dropdown on the summary view.', default = False)
 
     def __unicode__(self):
         return self.name
