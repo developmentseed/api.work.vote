@@ -73,7 +73,7 @@ class MailSurvey(object):
         html_content = self.html
 
         msg = EmailMultiAlternatives(self.subject, text_content,
-                                     self.from_email, [self.to_email])
+                                     self.from_email, self.to_email)
         msg.content_subtype = "html"
         msg.attach_alternative(html_content, "text/html")
         try:

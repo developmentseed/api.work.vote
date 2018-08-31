@@ -56,8 +56,22 @@ def send_email(modeladmin, request, queryset):
             for jurisdiction in obj_list:
                 jurisdiction_list.append([jurisdiction.name, jurisdiction.pk])
             jurisdiction_list.sort(key=lambda x: x[0])
+
+            if ',' in email_req.recipients:
+                recipient_list = email_req.recipients.split(',')
+            elif '\r\n' in email_req.recipients:
+                recipient_list = email_req.recipients.split('\r\n')
+            elif '\n' in email_req.recipients:
+                recipient_list = email_req.recipients.split('\n')
+            elif ';' in email_req.recipients:
+                recipient_list = email_req.recipients.split(';')
+            else: #assume only one e-mail
+                recipient_list = [email_req.recipients]
+            
+            recipient_list = [item.strip(' ') for item in recipient_list]
+            
             # send email
-            mail = MailSurvey(jurisdiction_list, email_req.recipients)
+            mail = MailSurvey(jurisdiction_list, recipient_list)
             status = mail.send()
             if status == 'OK':
                 queryset.update(send_email=True)
@@ -84,10 +98,7 @@ class SurveyEmailAdmin(admin.ModelAdmin):
     )
     actions = [send_email, mark_unsent]
     def get_readonly_fields(self, request, obj=None):
-        if obj: # obj is not None, so this is an edit
-            return [] # Return a list or tuple of readonly fields' names
-        else: # This is an addition
-            return ['send_email']
+        return ['send_email']
 
 admin.site.register(State, StateAdmin)
 admin.site.register(SurveyEmail, SurveyEmailAdmin)
