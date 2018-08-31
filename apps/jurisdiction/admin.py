@@ -46,7 +46,6 @@ class StateAdmin(admin.ModelAdmin):
 def send_email(modeladmin, request, queryset):
     count_success = 0
     count_resend = 0
-    count_fail = 0
     tot_reqs = 0
     for email_req in queryset:
         tot_reqs +=1
@@ -63,8 +62,6 @@ def send_email(modeladmin, request, queryset):
             if status == 'OK':
                 queryset.update(send_email=True)
                 count_success+=1
-            else:
-                count_fail +=1
         else:
             count_resend +=1
         
@@ -73,8 +70,6 @@ def send_email(modeladmin, request, queryset):
         message += "{} out of {} e-mails were successfully sent.".format(count_success, tot_reqs)
     if count_resend > 0:
         message += '{} out of {} e-mails have already been sent to their recipient. No action has been taken. To force a re-send, set "Sent E-mail?" to False'
-    if count_fail > 0:
-        message += '{} out of {} e-mails could not be sent due to error. Please check the format of the recipients.'
     modeladmin.message_user(request,  message)
 
 send_email.short_description = "Send e-mail"
