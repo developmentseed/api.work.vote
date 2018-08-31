@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import Jurisdiction, State, SurveyEmail
-from .email_survey import dispatch_email
+from mailman.mailer import MailSurvey
 
 
 class JurisdictionAdmin(admin.ModelAdmin):
@@ -44,24 +44,50 @@ class StateAdmin(admin.ModelAdmin):
     ordering = ['name']
 
 def send_email(modeladmin, request, queryset):
+    count_success = 0
+    count_resend = 0
+    count_fail = 0
+    tot_reqs = 0
     for email_req in queryset:
-        obj_list = email_req.jurisdictions.all()
-        jurisdiction_list = []
-        for jurisdiction in obj_list:
-            jurisdiction_list.append([jurisdiction.name, jurisdiction.pk])
-            print(jurisdiction_list)
+        tot_reqs +=1
+        # Only send e-mail once
+        if email_req.send_email == False:
+            obj_list = email_req.jurisdiction.all()
+            jurisdiction_list = []
+            for jurisdiction in obj_list:
+                jurisdiction_list.append([jurisdiction.name, jurisdiction.pk])
+            jurisdiction_list.sort(key=lambda x: x[0])
+            # send email
+            mail = MailSurvey(jurisdiction_list, email_req.recipients)
+            status = mail.send()
+            if status == 'OK':
+                queryset.update(send_email=True)
+                count_success+=1
+            else:
+                count_fail +=1
         else:
-            print("EMPTY")
-        response_code = dispatch_email(jurisdiction_list, email_req.recipients)
-        if response_code == 200:
-            queryset.update(send_email=True)
+            count_resend +=1
+        
+    message=""
+    if count_success > 0:
+        message += "{} out of {} e-mails were successfully sent.".format(count_success, tot_reqs)
+    if count_resend > 0:
+        message += '{} out of {} e-mails have already been sent to their recipient. No action has been taken. To force a re-send, set "Sent E-mail?" to False'
+    if count_fail > 0:
+        message += '{} out of {} e-mails could not be sent due to error. Please check the format of the recipients.'
+    modeladmin.message_user(request,  message)
+
 send_email.short_description = "Send e-mail"
+
+def mark_unsent(modeladmin, request, queryset):
+    queryset.update(send_email=False)
+mark_unsent.short_description = "Mark e-mail as not sent"
 
 class SurveyEmailAdmin(admin.ModelAdmin):
     list_display = (
         'name', 'send_email', 'recipients'
     )
-    actions = [send_email]
+    actions = [send_email, mark_unsent]
     def get_readonly_fields(self, request, obj=None):
         if obj: # obj is not None, so this is an edit
             return [] # Return a list or tuple of readonly fields' names

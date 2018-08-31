@@ -1,0 +1,4 @@
+Thank you for your participation in our survey for WorkElections.com. 
+Please click on the link corresponding with the jurisdiction for which you would like to update information.
+
+{{SurveyLinkText}}
