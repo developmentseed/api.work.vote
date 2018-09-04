@@ -62,6 +62,7 @@ class Jurisdiction(models.Model):
     notes = models.TextField('Notes', null=True, blank=True)
     geometry = models.MultiPolygonField('Jurisdiction Geometry', null=True, blank=True)
     city = models.BooleanField('Whether the jurisdiction is a city', default=False)
+    further_notes = models.TextField('Further Notes', null=True, blank=True)
     display = models.CharField(max_length = 1, choices = DISPLAY_OPTIONS, default='Y')
 
     def __str__(self):
