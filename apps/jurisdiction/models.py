@@ -72,13 +72,14 @@ class SurveyEmail(models.Model):
     """ Model for tracking and sending emails to election officials """
 
     name = models.CharField('Email label', max_length=250)
-    recipients = models.TextField('List of emails', help_text='Use comma, semicolon or line break to separate emails')
-    state = models.ForeignKey(State)
+    recipients = models.TextField('List of emails', help_text='Use commas, semicolons or line breaks to separate emails. Do not enter e-mail addresses containing those special characters.')
+    state = models.ForeignKey(State, default=1)
     jurisdiction = ChainedManyToManyField(
         Jurisdiction,
         chained_field='state',
         chained_model_field='state',
     )
+    send_email = models.BooleanField('Sent email?', help_text = 'To edit this field, use the dropdown on the summary view.', default = False)
 
     def __unicode__(self):
         return self.name
