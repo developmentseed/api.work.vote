@@ -317,3 +317,8 @@ SITE_TITLE = env.str('SITE_TITLE', 'FEC')
 SITE_HEADER = env.str('SITE_HEADER', 'Work Elections')
 SITE_URL = env.str('SITE_URL', 'https://workelections.com')
 JQUERY_URL = False
+
+
+SURVEY_MONKEY_URL = env.str('SURVEY_MONKEY_URL', 'http://example.com') + '{}'
+WORKELECTION_WEBHOOK_USERNAME = env.str('WORKELECTION_WEBHOOK_USERNAME', 'testusername')
+WORKELECTION_WEBHOOK_PASSWORD = env.str('WORKELECTION_WEBHOOK_PASSWORD', 'testpassword')

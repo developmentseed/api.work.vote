@@ -32,8 +32,8 @@ class Command(BaseCommand):
                 new_state = State.objects.get(id=int(ID))
                 print("Here for {}, because state.alpha is {} and abbr associated with this ID({}) is {}".format(
                     base_state.name, base_state.alpha, base_state.id, state_name_crosswalk[base_state.id]['abbr']))
-                print([k for k,v in state_name_crosswalk.iteritems() if v['abbr'] ==base_state.alpha])
-                new_state.id = [k for k,v in state_name_crosswalk.iteritems() if v['abbr'] ==base_state.alpha][0]
+                print([k for k,v in state_name_crosswalk.items() if v['abbr'] ==base_state.alpha])
+                new_state.id = [k for k,v in state_name_crosswalk.items() if v['abbr'] ==base_state.alpha][0]
                 base_state.delete()
                 print("state.id is now {}".format(new_state.id))
                 new_state.save()
