@@ -4,7 +4,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.contrib.gis.geos import GEOSGeometry
 
-from state_func import state_name_crosswalk
+from .state_func import state_name_crosswalk
 
 from jurisdiction.models import Jurisdiction, State
 
@@ -75,5 +75,5 @@ class Command(BaseCommand):
         p = prepare(str(settings.BASE_DIR.path('apps/jurisdiction/voteworker2017.geojson')))
         s = save_geometry(p)
 
-        for k, v in s.iteritems():
+        for k, v in s.items():
             self.stdout.write('%s: %s jurisdictions' % (k, len(v)))
