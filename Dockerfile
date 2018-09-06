@@ -3,6 +3,7 @@ FROM python:3.5.6
 RUN apt-get update -y && \
     apt-get install --auto-remove -y \
       libmemcached-dev \
+      libsqlite3-mod-spatialite \
       zlib1g-dev \
       mdbtools \
       vim \

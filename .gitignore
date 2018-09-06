@@ -52,3 +52,4 @@ cache_dir
 .tmp
 backup.sql
 config.txt
+zipcodes.db
