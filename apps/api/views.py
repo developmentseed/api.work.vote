@@ -1,6 +1,11 @@
+import sys
+import spatialite 
 import geocoder
+from geocoder.mapbox import MapboxQuery
+
 from django.db.models import Q
-from django.contrib.gis.geos import Point
+from jurisdiction.models import Jurisdiction
+from django.contrib.gis.geos import Point, GEOSGeometry, MultiPoint
 from rest_framework.response import Response
 from rest_framework.decorators import list_route
 from rest_framework import viewsets, permissions, status
@@ -12,8 +17,38 @@ from .serializer import (StateSerializer, JurisdictionSerializer, add_city_strin
                          PageSerializer)
 
 
-def geocode(address, required_precision_km=1.):
-    """ Identifies the coordinates of an address
+class NewMapboxQuery(MapboxQuery):
+    """ Adds limit support to the mapbox geocoder """
+
+    def _build_params(self, location, provider_key, **kwargs):
+        params = super(NewMapboxQuery, self)._build_params(location, provider_key, **kwargs)
+        params['limit'] = kwargs.get('limit', 5)
+        return params
+
+def searchZipcode(zipcode, jurisdictions):
+    """ Finds matching jurisdictions for a given zipcode """
+    conn = spatialite.connect('zipcodes.db')
+    cursor = conn.cursor()
+    try:
+        if len(str(zipcode)) != 5:
+            return jurisdictions.none()
+
+        cursor.execute('SELECT ST_AsText(geometry) as geom FROM zipcodes WHERE code=?', (int(zipcode), ))
+        results = cursor.fetchone()
+        if type(results) is tuple:
+            geometry = GEOSGeometry(results[0])
+            return jurisdictions.filter(geometry__intersects=geometry)
+        else:
+            return jurisdictions.none()
+    except:
+        return jurisdictions.none()
+
+
+def geocode(address, jurisdictions, required_precision_km=1., limit=20):
+    """ Find jurisdictions that match a given address Identifies the coordinates of an address. It will ignore the input
+    if it is only digits and less than 5 digits. If the input is only 5 digits
+    the function assumes that is is a zipcode and search for zipcodes
+
     :param address:
         the address to be geocoded
     :type value:
@@ -28,12 +63,16 @@ def geocode(address, required_precision_km=1.):
         >>> geocode('1600 Pennsylvania Ave NW, Washington, DC 20500')
         {'lat': 38.89767579999999, 'lon': -77.0364827}
     """
-    geocoded = geocoder.google(address)
     try:
-        (lat, lon) = geocoded.geometry['coordinates']
-        return [lat, lon]
-    except KeyError:
-        return []
+        key = 'pk.eyJ1IjoiZGV2c2VlZCIsImEiOiJnUi1mbkVvIn0.018aLhX0Mb0tdtaT2QNe2Q'
+        geocoded = NewMapboxQuery(address, key=key, country='us', limit=limit)
+        if len(geocoded) > 0:
+            multipoints = MultiPoint([GEOSGeometry(item.wkt) for item in geocoded])
+            return jurisdictions.filter(geometry__intersects=multipoints)
+        return jurisdictions.none()
+    except:
+        print("Unexpected error:", sys.exc_info()[0])
+        return jurisdictions.none()
 
 
 class StateViewSet(viewsets.ReadOnlyModelViewSet):
@@ -141,19 +180,20 @@ class SearchViewSet(viewsets.ViewSet):
 
             query = request.GET.get('q')
 
-            # look for counties
-            filtered_jurisdictions = jurisdictions.filter(name__istartswith=query)
+            # look for zipcodes
+            zipcodes = searchZipcode(query, jurisdictions)
 
-            # also search by coordinates
-            if not filtered_jurisdictions:
-                coords = geocode(query)
+            # look for geocodes
+            if not zipcodes:
+                geocodes = geocode(query, jurisdictions)
+                names = jurisdictions.filter(name__istartswith=query)
 
-                if coords:
-                    pnt = Point(*coords)
-                    filtered_jurisdictions = jurisdictions.filter(geometry__contains=pnt)
+                jurisdictions = zipcodes | geocodes | names
+            else:
+                jurisdictions = zipcodes
 
-            if filtered_jurisdictions:
-                for jur in filtered_jurisdictions:
+            if jurisdictions:
+                for jur in jurisdictions:
 
                     response.append({
                         'type': 'jurisdiction',

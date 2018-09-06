@@ -10,6 +10,12 @@ This is the API for the Work the Elections project. The project is sponsored by 
 - Postgres 9.6 with PostGIS support
 - docker
 
+### Download zipcodes database
+
+This file is only needed if you require exact zipcode searching.
+
+     $ wget https://s3.amazonaws.com/voteworker/zipcodes.db
+
 ### Setup Docker Environment
 
 Build the docker image:
