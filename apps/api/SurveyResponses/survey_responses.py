@@ -2,8 +2,21 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from jurisdiction.models import State, Jurisdiction
 from .check_authorization import checkAuth
+from django.conf import settings
+from django.core.mail import send_mail
 
 import json
+
+def send_error_email(jurisdiction_no):
+    # Send an email to admin
+    msg = msg + 'Message: \n\n'
+    send_mail(
+        'Error on survey response import',
+        'Error trying to import survey for Jurisdiction {}'.format(jurisdiction_no),
+        'info@workelections.com',
+        [settings.CONTACT_US],
+        fail_silently=False
+    )
 
 @csrf_exempt
 def GetSurveyResponse(request):
@@ -21,8 +34,6 @@ def GetSurveyResponse(request):
     except json.decoder.JSONDecodeError:
         return HttpResponse(status=400)
     
-    print(json_dict)
-
     # Find jurisdiction to update
     jurisdiction_id = json_dict["Custom Variable__JurisdictionNo"]
     j = Jurisdiction.objects.get(pk=jurisdiction_id)
@@ -36,9 +47,9 @@ def GetSurveyResponse(request):
         except ValueError: # not a question
             if q_list[0][13:20] == "further":
                 # manually set "further notes"
-                print("Manually set q_no")
                 q_no = 13
             else:
+                # If the key doesn't start with a number, then it's not a question
                 print("ValueError on '{}'".format(q_list[0]))
                 continue
         
@@ -62,7 +73,7 @@ def GetSurveyResponse(request):
             elif q_no == 6:
                 j.pre_registration = a[0]
             elif q_no == 7:
-                # Going to change this
+                # Should change this question
                 if a == "Yes":
                     j.registration_status = "J"
                 elif a == "No":
@@ -89,8 +100,12 @@ def GetSurveyResponse(request):
             j.compensation = compensation_text[1]
         else:
             j.compensation = compensation_text[2]
+        j.display = 'Y'
 
-    j.save()
-        
-
-    return HttpResponse(status=200)
+    if (j.display == 'Y'):
+        j.save()
+        return HttpResponse(status=200)
+    else: # There was nothing to update
+        # should eventually send name and state of jurisdiction
+        send_error_email(jurisdiction_id)
+        return HttpResponse(status=400)
