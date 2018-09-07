@@ -45,7 +45,6 @@ class Command(BaseCommand):
     help = 'Import jurisdiction boundaries'
 
     def handle(self, *args, **options):
-        # self.stdout.write(Jurisdiction._meta)
         print('Exporting Jurisdictions')
         fields = [f.name for f in Jurisdiction._meta.get_fields() if f.name != 'geometry']
         js = Jurisdiction.objects.all()

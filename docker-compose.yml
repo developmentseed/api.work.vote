@@ -6,6 +6,7 @@ services:
     entrypoint: ./bin/entrypoint.sh
     environment:
       DATABASE_URL: postgres://test:test@db/test
+
     volumes:
       - '.:/home/fec/api'
     depends_on:
@@ -59,6 +60,10 @@ services:
   export:
     <<: *base_django_setup
     command: python manage.py export
+
+  import:
+    <<: *base_django_setup
+    command: python manage.py import
 
   migrate:
     <<: *base_django_setup
