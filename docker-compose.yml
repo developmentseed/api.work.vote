@@ -18,7 +18,9 @@ services:
       - db
 
   base:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.local 
     image: developmentseed/api.work.vote:latest
 
   serve:
