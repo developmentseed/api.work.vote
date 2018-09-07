@@ -2,15 +2,16 @@
 set -e
 cmd="$@"
 
-export DATABASE_URL=postgres://$DJANGO_DB_USER:$DJANGO_DB_PASS@$DJANGO_DB_HOST:5432/$DJANGO_DB_USER
 touch config/env/.local
 
 function postgres_ready(){
 python << END
 import sys
 import psycopg2
+from urllib.parse import urlparse
 try:
-    conn = psycopg2.connect(dbname="$DJANGO_DB_NAME", user="$DJANGO_DB_USER", password="$DJANGO_DB_PASS", host="$DJANGO_DB_HOST")
+    result = urlparse("$DATABASE_URL")
+    conn = psycopg2.connect(database=result.path[1:], user=result.username, password=result.password, host=result.hostname)
 except psycopg2.OperationalError:
     sys.exit(-1)
 sys.exit(0)
