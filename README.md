@@ -1,5 +1,7 @@
 # Work the Elections API
 
+[![CircleCI](https://circleci.com/gh/developmentseed/api.work.vote.svg?style=svg)](https://circleci.com/gh/developmentseed/api.work.vote)
+
 This is the API for the Work the Elections project. The project is sponsored by the Knight Foundation is developed by the Development Seed and [FELN](http://fairelectionsnetwork.com/)
 
 ## Local Installation
