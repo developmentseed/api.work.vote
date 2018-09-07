@@ -1,5 +1,6 @@
 .tmp
 .git
+.circleci
 backup.sql
 config.txt
 zipcodes.sql
