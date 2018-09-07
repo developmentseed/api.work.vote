@@ -74,6 +74,7 @@ class SurveyEmail(models.Model):
 
     name = models.CharField('Email label', max_length=250)
     recipients = models.TextField('List of emails', help_text='Use commas, semicolons or line breaks to separate emails. Do not enter e-mail addresses containing those special characters.')
+    email_text = models.TextField('E-mail text', help_text='This text will be displayed above the survey links.', default = 'Thank you for your participation in our survey for WorkElections.com. Please click on the link corresponding with the jurisdiction for which you would like to update information.')
     state = models.ForeignKey(State, default=1)
     jurisdiction = ChainedManyToManyField(
         Jurisdiction,
