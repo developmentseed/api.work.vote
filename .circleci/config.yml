@@ -20,7 +20,7 @@ jobs:
           name: Build and Deploy to Heroku
           command: |
             if [[  "$CIRCLE_BRANCH" == 'circleci' ]]; then
-              heroku container:login --app workelections
+              heroku container:login
               heroku container:push web --app workelections
               heroku container:release web --app workelections
             fi
