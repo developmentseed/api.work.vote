@@ -49,20 +49,22 @@ class MailSurvey(object):
         self,
         jurisdictions,
         recipients,
+        email_text,
         subject='WorkElections.com Survey',
         **kwargs
     ):
         self.from_email = settings.DEFAULT_FROM_EMAIL
         self.subject = subject
         self.to_email = recipients
+        self.email_text = email_text
 
         link_text = ""
         link_html = "\n"
         for pair in jurisdictions:
             link_html += '<p align="left"><a href={}>{}</a></p> \n'.format(settings.SURVEY_MONKEY_URL.format(pair[1]), pair[0]) 
             link_text += pair[0]+ ": " + settings.SURVEY_MONKEY_URL.format(pair[1]) + "\n"
-        self.context={'SurveyLinkHTML': link_html, 'SurveyLinkText': link_text}
-        self.html = write_html(link_html)
+        self.context={'EmailText': self.email_text, 'SurveyLinkText': link_text}
+        self.html = write_html(self.email_text, link_html)
         self.text_template = get_template('mailman/survey_email_text.txt')
 
     def send(self):
