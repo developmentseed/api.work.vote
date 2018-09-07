@@ -1,0 +1,26 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.6-stretch-node
+    working_directory: ~/project
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Install Heroku
+          command: |
+            sudo chown -R circleci:circleci /usr/local
+            curl https://cli-assets.heroku.com/install.sh | sh
+      - run:
+          name: install 
+          command: pip install -r requirements.txt
+      - run:
+          name: Build and Deploy to Heroku
+          command: |
+            if [[  "$CIRCLE_BRANCH" == 'circleci' ]]; then
+              heroku container:login
+              heroku container:push web
+              heroku container:release web
+            fi
