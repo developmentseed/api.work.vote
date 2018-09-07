@@ -25,13 +25,7 @@ RUN pip install rasterio
 COPY ./requirements.txt /requirements.txt
 RUN pip install -r /requirements.txt
 
-RUN mkdir $HOME/api
-COPY ./apps $HOME/api/apps
-COPY ./bin $HOME/api/bin
-COPY ./config $HOME/api/config
-COPY ./manage.py $HOME/api/manage.py
-COPY ./Procfile $HOME/api/Procfile
-
+COPY ./ $HOME/api/
 WORKDIR $HOME/api/
 
 CMD gunicorn config.wsgi:application --log-file -
