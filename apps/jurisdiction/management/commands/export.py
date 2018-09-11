@@ -16,19 +16,20 @@ def record2geojson(record, fields):
     state = record.state.name.lower() 
     path = os.path.join(directory, 'jurisdictions', state)
     mkdirp(path)
-    geometry = record.geometry.geojson
-    obj = model_to_dict(record, fields=fields)
+    if record.geometry:
+        geometry = record.geometry.geojson
+        obj = model_to_dict(record, fields=fields)
 
-    geojson ={
-        "type": "Feature",
-        "properties": obj,
-        "geometry": json.loads(geometry)
-    }
+        geojson ={
+            "type": "Feature",
+            "properties": obj,
+            "geometry": json.loads(geometry)
+        }
 
-    filename = '%s.geojson' % record.name.lower().replace(' ', '_')
-    with open(os.path.join(path, filename), 'w') as outfile:
-        outfile.write(json.dumps(geojson, cls=DjangoJSONEncoder))
-    print('stored %s: %s' % (state, record.name))
+        filename = '%s.geojson' % record.name.lower().replace(' ', '_')
+        with open(os.path.join(path, filename), 'w') as outfile:
+            outfile.write(json.dumps(geojson, cls=DjangoJSONEncoder))
+        print('stored %s: %s' % (state, record.name))
 
 def record2json(record):
     path = os.path.join(directory, 'states')
