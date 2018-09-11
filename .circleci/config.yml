@@ -24,3 +24,36 @@ jobs:
               heroku container:push web --app workelections
               heroku container:release web --app workelections
             fi
+  
+  export:
+    docker:
+      - image: circleci/python:3.6-stretch-node
+    working_directory: ~/project
+    steps:
+      - checkout
+      - setup_remote_docker
+      - add_ssh_keys:
+          fingerprints:
+            - "dd:6a:88:53:39:db:cd:5d:49:21:84:09:b1:b8:6b:1e"
+      - run:
+          name: Run export command 
+          command: |
+            docker build . -f Dockerfile.local -t developmentseed/api.work.vote:latest
+            docker run --rm -it -v $(pwd):$DATABASE_URL python manage.py export
+            cd exports
+            git init
+            git config user.name "Devseed"
+            git config user.email "info@developmentseed.org"
+            git add .
+            git commit -m "Automated build in Travis CI"
+            git push --force --quiet git@github.com:developmentseed/data.work.vote master
+            rm -rf .git
+          
+    
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - export 
