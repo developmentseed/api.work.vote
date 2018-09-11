@@ -7,7 +7,9 @@ from django.core.mail import send_mail
 
 import json
 
-def update_db_responses(answer_dict, j):
+def update_db_responses(answer_dict, jurisdiction_id):
+    updated = False
+    j = Jurisdiction.objects.get(pk=jurisdiction_id)
     for q, a in answer_dict.items():
         try:
             q_list = q.split(')')
@@ -24,7 +26,8 @@ def update_db_responses(answer_dict, j):
                 continue
         
         compensation_text = [False, '', '']
-        if a != "Not Answered" and a != "N/A":
+        if a != "Not Answered" and a != "N/A" and a != '':
+            updated = True
             j.display = 'Y'
             if q_no == 1:
                 j.hours_start = a
@@ -70,19 +73,20 @@ def update_db_responses(answer_dict, j):
             j.compensation = compensation_text[1]
         else:
             j.compensation = compensation_text[2]
-        j.display = 'Y'
-    return j
+    
+    if updated:
+        j.save()
+    
+    return updated, [j.name, j.state]
 
 
-def send_error_email(jurisdiction_no):
+def send_error_email(juris_no, juris_info):
     # Send an email to admin
-    msg = msg + 'Message: \n\n'
     send_mail(
-        'Error on survey response import',
-        'Error trying to import survey for Jurisdiction {}'.format(jurisdiction_no),
+        'WorkElections.com: Error on survey response import',
+        'There was an error trying to import the survey response for Jurisdiction {}: {}, {}'.format(juris_no, juris_info[0], juris_info[1]),
         'info@workelections.com',
         [settings.CONTACT_US],
-        fail_silently=False
     )
 
 @csrf_exempt
@@ -103,14 +107,11 @@ def GetSurveyResponse(request):
     
     # Find jurisdiction to update
     jurisdiction_id = json_dict["Custom Variable__JurisdictionNo"]
-    j = Jurisdiction.objects.get(pk=jurisdiction_id)
+    status, juris_info = update_db_responses(json_dict, jurisdiction_id)
 
-    j = update_db_responses(json_dict, j)
-
-    if (j.display == 'Y'):
-        j.save()
+    if status:
         return HttpResponse(status=200)
     else: # There was nothing to update
         # should eventually send name and state of jurisdiction
-        send_error_email(jurisdiction_id)
+        send_error_email(jurisdiction_id, juris_info)
         return HttpResponse(status=400)
