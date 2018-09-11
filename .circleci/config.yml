@@ -39,7 +39,7 @@ jobs:
           name: Run export command 
           command: |
             docker build . -f Dockerfile.local -t developmentseed/api.work.vote:latest
-            docker run --rm -it -e DATABASE_URL=$DATABASE_URL python manage.py export
+            docker run --rm -it -e DATABASE_URL=$DATABASE_URL developmentseed/api.work.vote:latest python manage.py export
             cd exports
             git init
             git config user.name "Devseed"
