@@ -7,38 +7,8 @@ from django.core.mail import send_mail
 
 import json
 
-def send_error_email(jurisdiction_no):
-    # Send an email to admin
-    msg = msg + 'Message: \n\n'
-    send_mail(
-        'Error on survey response import',
-        'Error trying to import survey for Jurisdiction {}'.format(jurisdiction_no),
-        'info@workelections.com',
-        [settings.CONTACT_US],
-        fail_silently=False
-    )
-
-@csrf_exempt
-def GetSurveyResponse(request):
-    # check authorization
-    try:
-        assert checkAuth(request)
-    except:
-        response = HttpResponse()
-        response.status_code = 401
-        return response
-
-    decoded = request.body.decode('utf-8')
-    try:
-        json_dict = json.loads(decoded)
-    except json.decoder.JSONDecodeError:
-        return HttpResponse(status=400)
-    
-    # Find jurisdiction to update
-    jurisdiction_id = json_dict["Custom Variable__JurisdictionNo"]
-    j = Jurisdiction.objects.get(pk=jurisdiction_id)
-
-    for q, a in json_dict.items():
+def update_db_responses(answer_dict, j):
+    for q, a in answer_dict.items():
         try:
             q_list = q.split(')')
             q_no = int(q_list[0])
@@ -101,6 +71,41 @@ def GetSurveyResponse(request):
         else:
             j.compensation = compensation_text[2]
         j.display = 'Y'
+    return j
+
+
+def send_error_email(jurisdiction_no):
+    # Send an email to admin
+    msg = msg + 'Message: \n\n'
+    send_mail(
+        'Error on survey response import',
+        'Error trying to import survey for Jurisdiction {}'.format(jurisdiction_no),
+        'info@workelections.com',
+        [settings.CONTACT_US],
+        fail_silently=False
+    )
+
+@csrf_exempt
+def GetSurveyResponse(request):
+    # check authorization
+    try:
+        assert checkAuth(request)
+    except:
+        response = HttpResponse()
+        response.status_code = 401
+        return response
+
+    decoded = request.body.decode('utf-8')
+    try:
+        json_dict = json.loads(decoded)
+    except json.decoder.JSONDecodeError:
+        return HttpResponse(status=400)
+    
+    # Find jurisdiction to update
+    jurisdiction_id = json_dict["Custom Variable__JurisdictionNo"]
+    j = Jurisdiction.objects.get(pk=jurisdiction_id)
+
+    j = update_db_responses(json_dict, j)
 
     if (j.display == 'Y'):
         j.save()
