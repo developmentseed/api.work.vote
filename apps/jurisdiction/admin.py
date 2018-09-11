@@ -71,7 +71,7 @@ def send_email(modeladmin, request, queryset):
             recipient_list = [item.strip(' ') for item in recipient_list]
             
             # send email
-            mail = MailSurvey(jurisdiction_list, recipient_list)
+            mail = MailSurvey(jurisdiction_list, recipient_list, email_req.email_text)
             status = mail.send()
             if status == 'OK':
                 queryset.update(send_email=True)
