@@ -36,7 +36,9 @@ jobs:
             - "dd:6a:88:53:39:db:cd:5d:49:21:84:09:b1:b8:6b:1e"
       - run:
           name: install 
-          command: pip install -r requirements.txt
+          command: |
+            sudo chown -R circleci:circleci /usr/local  
+            pip install -r requirements.txt
       - run:
           name: Run export command 
           command: |
