@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Application, Survey
+from .models import Application, Survey, UploadFile
 
 
 class ApplicationAdmin(admin.ModelAdmin):
@@ -53,6 +53,17 @@ class SurveyAdmin(admin.ModelAdmin):
 
         return super(SurveyAdmin, self).changelist_view(request, extra_context)
 
+class UploadFileAdmin(admin.ModelAdmin):
+
+    list_display = (
+        'description', 
+        'created_at'
+    )
+
+    search_fields = ('description', 'created_at')
+
+    ordering = ['-created_at']
 
 admin.site.register(Application, ApplicationAdmin)
 admin.site.register(Survey, SurveyAdmin)
+admin.site.register(UploadFile, UploadFileAdmin)

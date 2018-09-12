@@ -1,9 +1,11 @@
 from jsonfield import JSONField
 from django_enumfield import enum
 from django.contrib.gis.db import models
+import csv, io
+
+from api.SurveyResponses.survey_responses import update_db_responses
 
 from jurisdiction.models import Jurisdiction
-
 
 class AgeRange(enum.Enum):
 
@@ -40,3 +42,31 @@ class Application(models.Model):
         'How familiar are you with working with computer technology on a scale of 1 to 5?'
         ' 1 being "not familiar at all" and 5 being "extremely familiar."',
         default=0)
+
+class UploadFile(models.Model):
+
+    description = models.CharField('Response Set Description', max_length=250)
+    created_at = models.DateTimeField(auto_now_add=True)
+    document = models.FileField(upload_to='uploads/')
+
+    def __unicode__(self):
+        return self.description
+    
+    def save(self, *args, **kwargs):
+        csv_file = self.document.read().decode('utf-8')
+        io_string = io.StringIO(csv_file)
+        to_read = csv.reader(io_string)
+        questions = next(to_read)
+
+        # Correct for Compensation formatting
+        questions[13] = questions[12] + " | Upper Bound:"
+        questions[12] += " | Low Bound:"
+
+        answer_types = next(to_read)
+        
+        for answer_row in to_read:
+            row_dict = {questions[i]: answer_row[i] for i in range(9, len(questions) -1)}
+            jurisdiction_id = answer_row[len(questions) -1]
+            updated, juris_info = update_db_responses(row_dict, jurisdiction_id)
+
+        super(UploadFile, self).save(*args, **kwargs)

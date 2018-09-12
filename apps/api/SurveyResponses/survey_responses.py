@@ -7,38 +7,10 @@ from django.core.mail import send_mail
 
 import json
 
-def send_error_email(jurisdiction_no):
-    # Send an email to admin
-    msg = msg + 'Message: \n\n'
-    send_mail(
-        'Error on survey response import',
-        'Error trying to import survey for Jurisdiction {}'.format(jurisdiction_no),
-        'info@workelections.com',
-        [settings.CONTACT_US],
-        fail_silently=False
-    )
-
-@csrf_exempt
-def GetSurveyResponse(request):
-    # check authorization
-    try:
-        assert checkAuth(request)
-    except:
-        response = HttpResponse()
-        response.status_code = 401
-        return response
-
-    decoded = request.body.decode('utf-8')
-    try:
-        json_dict = json.loads(decoded)
-    except json.decoder.JSONDecodeError:
-        return HttpResponse(status=400)
-    
-    # Find jurisdiction to update
-    jurisdiction_id = json_dict["Custom Variable__JurisdictionNo"]
+def update_db_responses(answer_dict, jurisdiction_id):
+    updated = False
     j = Jurisdiction.objects.get(pk=jurisdiction_id)
-
-    for q, a in json_dict.items():
+    for q, a in answer_dict.items():
         try:
             q_list = q.split(')')
             q_no = int(q_list[0])
@@ -54,7 +26,8 @@ def GetSurveyResponse(request):
                 continue
         
         compensation_text = [False, '', '']
-        if a != "Not Answered" and a != "N/A":
+        if a != "Not Answered" and a != "N/A" and a != '':
+            updated = True
             j.display = 'Y'
             if q_no == 1:
                 j.hours_start = a
@@ -100,12 +73,45 @@ def GetSurveyResponse(request):
             j.compensation = compensation_text[1]
         else:
             j.compensation = compensation_text[2]
-        j.display = 'Y'
-
-    if (j.display == 'Y'):
+    
+    if updated:
         j.save()
+    
+    return updated, [j.name, j.state]
+
+
+def send_error_email(juris_no, juris_info):
+    # Send an email to admin
+    send_mail(
+        'WorkElections.com: Error on survey response import',
+        'There was an error trying to import the survey response for Jurisdiction {}: {}, {}'.format(juris_no, juris_info[0], juris_info[1]),
+        'info@workelections.com',
+        [settings.CONTACT_US],
+    )
+
+@csrf_exempt
+def GetSurveyResponse(request):
+    # check authorization
+    try:
+        assert checkAuth(request)
+    except:
+        response = HttpResponse()
+        response.status_code = 401
+        return response
+
+    decoded = request.body.decode('utf-8')
+    try:
+        json_dict = json.loads(decoded)
+    except json.decoder.JSONDecodeError:
+        return HttpResponse(status=400)
+    
+    # Find jurisdiction to update
+    jurisdiction_id = json_dict["Custom Variable__JurisdictionNo"]
+    status, juris_info = update_db_responses(json_dict, jurisdiction_id)
+
+    if status:
         return HttpResponse(status=200)
     else: # There was nothing to update
         # should eventually send name and state of jurisdiction
-        send_error_email(jurisdiction_id)
+        send_error_email(jurisdiction_id, juris_info)
         return HttpResponse(status=400)
