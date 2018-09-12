@@ -16,8 +16,8 @@ def write_html(email_text, link_html):
            <td align="center" style="font-size: 29px; color:#FFF; font-weight: normal; letter-spacing: 1px; line-height: 1;
                            text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.2); font-family: Arial,Helvetica,sans-serif;">
     <img alt="WorkElections" src="https://s3.amazonaws.com/voteworker/workelections.png">
-<br><br>
-              [SURVEY DRAFT] WorkElections.com Request for Information
+        <br><br>
+              WorkElections.com Request for Information
            </td>
            <td width="20">&nbsp;</td>
            <td width="20">&nbsp;</td>
@@ -60,7 +60,7 @@ def write_html(email_text, link_html):
     </tr>
     <tr>
         <td height="20" colspan="5">&nbsp;</td>
-    </tr>
+    </tr> 
 </table>
 </div>
 </body>
