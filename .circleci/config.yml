@@ -41,7 +41,7 @@ jobs:
             # docker build . -f Dockerfile.local -t developmentseed/api.work.vote:latest
             docker pull developmentseed/api.work.vote:latest 
             docker run --name export -it -e DATABASE_URL=$DATABASE_URL developmentseed/api.work.vote:latest python manage.py export
-            docker cp export:/home/circleci/api/exports exports
+            docker cp export:/home/fec/api/exports exports
             cd exports
             git init
             git config user.name "Devseed"
