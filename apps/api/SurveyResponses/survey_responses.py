@@ -84,7 +84,7 @@ def send_error_email(juris_no, juris_info):
     # Send an email to admin
     send_mail(
         'WorkElections.com: Error on survey response import',
-        'There was an error trying to import the survey response for Jurisdiction {}: {}, {}'.format(juris_no, juris_info[0], juris_info[1]),
+        'No data could be updated from the last survey response for Jurisdiction {}: {}, {}. Check whether the survey format has been changed.'.format(juris_no, juris_info[0], juris_info[1]),
         'info@workelections.com',
         [settings.CONTACT_US],
     )
