@@ -64,9 +64,15 @@ class UploadFile(models.Model):
 
         answer_types = next(to_read)
         
+        response_list = []
+
+        # Read in all responses, where the db is updated with the rows in reverse order to preserve the true order of updates
         for answer_row in to_read:
             row_dict = {questions[i]: answer_row[i] for i in range(9, len(questions) -1)}
             jurisdiction_id = answer_row[len(questions) -1]
-            updated, juris_info = update_db_responses(row_dict, jurisdiction_id)
+            response_list.insert(0, [row_dict, jurisdiction_id])
+        
+        for response_args in response_list:
+            updated, juris_info = update_db_responses(response_args[0], response_args[1])
 
         super(UploadFile, self).save(*args, **kwargs)
