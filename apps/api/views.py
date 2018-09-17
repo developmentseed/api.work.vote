@@ -1,13 +1,16 @@
 import sys
+import json
 import spatialite 
 import geocoder
 from geocoder.mapbox import MapboxQuery
 
 from django.db.models import Q
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from jurisdiction.models import Jurisdiction
 from django.contrib.gis.geos import Point, GEOSGeometry, MultiPoint
 from rest_framework.response import Response
-from rest_framework.decorators import list_route
+from rest_framework.decorators import list_route, detail_route
 from rest_framework import viewsets, permissions, status
 
 from pages.models import Page
@@ -96,6 +99,11 @@ class JurisdictionViewSet(viewsets.ReadOnlyModelViewSet):
         else:
             return Response({'detail': 'Not allowed'},
                             status=status.HTTP_401_UNAUTHORIZED)
+    
+    @detail_route()
+    def geojson(self, request, pk):
+        geometry = self.queryset.get(pk=pk).geometry.geojson
+        return Response(json.loads(geometry))
 
     def get_serializer(self, *args, **kwargs):
         """
@@ -163,12 +171,12 @@ class JurisdictionViewSet(viewsets.ReadOnlyModelViewSet):
 class SearchViewSet(viewsets.ViewSet):
     permission_classes = (permissions.AllowAny,)
 
+    @method_decorator(cache_page(60*60*60*2))
     def list(self, request):
-
         response = []
         if 'q' in request.GET:
                     # statees
-            states = State.objects.order_by('name')
+            # states = State.objects.order_by('name')
 
             # jurisdictions
             jurisdictions = Jurisdiction.objects.filter(state__is_active=True).extra(order_by=['name'])
@@ -199,13 +207,13 @@ class SearchViewSet(viewsets.ViewSet):
                     })
 
             # look for states
-            filtered_states = states.filter(name__istartswith=query)
-            if filtered_states:
-                for state in filtered_states:
-                    response.append({
-                        'type': 'state',
-                        'id': state.id,
-                        'name': state.name
-                    })
+            # filtered_states = states.filter(name__istartswith=query)
+            # if filtered_states:
+            #     for state in filtered_states:
+            #         response.append({
+            #             'type': 'state',
+            #             'id': state.id,
+            #             'name': state.name
+            #         })
 
         return Response(response, status=status.HTTP_200_OK)

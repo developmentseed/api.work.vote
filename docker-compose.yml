@@ -71,7 +71,7 @@ services:
 
   makemigrations:
     <<: *base_django_setup
-    command: python manage.py makemigrations
+    command: python manage.py makemigrations --merge
   
   boundaries:
     <<: *base_django_setup
