@@ -11,7 +11,7 @@ from rest_framework.decorators import list_route
 from rest_framework import viewsets, permissions, status
 
 from pages.models import Page
-from jurisdiction.models import State, Jurisdiction
+from jurisdiction.models import State, Jurisdiction, Zipcode
 from jurisdiction.export import export_jurisdiction_emails
 from .serializer import (StateSerializer, JurisdictionSerializer, add_city_string, JurisdictionSummarySerializer,
                          PageSerializer)
@@ -27,20 +27,15 @@ class NewMapboxQuery(MapboxQuery):
 
 def searchZipcode(zipcode, jurisdictions):
     """ Finds matching jurisdictions for a given zipcode """
-    conn = spatialite.connect('zipcodes.db')
-    cursor = conn.cursor()
     try:
         if len(str(zipcode)) != 5:
             return jurisdictions.none()
 
-        cursor.execute('SELECT ST_AsText(geometry) as geom FROM zipcodes WHERE code=?', (int(zipcode), ))
-        results = cursor.fetchone()
-        if type(results) is tuple:
-            geometry = GEOSGeometry(results[0])
-            return jurisdictions.filter(geometry__intersects=geometry)
-        else:
-            return jurisdictions.none()
-    except:
+        zipcode = Zipcode.objects.get(code=zipcode)
+        j = jurisdictions.filter(geometry__intersects=zipcode.geometry)
+        return j
+    except Exception as e:
+        print(e)
         return jurisdictions.none()
 
 

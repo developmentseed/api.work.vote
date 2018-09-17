@@ -2,11 +2,6 @@ from django.contrib.gis.db import models
 from smart_selects.db_fields import ChainedManyToManyField
 
 
-class Zipcode(models.Model):
-    code = models.CharField('Zip Code', max_length=5)
-    meta = models.TextField('Extra meta', null=True, blank=True)
-    geometry = models.MultiPolygonField('zipcode Geometry', null=True, blank=True)
-
 class State(models.Model):
 
     name = models.CharField('State', max_length=250)
@@ -18,6 +13,16 @@ class State(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Zipcode(models.Model):
+    code = models.CharField('Zip Code', max_length=5, primary_key=True)
+    state = models.ForeignKey(State)
+    geometry = models.MultiPolygonField('zipcode Geometry', null=True, blank=True)
+
+    def __str__(self):
+        return self.code
+
 
 DISPLAY_OPTIONS = (
     ('Y', 'Display Information'),

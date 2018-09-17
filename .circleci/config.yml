@@ -38,11 +38,11 @@ jobs:
       - run:
           name: Run export command 
           command: |
-            # docker build . -f Dockerfile.local -t developmentseed/api.work.vote:latest
-            docker pull developmentseed/api.work.vote:latest 
+            docker build . -f Dockerfile.local -t developmentseed/api.work.vote:latest
             docker run --name export -it -e DATABASE_URL=$DATABASE_URL developmentseed/api.work.vote:latest python manage.py export
             docker cp export:/home/fec/api/exports exports
             cd exports
+            cp ../config/DATA_README.md README.md
             git init
             git config user.name "Devseed"
             git config user.email "info@developmentseed.org"
