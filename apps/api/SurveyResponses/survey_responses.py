@@ -4,77 +4,91 @@ from jurisdiction.models import State, Jurisdiction
 from .check_authorization import checkAuth
 from django.conf import settings
 from django.core.mail import send_mail
+from datetime import datetime
 
 import json
 
 def update_db_responses(answer_dict, jurisdiction_id):
     updated = False
     j = Jurisdiction.objects.get(pk=jurisdiction_id)
+
+    compensation_text = [False, '', '']
+
     for q, a in answer_dict.items():
         try:
-            q_list = q.split(')')
+            q_list = q[1:].split(')')
             q_no = int(q_list[0])
             # Sanitize input
             a = str(a)
         except ValueError: # not a question
-            if q_list[0][13:20] == "further":
-                # manually set "further notes"
-                q_no = 13
-            else:
-                # If the key doesn't start with a number, then it's not a question
-                print("ValueError on '{}'".format(q_list[0]))
-                continue
+            # If the key doesn't start with a number, then it's not a question
+            continue
         
-        compensation_text = [False, '', '']
-        if a != "Not Answered" and a != "N/A" and a != '':
+        if a != "Not Answered" and a != "N/A" and a != "":
             updated = True
             j.display = 'Y'
             if q_no == 1:
-                j.hours_start = a
+                j.website = a
             elif q_no == 2:
-                j.hours_end = a
+                j.application = a
             elif q_no == 3:
-                j.full_day_req = a[0]
+                j.telephone = a
             elif q_no == 4:
-                compensation_text[0] == True
-                if (q_list[2][3:6]) == "Low":
-                    compensation_text[1] = a
-                elif (q_list[2][3:8]) == "Upper":
-                    compensation_text[2] = a
+                j.email = a
             elif q_no == 5:
-                j.minimum_age = a
+                j.office_address = a
             elif q_no == 6:
-                j.pre_registration = a[0]
+                j.mailing_address = a
             elif q_no == 7:
-                # Should change this question
-                if a == "Yes":
-                    j.registration_status = "J"
-                elif a == "No":
-                    j.registration_status = "S"
+                j.hours_start = a
             elif q_no == 8:
-                j.must_have_email = a[0]
+                j.hours_end = a
             elif q_no == 9:
-                j.interview = a[0]
+                j.full_day_req = a[0]
             elif q_no == 10:
-                j.training = a[0]
+                compensation_text[0] = True
+                q_list = q.split()
+                if q_list[-2] == "Low":
+                    compensation_text[1] = '${:,.2f}'.format(float(a))
+                elif q_list[-2] == "Upper":
+                    compensation_text[2] = '${:,.2f}'.format(float(a))
             elif q_no == 11:
-                j.complete_training = a[0]
+                j.minimum_age = a
             elif q_no == 12:
-                j.post_training_exam = a[0]
+                j.student_website = a
             elif q_no == 13:
+                j.pre_registration = a[0]
+            elif q_no == 14:
+                # Should change this question
+                if a[:3] == "Yes":
+                    j.registration_status = "J"
+                elif a.strip() == 'No, they just need to be registered to vote in the state.':
+                    j.registration_status = "S"
+                else: #no registration necessary
+                    j.registration_status = "N"
+            elif q_no == 15:
+                j.must_have_email = a[0]
+            elif q_no == 16:
+                j.interview = a[0]
+            elif q_no == 17:
+                j.training = a[0]
+            elif q_no == 18:
+                j.complete_training = a[0]
+            elif q_no == 19:
                 j.further_notes = a
         else:
             continue
     
     if compensation_text[0] == True:
         if compensation_text[1] != '' and compensation_text[2] != '':
-            j.compensation = compensation_text[0] + " to " + compensation_text[1]
+            j.compensation = compensation_text[1] + " to " + compensation_text[2]
         elif compensation_text[1] != '':
             j.compensation = compensation_text[1]
         else:
             j.compensation = compensation_text[2]
     
     if updated:
+        j.obtained_at = datetime.today().strftime('%Y-%m-%d')
         j.save()
     
     return updated, [j.name, j.state]
