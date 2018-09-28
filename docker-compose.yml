@@ -5,11 +5,8 @@ services:
     image: developmentseed/api.work.vote:latest
     entrypoint: ./bin/entrypoint.sh
     environment:
-      DJANGO_DB_NAME: test
-      DJANGO_SECRET_KEY: test
-      DJANGO_DB_HOST: db
-      DJANGO_DB_USER: test
-      DJANGO_DB_PASS: test
+      DATABASE_URL: postgres://test:test@db/test
+
     volumes:
       - '.:/home/fec/api'
     depends_on:
@@ -42,7 +39,7 @@ services:
 
   bash:
     <<: *base_django_setup
-    entrypoint: /bin/bash
+    command: /bin/bash
   
   restore:
     <<: *base_django_setup
@@ -60,13 +57,21 @@ services:
     <<: *base_django_setup
     command: python manage.py createsuperuser
 
+  export:
+    <<: *base_django_setup
+    command: python manage.py export
+
+  import:
+    <<: *base_django_setup
+    command: python manage.py import
+
   migrate:
     <<: *base_django_setup
     command: python manage.py migrate
 
   makemigrations:
     <<: *base_django_setup
-    command: python manage.py makemigrations
+    command: python manage.py makemigrations --merge
   
   boundaries:
     <<: *base_django_setup

@@ -10,6 +10,7 @@ pip-log.txt
 # Unit test / coverage reports
 .coverage
 .tox
+.vscode
 nosetests.xml
 
 # Translations
@@ -53,3 +54,4 @@ cache_dir
 backup.sql
 config.txt
 zipcodes.db
+exports
