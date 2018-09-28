@@ -21,7 +21,6 @@ RUN echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen && /usr/sbin/locale-gen
 ENV HOME=/home/fec
 WORKDIR $HOME
 
-RUN pip install rasterio
 COPY ./requirements.txt /requirements.txt
 RUN pip install -r /requirements.txt
 

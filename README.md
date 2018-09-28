@@ -12,33 +12,17 @@ This is the API for the Work the Elections project. The project is sponsored by 
 - Postgres 9.6 with PostGIS support
 - docker
 
-### Download zipcodes database
-
-This file is only needed if you require exact zipcode searching.
-
-     $ wget https://s3.amazonaws.com/voteworker/zipcodes.db
-
-### Setup Docker Environment
+## Setup Docker Environment
 
 Build the docker image:
 
      $ docker-compose build base
 
-### Populate the db from a backup
+## Populate the db from a backup
 
-Make sure the db container is stopped:
+Download the data first:
 
-     $ docker-compose stop db
-    
-Delete the database files
-
-     $ rm -rf .tmp
-
-Put your backup file in the root folder and rename to `backup.sql`, then run:
-
-     $ docker-compose run --rm restore
-
-The password is `test`.
+     $ git clone https://github.com/developmentseed/data.work.vote.git
 
 ### Prepare the database
 
@@ -48,11 +32,15 @@ The password is `test`.
 
      $ docker-compose run --rm createsuperuser
 
-### Serve the API
+### Run import
+
+     $ docker-compose rum --rm import
+
+## Serve the API
 
      $ docker-compose run --rm --service-ports serve
 
-### Adding boundaries
+## Adding boundaries
 
 Replace the geojson file at `apps/jurisdiction/voteworker.geojson`, then run:
 
@@ -64,13 +52,13 @@ To generate jurisdiction png files run:
 
 PNG files are stored at `config/static/jurisdictions`
 
-### Django shell
+## Django shell
 
 To access django shell run
 
      $ docker-compose run --rm shell
 
-### Serve Production
+## Serve Production
 
 **WARNING:** this is NOT recommended and could damage the production website.
 
@@ -81,6 +69,10 @@ To serve the website with the Heroku environment locally, first download all the
 Then run:
 
      $ docker-compose run --rm --service-ports prod
+
+## Exporting data
+
+     $ docker-compose run --rm export
 
 ## Deployment
 

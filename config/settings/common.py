@@ -126,8 +126,11 @@ DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 # memcacheify (used on heroku) is painful to install on windows.
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': str(CONFIG_DIR.path('cache_dir/django_cache')),
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+        'OPTIONS': {
+            'MAX_ENTRIES': 20000
+        }
     }
 }
 # END CACHING
