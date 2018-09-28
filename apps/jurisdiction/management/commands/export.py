@@ -4,7 +4,7 @@ import os
 from django.core.serializers.json import DjangoJSONEncoder
 from django.forms.models import model_to_dict
 from django.core.management.base import BaseCommand
-from jurisdiction.models import Jurisdiction, State, Zipcode
+from jurisdiction.models import Jurisdiction, State
 
 directory = 'exports'
 
@@ -31,7 +31,7 @@ def record2geojson(record, fields, folder='jurisdiction'):
             outfile.write(json.dumps(geojson, cls=DjangoJSONEncoder))
         print('stored %s: %s' % (state, record.name))
 
-def record2json(record):
+def state2json(record):
     path = os.path.join(directory, 'states')
     mkdirp(path)
 
@@ -39,7 +39,6 @@ def record2json(record):
     with open(os.path.join(path, filename), 'w') as outfile:
         outfile.write(json.dumps(model_to_dict(record), cls=DjangoJSONEncoder))
     print('stored %s' % record.name)
-
 
 
 class Command(BaseCommand):
@@ -53,10 +52,8 @@ class Command(BaseCommand):
 
         print('Exporting states')
         states = State.objects.all()
-        [record2json(s) for s in states]
+        [state2json(s) for s in states]
 
-        print('Exporting Zipcodes')
-        zips = Zipcode.objects.all()
         
 
 
