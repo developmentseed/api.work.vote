@@ -80,6 +80,10 @@ services:
   rasterize:
     <<: *base_django_setup
     command: python manage.py rasterize
+  
+  add_to_db:
+    <<: *base_django_setup
+    command: python manage.py add_to_db
 
   db:
     image: mdillon/postgis:9.6-alpine

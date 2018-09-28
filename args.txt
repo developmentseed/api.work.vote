@@ -1,0 +1,5 @@
+apps/jurisdiction/irregular_states/MA_Towns.geojson
+Massachusetts
+TOWN
+FALSE
+# Add more data here in format as above to import data
