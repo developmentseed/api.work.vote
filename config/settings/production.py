@@ -8,6 +8,7 @@ Production Configurations
 '''
 
 from .common import *  # noqa
+import os
 
 # Also read .env file
 
@@ -74,3 +75,14 @@ EMAIL_PORT = env.int('EMAIL_PORT', 587)
 EMAIL_USE_TLS = True
 SERVER_EMAIL = EMAIL_HOST_USER
 # END EMAIL
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_bmemcached.memcached.BMemcached',
+        'LOCATION': os.environ.get('MEMCACHIER_SERVERS'),
+        'OPTIONS': {
+            'username': os.environ.get('MEMCACHIER_USERNAME'),
+            'password': os.environ.get('MEMCACHIER_PASSWORD')
+        }
+    }
+}
