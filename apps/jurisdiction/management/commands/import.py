@@ -16,7 +16,7 @@ class Command(BaseCommand):
        
         # make sure export folder exists
         if not os.path.exists(directory):
-            raise Exception('exports folder is not there')
+            raise Exception('exports folder %s is not in %s' % (directory, os.getcwd()))
         
         # load states first
         ## make sure states folder exists
