@@ -22,7 +22,7 @@ Build the docker image:
 
 Download the data first:
 
-     $ git clone https://github.com/developmentseed/data.work.vote.git
+     $ git clone https://github.com/developmentseed/data.work.vote.git exports
 
 ### Prepare the database
 
@@ -34,7 +34,7 @@ Download the data first:
 
 ### Run import
 
-     $ docker-compose rum --rm import
+     $ docker-compose run --rm import
 
 ## Serve the API
 
