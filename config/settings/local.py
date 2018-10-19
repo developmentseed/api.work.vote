@@ -26,7 +26,8 @@ EMAIL_PORT = env.int('EMAIL_PORT', 587)
 EMAIL_USE_TLS = True
 SERVER_EMAIL = EMAIL_HOST_USER
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = env('EMAIL_BACKEND',	EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+                    default='django.core.mail.backends.smtp.EmailBackend')
 
 # DEBUG
 DEBUG = env.bool('DJANGO_DEBUG', default=True)
