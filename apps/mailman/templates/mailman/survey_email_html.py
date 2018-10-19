@@ -19,7 +19,7 @@ def write_html(email_text, link_html):
             
         </td>
     </tr>
-    <tr><td colspan="4">""" + link_html + """</td></tr></tbody>
+    <tr><td colspan="4" align="center">""" + link_html + """</td></tr></tbody>
     <tr><td colspan="4" align="center" style="padding:10px; background-color:#BBBBBB; color:white; font-size:12px">
     1825 K St. NW  | Suite 450<br>
     Washington DC 20006<br>

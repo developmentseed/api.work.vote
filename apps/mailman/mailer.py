@@ -59,7 +59,7 @@ class MailSurvey(object):
         self.email_text = email_text
 
         link_text = ""
-        link_html = "\n<table><tbody>"
+        link_html = '\n<table width="100%"><tbody>'
         linecount = 0
         for pair in jurisdictions:
             if linecount % 4 == 0:
