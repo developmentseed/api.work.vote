@@ -1,8 +1,8 @@
 from django.conf import settings
 from django.template import Context
 from django.template.loader import get_template
-from django.core.mail import EmailMultiAlternatives
-from apps.mailman.templates.mailman.survey_email_html import write_html
+from django.core.mail import get_connection, EmailMultiAlternatives
+from apps.mailman.templates.mailman.survey_email_html import write_button, write_html
 
 
 class MailMaker(object):
@@ -59,10 +59,20 @@ class MailSurvey(object):
         self.email_text = email_text
 
         link_text = ""
-        link_html = "\n"
+        link_html = "\n<table><tbody>"
+        linecount = 0
         for pair in jurisdictions:
-            link_html += '<p align="left"><a href={}>{}</a></p> \n'.format(settings.SURVEY_MONKEY_URL.format(pair[1]), pair[0]) 
+            if linecount % 4 == 0:
+                link_html += "<tr>"
+            link_html += write_button(settings.SURVEY_MONKEY_URL.format(pair[1]), pair[0])
+            if linecount % 4 == 3:
+                link_html += "</tr>"
             link_text += pair[0]+ ": " + settings.SURVEY_MONKEY_URL.format(pair[1]) + "\n"
+            linecount += 1
+        while linecount % 4 != 0:
+            link_html += "<td></td>"
+            linecount += 1
+        link_html += "</tbody></table>"
         self.context={'EmailText': self.email_text, 'SurveyLinkText': link_text}
         self.html = write_html(self.email_text, link_html)
         self.text_template = get_template('mailman/survey_email_text.txt')
@@ -74,12 +84,16 @@ class MailSurvey(object):
         text_content = self.text_template.render(c)
         html_content = self.html
 
-        msg = EmailMultiAlternatives(self.subject, text_content,
-                                     self.from_email, self.to_email)
-        msg.content_subtype = "html"
-        msg.attach_alternative(html_content, "text/html")
+        connection = get_connection()
+        messages = []
+        for recipient in self.to_email:
+            message = EmailMultiAlternatives(self.subject, text_content,
+                                             self.from_email, [recipient])
+            message.content_subtype = "html"
+            message.attach_alternative(html_content, "text/html")
+            messages.append(message)
         try:
-            msg.send()
+            connection.send_messages(messages)
             return 'OK'
         except:
             return 'ERROR'
