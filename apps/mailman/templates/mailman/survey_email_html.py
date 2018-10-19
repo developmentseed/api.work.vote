@@ -32,7 +32,7 @@ def write_html(email_text, link_html):
         <td>&nbsp;</td>
         <td colspan="3" align="left" valign="top" style="color:#666666; font-size: 13px;">
             
-                <p> <pre>""" + email_text + """ </pre> </p>
+                <p>""" + email_text + """</p>
             
         </td>
         <td>&nbsp;</td>
