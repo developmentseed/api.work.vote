@@ -7,8 +7,8 @@ def write_html(email_text, link_html):
 <div align="center">
 <table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="font-family: Arial,Helvetica,sans-serif; max-width: 700px;">
     <tbody><tr>
-       <td align="center" style="padding-left:30px; padding-right:30px"><img width="200" alt="WorkElections" src="https://s3.amazonaws.com/voteworker/workelections.png"></td>
-       <td align="center" style="padding-left:30px; padding-right:30px"><img width="240" alt="Fair Elections Center" src="https://www.workelections.com/graphics/meta/FairElectionsCenterLogo.png"></td>
+       <td align="center" style="padding-left:30px; padding-right:30px"><img width="200" alt="WorkElections" src="https://s3.amazonaws.com/voteworker/workelections_logo.png"></td>
+       <td align="center" style="padding-left:30px; padding-right:30px"><img width="240" alt="Fair Elections Center" src="https://s3.amazonaws.com/voteworker/FEC_logo.webp"></td>
         <td>&nbsp;</td>
     </tr>
     <tr><td colspan="2" style="padding-top:50px; padding-bottom:20px"><hr></td></tr>
