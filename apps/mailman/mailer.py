@@ -86,9 +86,10 @@ class MailSurvey(object):
         self.from_email = settings.DEFAULT_FROM_EMAIL
         self.subject = subject
         self.to_email = recipients
+        self.email_text = email_text
         c = PlainTextMailConverter()
         c.feed(email_text)
-        self.email_text = c.get_data()
+        self.email_plaintext = c.get_data()
 
         link_text = ""
         link_html = '\n<table width="100%"><tbody>'
@@ -105,7 +106,7 @@ class MailSurvey(object):
             link_html += "<td></td>"
             linecount += 1
         link_html += "</tbody></table>"
-        self.context={'EmailText': self.email_text, 'SurveyLinkText': link_text}
+        self.context={'EmailText': self.email_plaintext, 'SurveyLinkText': link_text}
         self.html = write_html(self.email_text, link_html)
         self.text_template = get_template('mailman/survey_email_text.txt')
 
