@@ -3,6 +3,36 @@ from django.template import Context
 from django.template.loader import get_template
 from django.core.mail import get_connection, EmailMultiAlternatives
 from apps.mailman.templates.mailman.survey_email_html import write_button, write_html
+from html.parser import HTMLParser
+
+
+class PlainTextMailConverter(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.reset()
+        self.fed = []
+        self.current_href = ''
+        self.strict = False
+        self.convert_charrefs= True
+
+    def handle_starttag(self, tag, attrs):
+        if tag == 'a':
+            self.current_href = dict(attrs).get('href')
+        elif tag == 'br':
+            self.fed.append('\n')
+
+    def handle_endtag(self, tag):
+        if tag == 'a' and self.current_href:
+            self.fed.append(' (%s)' % self.current_href)
+            self.current_href = ''
+        elif tag == 'p':
+            self.fed.append('\n')
+
+    def handle_data(self, data):
+        self.fed.append(data)
+
+    def get_data(self):
+        return ''.join(self.fed)
 
 
 class MailMaker(object):
@@ -56,7 +86,9 @@ class MailSurvey(object):
         self.from_email = settings.DEFAULT_FROM_EMAIL
         self.subject = subject
         self.to_email = recipients
-        self.email_text = email_text
+        c = PlainTextMailConverter()
+        c.feed(email_text)
+        self.email_text = c.get_data()
 
         link_text = ""
         link_html = '\n<table width="100%"><tbody>'
@@ -89,7 +121,6 @@ class MailSurvey(object):
         for recipient in self.to_email:
             message = EmailMultiAlternatives(self.subject, text_content,
                                              self.from_email, [recipient])
-            message.content_subtype = "html"
             message.attach_alternative(html_content, "text/html")
             messages.append(message)
         try:
