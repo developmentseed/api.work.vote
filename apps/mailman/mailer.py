@@ -3,6 +3,36 @@ from django.template import Context
 from django.template.loader import get_template
 from django.core.mail import get_connection, EmailMultiAlternatives
 from apps.mailman.templates.mailman.survey_email_html import write_button, write_html
+from html.parser import HTMLParser
+
+
+class PlainTextMailConverter(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.reset()
+        self.fed = []
+        self.current_href = ''
+        self.strict = False
+        self.convert_charrefs= True
+
+    def handle_starttag(self, tag, attrs):
+        if tag == 'a':
+            self.current_href = dict(attrs).get('href')
+        elif tag == 'br':
+            self.fed.append('\n')
+
+    def handle_endtag(self, tag):
+        if tag == 'a' and self.current_href:
+            self.fed.append(' (%s)' % self.current_href)
+            self.current_href = ''
+        elif tag == 'p':
+            self.fed.append('\n')
+
+    def handle_data(self, data):
+        self.fed.append(data)
+
+    def get_data(self):
+        return ''.join(self.fed)
 
 
 class MailMaker(object):
@@ -57,6 +87,9 @@ class MailSurvey(object):
         self.subject = subject
         self.to_email = recipients
         self.email_text = email_text
+        c = PlainTextMailConverter()
+        c.feed(email_text)
+        self.email_plaintext = c.get_data()
 
         link_text = ""
         link_html = '\n<table width="100%"><tbody>'
@@ -73,7 +106,7 @@ class MailSurvey(object):
             link_html += "<td></td>"
             linecount += 1
         link_html += "</tbody></table>"
-        self.context={'EmailText': self.email_text, 'SurveyLinkText': link_text}
+        self.context={'EmailText': self.email_plaintext, 'SurveyLinkText': link_text}
         self.html = write_html(self.email_text, link_html)
         self.text_template = get_template('mailman/survey_email_text.txt')
 
@@ -89,7 +122,6 @@ class MailSurvey(object):
         for recipient in self.to_email:
             message = EmailMultiAlternatives(self.subject, text_content,
                                              self.from_email, [recipient])
-            message.content_subtype = "html"
             message.attach_alternative(html_content, "text/html")
             messages.append(message)
         try:
