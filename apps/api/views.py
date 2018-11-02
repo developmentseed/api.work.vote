@@ -182,7 +182,7 @@ class SearchViewSet(viewsets.ViewSet):
         if 'q' in request.GET:
 
             # jurisdictions
-            jurisdictions = Jurisdiction.objects.filter(state__is_active=True).extra(order_by=['name'])
+            jurisdictions = Jurisdiction.objects.extra(order_by=['name'])
 
             query = request.GET.get('q')
 
