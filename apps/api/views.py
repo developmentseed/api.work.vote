@@ -175,8 +175,6 @@ class SearchViewSet(viewsets.ViewSet):
     def list(self, request):
         response = []
         if 'q' in request.GET:
-                    # statees
-            # states = State.objects.order_by('name')
 
             # jurisdictions
             jurisdictions = Jurisdiction.objects.filter(state__is_active=True).extra(order_by=['name'])
@@ -205,15 +203,5 @@ class SearchViewSet(viewsets.ViewSet):
                         'state_id': jur.state.id,
                         'state_alpha': jur.state.alpha
                     })
-
-            # look for states
-            # filtered_states = states.filter(name__istartswith=query)
-            # if filtered_states:
-            #     for state in filtered_states:
-            #         response.append({
-            #             'type': 'state',
-            #             'id': state.id,
-            #             'name': state.name
-            #         })
 
         return Response(response, status=status.HTTP_200_OK)
