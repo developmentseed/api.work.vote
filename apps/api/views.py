@@ -94,7 +94,7 @@ class PageViewSet(viewsets.ReadOnlyModelViewSet):
 
 class JurisdictionViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    queryset = Jurisdiction.objects.filter(state__is_active=True)
+    queryset = Jurisdiction.objects.filter()
     serializer_class = JurisdictionSerializer
 
     @list_route()
