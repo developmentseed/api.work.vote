@@ -42,7 +42,7 @@ def searchZipcode(zipcode, jurisdictions):
         return jurisdictions.none()
 
 
-def geocode(address, jurisdictions, required_precision_km=1., limit=20):
+def geocode(address, jurisdictions, required_precision_km=1., limit=5):
     """ Find jurisdictions that match a given address Identifies the coordinates of an address. It will ignore the input
     if it is only digits and less than 5 digits. If the input is only 5 digits
     the function assumes that is is a zipcode and search for zipcodes
@@ -64,13 +64,18 @@ def geocode(address, jurisdictions, required_precision_km=1., limit=20):
     try:
         key = 'pk.eyJ1IjoiZGV2c2VlZCIsImEiOiJnUi1mbkVvIn0.018aLhX0Mb0tdtaT2QNe2Q'
         geocoded = NewMapboxQuery(address, key=key, country='us', limit=limit)
+        results = []
         if len(geocoded) > 0:
-            multipoints = MultiPoint([GEOSGeometry(item.wkt) for item in geocoded])
-            return jurisdictions.filter(geometry__intersects=multipoints)
-        return jurisdictions.none()
+            for item in geocoded:
+                multipoints = MultiPoint([GEOSGeometry(item.wkt)])
+                for jurisdiction in jurisdictions.filter(geometry__intersects=multipoints):
+                    if not jurisdiction in results:
+                        results.append(jurisdiction)
+            return results
+        return []
     except:
         print("Unexpected error:", sys.exc_info()[0])
-        return jurisdictions.none()
+        return []
 
 
 class StateViewSet(viewsets.ReadOnlyModelViewSet):
@@ -187,9 +192,10 @@ class SearchViewSet(viewsets.ViewSet):
             # look for geocodes
             if not zipcodes:
                 geocodes = geocode(query, jurisdictions)
-                names = jurisdictions.filter(name__istartswith=query)
+                names = list(jurisdictions.filter(name__istartswith=query))
+                geocodes = [g for g in geocodes if g not in names]
 
-                jurisdictions = zipcodes | geocodes | names
+                jurisdictions = names + geocodes
             else:
                 jurisdictions = zipcodes
 
