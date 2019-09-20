@@ -14,5 +14,6 @@ django-jet==1.0.7
 spatialite==0.0.2
 python-binary-memcached==0.28.0
 django-bmemcached==0.2.3
+django-nose==1.4.6
 -e git+https://github.com/digi604/django-smart-selects.git@js-unlinting-fixes#egg=smart_selects
 -e git://github.com/aljosa/django-tinymce.git@tinymce4#egg=tinymce4

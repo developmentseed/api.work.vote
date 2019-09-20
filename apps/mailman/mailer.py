@@ -53,9 +53,7 @@ class MailMaker(object):
         self.context = {
             'jurisdiction': jurisdiction,
         }
-
         self.context.update(kwargs)
-
         self.html_template = get_template('mailman/html_template.html')
         self.text_template = get_template('mailman/text_template.txt')
 
