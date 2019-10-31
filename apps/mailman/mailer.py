@@ -56,6 +56,7 @@ class MailMaker(object):
         self.context.update(kwargs)
         self.html_template = get_template('mailman/html_template.html')
         self.text_template = get_template('mailman/text_template.txt')
+        self.reply_email = None
 
     def send(self):
         if self.context:
@@ -65,7 +66,8 @@ class MailMaker(object):
         html_content = self.html_template.render(c)
 
         msg = EmailMultiAlternatives(self.subject, text_content,
-                                     self.from_email, [self.to_email])
+                                     self.from_email, [self.to_email],
+                                     headers = {'Reply-To': self.reply_email})
         msg.content_subtype = "html"
         msg.attach_alternative(html_content, "text/html")
         msg.send()
@@ -81,13 +83,14 @@ class MailSurvey(object):
         subject='WorkElections.com Survey',
         **kwargs
     ):
-        self.from_email = settings.DEFAULT_FROM_EMAIL
+        self.from_email = settings.DEFAULT_SURVEY_FROM_EMAIL
         self.subject = subject
         self.to_email = recipients
         self.email_text = email_text
         c = PlainTextMailConverter()
         c.feed(email_text)
         self.email_plaintext = c.get_data()
+        self.reply_email = None
 
         link_text = ""
         link_html = '\n<table width="100%"><tbody>'
@@ -119,7 +122,8 @@ class MailSurvey(object):
         messages = []
         for recipient in self.to_email:
             message = EmailMultiAlternatives(self.subject, text_content,
-                                             self.from_email, [recipient])
+                                             self.from_email, [recipient],
+                                             headers = {'Reply-To': self.reply_email})
             message.attach_alternative(html_content, "text/html")
             messages.append(message)
         try:
