@@ -107,8 +107,15 @@ class JurisdictionViewSet(viewsets.ReadOnlyModelViewSet):
     
     @detail_route()
     def geojson(self, request, pk):
-        geometry = self.queryset.get(pk=pk).geometry.geojson
-        return Response(json.loads(geometry))
+        try:
+          geometry = self.queryset.get(pk=pk).geometry.geojson
+          return Response(json.loads(geometry))
+        except Jurisdiction.DoesNotExist:
+          # We return an empty result to avoid a 500 for jurisdictions without
+          # geometry, but this will also result in an empty result for invalid
+          # jurisdiction IDs.
+          # See https://github.com/developmentseed/api.work.vote/issues/81.
+          return Response({})
 
     def get_serializer(self, *args, **kwargs):
         """
