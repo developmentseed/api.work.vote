@@ -107,6 +107,8 @@ MANAGERS = ADMINS
 # Contact us email
 CONTACT_US = env('CONTACT_US', default='info@fairelectionsnetwork.com')
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='info@fairelectionsnetwork.com')
+# Set it for testing purposes
+DEFAULT_SURVEY_FROM_EMAIL = env('DEFAULT_SURVEY_FROM_EMAIL', default='info@fairelectionsnetwork.com')
 TEST_TO_EMAIL = env('TEST_TO_EMAIL', default=None)
 
 # DATABASE CONFIGURATION

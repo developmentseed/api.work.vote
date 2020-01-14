@@ -56,7 +56,10 @@ class MailMaker(object):
         self.context.update(kwargs)
         self.html_template = get_template('mailman/html_template.html')
         self.text_template = get_template('mailman/text_template.txt')
-        self.reply_email = None
+        try:
+        	self.reply_to = self.context['reply_to']
+        except:
+        	self.reply_to = None
 
     def send(self):
         if self.context:
@@ -66,8 +69,9 @@ class MailMaker(object):
         html_content = self.html_template.render(c)
 
         msg = EmailMultiAlternatives(self.subject, text_content,
-                                     self.from_email, [self.to_email],
-                                     headers = {'Reply-To': self.reply_email})
+        		self.from_email, [self.to_email],
+        		reply_to=self.reply_to)
+
         msg.content_subtype = "html"
         msg.attach_alternative(html_content, "text/html")
         msg.send()
@@ -90,12 +94,16 @@ class MailSurvey(object):
         c = PlainTextMailConverter()
         c.feed(email_text)
         self.email_plaintext = c.get_data()
-        self.reply_email = None
+        try:
+        	self.reply_to = kwargs['reply_to']
+        except:
+        	self.reply_to = None
 
         link_text = ""
         link_html = '\n<table width="100%"><tbody>'
         linecount = 0
         for pair in jurisdictions:
+            print(pair)
             if linecount % 4 == 0:
                 link_html += "<tr>"
             link_html += write_button(settings.SURVEY_MONKEY_URL.format(pair[1]), pair[0])
@@ -123,7 +131,7 @@ class MailSurvey(object):
         for recipient in self.to_email:
             message = EmailMultiAlternatives(self.subject, text_content,
                                              self.from_email, [recipient],
-                                             headers = {'Reply-To': self.reply_email})
+                                             reply_to=self.reply_to)
             message.attach_alternative(html_content, "text/html")
             messages.append(message)
         try:
