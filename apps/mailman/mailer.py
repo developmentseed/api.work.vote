@@ -58,11 +58,9 @@ class MailMaker(object):
         self.text_template = get_template('mailman/text_template.txt')
 
     def send(self):
-        if self.context:
-            c = Context(self.context).flatten()
 
-        text_content = self.text_template.render(c)
-        html_content = self.html_template.render(c)
+        text_content = self.text_template.render(self.context)
+        html_content = self.html_template.render(self.context)
 
         msg = EmailMultiAlternatives(self.subject, text_content,
                                      self.from_email, [self.to_email])
