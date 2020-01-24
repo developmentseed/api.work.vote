@@ -59,7 +59,7 @@ class MailMaker(object):
 
     def send(self):
         if self.context:
-            c = Context(self.context)
+            c = Context(self.context).flatten()
 
         text_content = self.text_template.render(c)
         html_content = self.html_template.render(c)
@@ -111,7 +111,7 @@ class MailSurvey(object):
     def send(self):
         if self.context:
             c = Context(self.context)
-        
+
         text_content = self.text_template.render(c)
         html_content = self.html
 
