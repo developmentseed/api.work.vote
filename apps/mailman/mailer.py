@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.template import Context
 from django.template.loader import get_template
 from django.core.mail import get_connection, EmailMultiAlternatives
 from apps.mailman.templates.mailman.survey_email_html import write_button, write_html
