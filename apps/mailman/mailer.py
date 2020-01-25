@@ -58,7 +58,6 @@ class MailMaker(object):
         self.text_template = get_template('mailman/text_template.txt')
 
     def send(self):
-
         text_content = self.text_template.render(self.context)
         html_content = self.html_template.render(self.context)
 
@@ -107,10 +106,7 @@ class MailSurvey(object):
         self.text_template = get_template('mailman/survey_email_text.txt')
 
     def send(self):
-        if self.context:
-            c = Context(self.context)
-
-        text_content = self.text_template.render(c)
+        text_content = self.text_template.render(self.context)
         html_content = self.html
 
         connection = get_connection()
