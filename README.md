@@ -77,9 +77,11 @@ Then run:
 ## Testing
 
 Run all tests:
+
      $ docker-compose run --rm base_django_setup python3 manage.py test apps
 
 Run tests, reusing test DB.  This is significantly faster, but requires that tests clean up after themselves.  Django TestCases mostly take care of this.
+
      $ docker-compose run --rm base_django_setup python3 manage.py test apps --keepdb
 
 ## Deployment
