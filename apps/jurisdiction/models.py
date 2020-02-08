@@ -84,7 +84,10 @@ class Jurisdiction(models.Model):
 class SurveyEmail(models.Model):
     """ Model for tracking and sending emails to election officials """
 
-    name = models.CharField('Email label', max_length=250)
+    name = models.CharField(
+        'Email label',
+        help_text='Used as display name and as email subject line.',
+        max_length=250)
     recipients = models.TextField('List of emails', help_text='Use commas, semicolons or line breaks to separate emails. Do not enter e-mail addresses containing those special characters.')
     email_text = HTMLField('E-mail text', help_text='This text will be displayed above the survey links.', default = 'Thank you for your participation in our survey for WorkElections.com. Please click on the link corresponding with the jurisdiction for which you would like to update information.')
     state = models.ForeignKey(State, default=1)
@@ -93,7 +96,10 @@ class SurveyEmail(models.Model):
         chained_field='state',
         chained_model_field='state',
     )
-    send_email = models.BooleanField('Sent email?', help_text = 'To edit this field, use the dropdown on the summary view.', default = False)
+    send_email = models.BooleanField(
+        'Sent email?',
+        help_text = 'To edit this field, use the dropdown on the summary view.',
+        default = False)
 
     def __unicode__(self):
         return self.name
