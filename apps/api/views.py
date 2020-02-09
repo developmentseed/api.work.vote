@@ -43,7 +43,9 @@ def searchZipcode(zipcode, jurisdictions):
 
 
 def geocode(address, jurisdictions, required_precision_km=1., limit=5):
-    """ Find jurisdictions that match a given address Identifies the coordinates of an address. It will ignore the input
+    """Find jurisdictions that match a given address.
+
+    Identifies the coordinates of an address. It will ignore the input
     if it is only digits and less than 5 digits. If the input is only 5 digits
     the function assumes that is is a zipcode and search for zipcodes
 
@@ -107,8 +109,10 @@ class JurisdictionViewSet(viewsets.ReadOnlyModelViewSet):
     
     @detail_route()
     def geojson(self, request, pk):
-        geometry = self.queryset.get(pk=pk).geometry.geojson
-        return Response(json.loads(geometry))
+        geometry = self.queryset.get(pk=pk).geometry
+        if not geometry:
+            return Response()
+        return Response(json.loads(geometry.geojson))
 
     def get_serializer(self, *args, **kwargs):
         """
