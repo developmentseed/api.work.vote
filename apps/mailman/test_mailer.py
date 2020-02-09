@@ -1,9 +1,9 @@
 from django.core import mail
-from django.test import TestCase
+from django.test import SimpleTestCase
 from jurisdiction.models import Jurisdiction
 from mailman import mailer
 
-class MailMakerTestCase(TestCase):
+class MailMakerTestCase(SimpleTestCase):
 
     def test_email(self):
         test_jurisdiction = Jurisdiction(email='admin@jurisdiction.com')
