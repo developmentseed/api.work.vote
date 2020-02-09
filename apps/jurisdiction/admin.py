@@ -7,13 +7,13 @@ class JurisdictionAdmin(admin.ModelAdmin):
     list_display = 'name', 'state', 'website', 'telephone', 'email', 'city'
     list_filter = 'state', 'city'
     fields = (
-        ('name', 'state'),
-        ('display', 'city'),
+        'name', 'state',
+        'display', 'city',
         'obtained_at',
         'website', 'application', 'student_website',
-        ('telephone', 'email'),
+        'telephone', 'email',
         'office_address', 'mailing_address',
-        ('hours_start', 'hours_end'),
+        'hours_start', 'hours_end',
         'registration_status', 'voter_registration_url',
         'minimum_age', 'high_school_student',
         'full_day_req',
