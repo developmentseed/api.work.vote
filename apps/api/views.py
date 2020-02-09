@@ -111,7 +111,7 @@ class JurisdictionViewSet(viewsets.ReadOnlyModelViewSet):
     def geojson(self, request, pk):
         geometry = self.queryset.get(pk=pk).geometry
         if not geometry:
-            return Response()
+            return Response({})
         return Response(json.loads(geometry.geojson))
 
     def get_serializer(self, *args, **kwargs):
