@@ -1,4 +1,6 @@
+from django.conf import settings
 from django.contrib import admin
+from django.http import HttpResponse
 from .models import Jurisdiction, State, SurveyEmail
 from mailman.mailer import MailSurvey
 
@@ -102,11 +104,23 @@ def mark_unsent(modeladmin, request, queryset):
     queryset.update(send_email=False)
 
 
+def get_csv_survey_links(modeladmin, request, queryset):
+    del modeladmin, request
+    response = HttpResponse(content_type='text/csv')
+    for email_req in queryset:
+        juris = sorted((j.name, j.pk) for j in email_req.jurisdiction.all())
+        for name, pk in juris:
+            survey_link = settings.SURVEY_MONKEY_URL.format(pk)
+            response.write('%s,%s\n' % (name, survey_link))
+        response.write('\n')
+    return response
+
+
 class SurveyEmailAdmin(admin.ModelAdmin):
     list_display = (
         'name', 'send_email', 'recipients'
     )
-    actions = [send_email, mark_unsent]
+    actions = [send_email, mark_unsent, get_csv_survey_links]
 
     def get_readonly_fields(self, request, obj=None):
         return ['send_email']
