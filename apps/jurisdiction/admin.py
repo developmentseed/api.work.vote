@@ -107,6 +107,7 @@ def mark_unsent(modeladmin, request, queryset):
 def get_csv_survey_links(modeladmin, request, queryset):
     del modeladmin, request
     response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="survey_email_links.csv"'
     for email_req in queryset:
         juris = sorted((j.name, j.pk) for j in email_req.jurisdiction.all())
         for name, pk in juris:
