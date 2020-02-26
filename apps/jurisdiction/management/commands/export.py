@@ -42,7 +42,7 @@ def state2json(record):
 
 
 class Command(BaseCommand):
-    help = 'Import jurisdiction boundaries'
+    help = 'Export jurisdictions and states.'
 
     def handle(self, *args, **options):
         print('Exporting Jurisdictions')
@@ -53,9 +53,3 @@ class Command(BaseCommand):
         print('Exporting states')
         states = State.objects.all()
         [state2json(s) for s in states]
-
-        
-
-
-
-

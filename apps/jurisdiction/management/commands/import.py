@@ -9,7 +9,7 @@ from jurisdiction.models import Jurisdiction, State, Zipcode
 directory = 'exports'
 
 class Command(BaseCommand):
-    help = 'Export data'
+    help = 'Import data'
 
     def handle(self, *args, **options):
         print('Import data')
@@ -31,8 +31,7 @@ class Command(BaseCommand):
             with open(os.path.join(state_path, file)) as f:
                 state = json.load(f)
                 State.objects.update_or_create(**state)
-                print('record for %s saved' % state['name'])
-
+                print('record for %s imported' % state['name'])
 
         # load jurisdictions
         ## make sure jurisdiction folder exists
@@ -51,13 +50,8 @@ class Command(BaseCommand):
                 with open(jr_file) as f:
                     geojson = json.load(f)
                     record = geojson['properties']
-
-                    # get state
                     record['state'] = State.objects.get(pk=record['state'])
-
-                    record['geometry'] = GEOSGeometry(json.dumps(geojson['geometry']))
+                    record['geometry'] = GEOSGeometry(
+                            json.dumps(geojson['geometry']))
                     Jurisdiction.objects.update_or_create(**record)
-                    print('record for %s saved' % record['name'])
-
-
-
+                    print('record for %s imported' % record['name'])

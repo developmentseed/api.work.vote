@@ -1,0 +1,635 @@
+name,state,city,office_address,mailing_address,telephone,email
+Addison,Vermont,TRUE,"65 VT Route 17W
+Addison, VT 05491",,802-759-2020,addisontown@gmavt.net
+Albany,Vermont,TRUE,"827 Main Street
+Albany, VT 05820","P.O. Box 284
+Albany, VT 05820",802-755-6100,albanytct@gmail.com
+Alburgh,Vermont,TRUE,"1 North Main Street
+Alburgh, VT 05440",,802-796-3468,townofalburgh@fairpoint.net
+Andover,Vermont,TRUE,"953 Weston-Andover Road
+Andover, VT 05143",,802-875-2765,clerk@vermontel.net
+Arlington,Vermont,TRUE,"3828 VT Route 7A
+Arlington, VT 05250","P.O. Box 304
+Arlington, VT 05250",802-375-2332,arltc@comcast.net
+Athens,Vermont,TRUE,"56 Brookline Road
+Athens, VT 05143",,802-869-3370,townofathens@hotmail.com
+Bakersfield,Vermont,TRUE,"40 East Bakersfield Road
+Bakersfield, VT 05441","P.O. Box 203
+Bakersfield, VT 05441",802-827-4495,townclerk_bakersfield@comcast.net
+Baltimore,Vermont,TRUE,"1902 Baltimore Road
+Baltimore, VT 05143",,802-263-5274,baltimorevt@tds.net
+Barnard,Vermont,TRUE,"115 North Road
+Barnard, VT 05031-0274","P.O. Box 274
+Barnard, VT 05031-0274",802-234-9211,barnardto@gmail.com
+Barnet,Vermont,TRUE,"1743 US Route 5 South
+Barnet, VT 05821","P.O. Box 15
+Barnet, VT 05821",802-633-2256,townclerk@barnetvt.org
+Barre City,Vermont,TRUE,"6 N. Main Street, Suite 6
+Barre, VT 05641","P.O. Box 418
+Barre, VT 05641",802-476-0242,cdawes@barrecity.org
+Barre Town,Vermont,TRUE,"149 Websterville Road
+Websterville, VT 05678","P.O. Box 124
+Websterville, VT 05678",802-479-9391,dkelty@barretown.org
+Barton,Vermont,TRUE,"34 Main Street
+Barton, VT 05822",,802-525-6222,bartontown@comcast.net
+Belvidere,Vermont,TRUE,"3996 VT RT 109
+Belvidere, VT 05442",,802-644-6621,belvideretownclerk@gmail.com
+Bennington,Vermont,TRUE,"205 South Street
+Bennington, VT 05201",,802 442-1043,cbarbeau@benningtonvt.org
+Benson,Vermont,TRUE,"2760 Stage Road
+Benson, VT 05731","P.O. Box 163
+Benson, VT 05731",802-537-2611,bensonclerk@myottmail.com
+Berkshire,Vermont,TRUE,"4454 Watertower Road
+Enosburg Falls, VT 05450",,802-933-2335,townclerk@berkshirevt.com
+Berlin,Vermont,TRUE,"108 Shed Road
+Berlin, VT 05602",,802-229-9298,townclerk@berlinvt.org
+Bethel,Vermont,TRUE,"134 South Main Street
+Bethel, VT 05032","P.O. Box 404
+Bethel, VT 05032",802-234-9722,betheltownclerk@comcast.net
+Bloomfield,Vermont,TRUE,"27 Schoolhouse Road
+Bloomfield, VT 05905","P.O. Box 336
+N Stratford, NH 03590",802-962-5191,townofbloomfieldvt@gmail.com
+Bolton,Vermont,TRUE,"3045 Theodore Roosevelt Highway (US Route 2)
+Bolton, Vermont 05676",,802-434-5075,clerkbolton@gmavt.net
+Bradford,Vermont,TRUE,"172 North Main Street
+Bradford, VT 05033","P.O. Box 339
+Bradford, VT 05033",802 222-4727,clerk@bradford-vt.us
+Braintree,Vermont,TRUE,"932 VT Route 12A
+Braintree, VT 05060",,802-728-9787,braintreetownclerk@gmail.com
+Brandon,Vermont,TRUE,"49 Center Street
+Brandon, VT 05733",,802-247-3635,sgage@townofbrandon.com
+Brattleboro,Vermont,TRUE,"230 Main Street, Suite 108
+Brattleboro, VT 05301",,802-251-8157,hfrancis@brattleboro.org
+Bridgewater,Vermont,TRUE,"7335 US RT 4
+Bridgewater, VT 05034",,802-672-3334,twnbridg@comcast.net
+Bridport,Vermont,TRUE,"82 Crown Point Road
+Bridport, VT 05734","P.O. Box 27
+Bridport, VT 05734",802-758-2483,bridporttown@gmavt.net
+Brighton,Vermont,TRUE,"49 Mill Street Ext.
+Island Pond, VT 05846","P.O. Box 377
+Island Pond, VT 05846",802-723-4405,brightonclerk@comcast.net
+Bristol,Vermont,TRUE,"1 South Street
+Bristol, VT 05443","P.O. Box 249
+Bristol, VT 05443",802-453-2410,clerk@bristolvt.org
+Brookfield,Vermont,TRUE,"40 Ralph Road
+Brookfield, VT 05036","P.O. Box 463
+Brookfield, VT 05036",802-276-3352,townclerk@brookfieldvt.org
+Brookline,Vermont,TRUE,"734 Grassy Brook Road
+Brookline, VT 05345","P.O. Box 403
+Brookline, VT 05345",802-365-4648,brook763@comcast.net
+Brownington,Vermont,TRUE,"622 Schoolhouse Road
+Brownington, VT 05860",,802-754-8401,browningtontc@comcast.net
+Brunswick,Vermont,TRUE,"994 VT Route 102
+Brunswick, VT 05905",,802-962-5514,townofbrunswick@gmail.com
+Burke,Vermont,TRUE,"212 School St
+West Burke, VT 05871",,802-467-3717,burke@burkevermont.org
+Burlington,Vermont,TRUE,"149 Church Street
+Burlington, VT 05401",,802-865-7000,burlingtontownclerk@burlingtonvt.gov
+Cabot,Vermont,TRUE,"3084 Main Street
+Cabot, VT 05647","P.O. Box 36
+Cabot, VT 05647",802-563-2279,tcocabot@fairpoint.net
+Calais,Vermont,TRUE,"3120 Pekin Brook Road
+East Calais, VT 05650",,456-8720,calais.townclerk@gmail.com
+Cambridge,Vermont,TRUE,"85 Church Street Suite 201
+Jeffersonville, VT 05464","P.O. Box 127
+Jeffersonville, VT 05464",802-644-2251,mark@cambridgevt.org
+Canaan,Vermont,TRUE,"318 Christian Hill
+Canaan, VT 05903","P.O. Box 159
+Canaan, VT 05903",802-266-3370,nlabrecque@canaanschools.org
+Castleton,Vermont,TRUE,"263 Route. 30 North
+Castleton, VT 05735","P.O. Box 727
+Castleton, VT 05735",802-468-5319 x201,casclerk@shoreham.net
+Cavendish,Vermont,TRUE,"37 High St
+Cavendish, VT 05142","P.O. Box 126
+Cavendish, VT 05142",802-226-7291 or 802-226-7292,d.mcnamara@comcast.net
+Charleston,Vermont,TRUE,"5063 VT Route 105
+W Charleston, VT 05872",,802-895-2814,townofcharlestonvt@comcast.net
+Charlotte,Vermont,TRUE,"159 Ferry Road
+Charlotte, VT 05445","P.O. Box 119
+Charlotte, VT 05445",802-425-3071,mary@townofcharlotte.com
+Chelsea,Vermont,TRUE,"296 VT Route 110
+Chelsea, VT 05038","P.O. Box 266
+Chelsea, VT 05038",802-685-4460,town.clerk@chelseavt.us
+Chester,Vermont,TRUE,"556 Elm Street
+Chester, VT 05143","P.O. Box 370
+Chester, VT 05143",802-875-2173,deborah.aldrich@chestervt.gov
+Chittenden,Vermont,TRUE,"260 Chittenden Road
+Chittenden, VT 05737","P.O. Box 89
+Chittenden, VT 05737",802-483-6647,chittendenvt@comcast.net
+Clarendon,Vermont,TRUE,"279 Middle Road
+Clarendon, VT 05759","P.O. Box 30
+Clarendon, VT 05759",802-775-4274,clarendonclerk@comcast.net
+Colchester,Vermont,TRUE,"781 Blakely Road
+Colchester, VT 05446",,802 264-5520,townclerk@colchestervt.gov
+Concord,Vermont,TRUE,"374 Main Street
+Concord, VT 05824","P.O. Box 317
+Concord, VT 05824",802-695-2220,townclerk@conclerk.com
+Corinth,Vermont,TRUE,"1387 Cookeville Road
+Corinth, VT 05039","P.O. Box 461
+Corinth, VT 05039",802-439-5850,corino@tops-tele.com
+Cornwall,Vermont,TRUE,"2629 Route 30
+Cornwall, VT 05753",,802-462-2775,cornwallvt@shoreham.net
+Coventry,Vermont,TRUE,"168 Main Street
+Coventry, VT 05825","P.O. Box 8
+Coventry, VT 05825",802-754-2288,clerk@coventryvt.org
+Craftsbury,Vermont,TRUE,"85 South Craftsbury Road
+Craftsbury, VT 05826","P.O. Box 55
+Craftsbury, VT 05826",802-586-2823,craftsbury@gmail.com
+Danby,Vermont,TRUE,"130 Brook Road
+Danby, VT 05739",,802-293-5136,danbytownclerk@vermontel.net
+Danville,Vermont,TRUE,"36 Route 2 W
+Danville, VT 05828-0183","P.O. Box 183
+Danville, VT 05828-0183",802-684-3352,wsomers@danvillevermont.org
+Derby,Vermont,TRUE,"124 Main St
+Derby, VT 05829",,802-766-4906,derbytownclerk@derbyvt.org
+Dorset,Vermont,TRUE,"112 Mad Tom Road
+East Dorset, VT 05253","P.O. Box 24
+East Dorset, VT 05253",802-362-1178 x 2,dorsetclerk@gmail.com
+Dover,Vermont,TRUE,"102 Route 100
+West Dover, VT 05356","P.O. Box 527
+West Dover, VT 05356",802-464-5100 x 2,townclerk@doververmont.com
+Dummerston,Vermont,TRUE,"1523 Middle Road
+E. Dummerston, VT 05346",,802-257-1496,townclerk@dummerston.org
+Duxbury,Vermont,TRUE,"5421 VT Route 100
+Duxbury, VT 05676",,802-244-6660,duxtc@myfairpoint.net
+East Haven,Vermont,TRUE,"64 Community Building Road
+East Haven, VT 05837","P.O. Box 10
+East Haven, VT 05837",802-467-3772,tclerk1790@gmail.com
+East Montpelier,Vermont,TRUE,"40 Kelton Road
+East Montpelier, VT 05651","P.O. Box 157
+E Montpelier, VT 05651",802-223-3313,clerk@eastmontpeliervt.org
+Eden,Vermont,TRUE,"71 Old Schoolhouse Road
+Eden Mills, VT 05653",,802-635-2528,cveareden@myfairpoint.net
+Elmore,Vermont,TRUE,"1175 VT Route 12
+Elmore, VT 05657","P.O. BOX 123
+Lake Elmore, VT 05657",802-888-2637,sdraper@elmorevt.org
+Enosburgh,Vermont,TRUE,"239 Main Street
+Enosburg Falls, VT 05450","P.O. BOX 465
+Enosburg Falls, VT 05450",802-933-4421,townclerk@enosburghvt.org
+Essex,Vermont,TRUE,"81 Main Street
+Essex Junction, VT 05452",,802-879-0413,smcnamarahill@essex.org
+Fair Haven,Vermont,TRUE,"3 North Park Place
+Fair Haven, VT 05743",,802 -265-3610 x.4,sdclerk@comcast.net
+Fairfax,Vermont,TRUE,"12 Buck Hollow Road.
+Fairfax, VT 05454",,802-849-6111,clerk@fairfax-vt.gov
+Fairfield,Vermont,TRUE,"25 North Road
+Fairfield, VT 05455","P.O. Box 5
+Fairfield, VT 05455",802-827-3261,amanda@fairfieldvermont.us
+Fairlee,Vermont,TRUE,"75 Town Common Road
+Fairlee, VT 05045","P.O. Box 95
+Fairlee, VT 05045",802-333-4363,townclerk@fairleevt.org
+Fayston,Vermont,TRUE,"866 N Fayston Road
+Fayston, VT 05660",,802-496-2454,faystontc@madriver.com
+Ferrisburgh,Vermont,TRUE,"3279 Route 7
+Ferrisburgh, VT 05456",,802-877-3429,pam.cousino@ferrisburghvt.org
+Fletcher,Vermont,TRUE,"33 Shaw Road
+Cambridge, VT 05444",,802-849-6616,town@fletchervt.net
+Franklin,Vermont,TRUE,"5167 Main St
+Franklin, VT 05457","P.O. Box 82
+Franklin, VT 05457",802-285-2101,townoff@franklinvt.net
+Georgia,Vermont,TRUE,"47 Town Common Road North
+Georgia Center, VT 05478",,802-524-3524,townclerk@townofgeorgia.com
+Glover,Vermont,TRUE,"51 Bean Hill
+Glover, VT 05839",,802-525-6227,glovertc@comcast.net
+Goshen,Vermont,TRUE,"50 Carlisle Hill Road
+Goshen, VT 05733",,802-247-6455,townclerk@goshenvt.org
+Grafton,Vermont,TRUE,"117 Main Street
+Grafton, VT 05146","P.O. Box 180
+Grafton, VT 05146",802-843-2419,krecord@graftonvt.org
+Granby,Vermont,TRUE,"9005 Granby Road
+Granby, VT 05840","P.O Box 56
+Granby, VT 05840",802-328-3611,townofgranby@myfairpoint.net
+Grand Isle,Vermont,TRUE,"9 Hyde Road
+Grand Isle, VT 05458","P.O. Box 49
+Grand Isle, VT 05458",802-372-8830,grandislevtclerk@gmail.com
+Granville,Vermont,TRUE,"4157 VT Route 100
+Granville, VT 05747",,802-767-4403,granvilletown@gmavt.net
+Greensboro,Vermont,TRUE,"82 Craftsbury Road
+Greensboro, VT 05841","P.O. Box 119
+Greensboro, VT 05841",802-533-2911,townclerk@greensborovt.org
+Groton,Vermont,TRUE,"1476 Scott Hwy
+Groton, VT 05046",,802-584-3276,townclerk@grotonvt.com
+Guildhall,Vermont,TRUE,"13 Courthouse Dr.
+Guildhall, VT 05905","P.O. Box 10
+Guildhall, VT 05905",802-676-3797,townclerk@guildhallvt.org
+Guilford,Vermont,TRUE,"236 School Road
+Guilford, VT 05301",,802-254-6857,pennymarine@guilfordvt.net
+Halifax,Vermont,TRUE,"246 Branch Road
+W. Halifax, VT 05358","P.O. Box 127
+W. Halifax, VT 05358",802-368-7390,halifax@myfairpoint.net
+Hancock,Vermont,TRUE,"1027 VT Route 100
+Hancock, VT 05748","P.O. Box 100
+Hancock, VT 05748",802-767-3660,townclerk@hancockvt.org
+Hardwick,Vermont,TRUE,"20 Church Street
+Hardwick, VT 05843","P.O. Box 523
+Hardwick, VT 05843",802-472-5971,alberta.miller@hardwickvt.org
+Hartford,Vermont,TRUE,"171 Bridge Street
+White River Jct, VT 05001",,802-295-2785,loneil@hartford-vt.org
+Hartland,Vermont,TRUE,"1 Quechee Road
+Hartland, VT 05048","P.O. Box 349
+Hartland, VT 05048",802-436-2444,cjenne@hartlandvt.org
+Highgate,Vermont,TRUE,"2996 VT Route 78
+Highgate, VT 05459","P.O. Box 189
+Highgate, VT 05459",802-868-4697,wdusablon@highgatevt.org
+Hinesburg,Vermont,TRUE,"10632 Route. 116
+Hinesburg, VT 05461",,802-482-2281 x. 223,mross@hinesburg.org
+Holland,Vermont,TRUE,"120 School Road
+Derby Line, VT 05830",,802-895-4440,holland1805@hotmail.com
+Hubbardton,Vermont,TRUE,"1831 Monument Hill Road.
+Hubbardton, VT 05735","1831 Monument Hill Road.
+Castleton, VT 05735",802-273-2951,clrkhubb@shoreham.net
+Huntington,Vermont,TRUE,"4930 Main Road
+Huntington, VT 05462",,802-434-2032,huntingtonclerk@gmavt.net
+Hyde Park,Vermont,TRUE,"344 VT Route 15 W
+Hyde Park, VT 05655","P.O. Box 98
+Hyde Park, VT 05655",802-888-2300,kim@hydeparkvt.com
+Ira,Vermont,TRUE,"53 West Road
+Ira, VT 05777",,802-235-2745,iraclerk@vermontel.com
+Irasburg,Vermont,TRUE,"161 RT 58 East
+Irasburg, VT 05845","P.O. Box 51
+Irasburg, VT 05845",802-754-2242,irasburgtc@comcast.net
+Isle La Motte,Vermont,TRUE,"2272 Main Street
+Isle La Motte, VT 05463","P.O. Box 250
+Isle La Motte, VT 05463",802-928-3434,islemott@fairpoint.net
+Jamaica,Vermont,TRUE,"28 Town Office Road
+Jamaica, VT 05343","P.O. Box 173
+Jamaica, VT 05343",802-874-4681,jamaicatownclerk@svcable.net
+Jay,Vermont,TRUE,"1036 VT Route 242
+Jay, VT 05859",,802-988-2996,townofjay@comcast.net
+Jericho,Vermont,TRUE,"67 Vermont Route 15
+Jericho, VT 05465","P.O. Box 67
+Jericho, VT 05465",802-899-4936,jerichovermont@yahoo.com
+Johnson,Vermont,TRUE,"293 Lower Main West
+Johnson, VT 05656","P.O. Box 383
+Johnson, VT 05656",802-635-2611,raudibert@townofjohnson.com
+Killington,Vermont,TRUE,"2706 River Road
+Killington, VT 05751","P.O. Box 429
+Killington, VT 05751",802-422-3243,lucrecia@killingtontown.com
+Kirby,Vermont,TRUE,"346 Town Hall Road
+Lyndonville, VT 05851",,802-626-9386,townclerk.kirbyvermont@gmail.com
+Landgrove,Vermont,TRUE,"88 Landgrove Road
+Landgrove, VT 05148",,802-824-3716,townoflandgrove@gmail.com
+Leicester,Vermont,TRUE,"44 Schoolhouse Road
+Leicester, VT 05733",,802-247-5961 x 3,leicestervt@comcast.net
+Lemington,Vermont,TRUE,"2549 River Road, Vt 102
+Lemington, VT 05903",,802-277-4814,lemitown@myfairpoint.net
+Lincoln,Vermont,TRUE,"62 Quaker Street
+Lincoln, VT 05443",,802-453-2980,clerk@lincolnvermont.org
+Londonderry,Vermont,TRUE,"100 Old School Street
+S. Londonderry, VT 05155",,802-824-3356,townclerk@londonderryvt.org
+Lowell,Vermont,TRUE,"2170 VT Route 100
+Lowell, VT 05847",,802-744-6559,cpion@lowelltown.org
+Ludlow,Vermont,TRUE,"37 Depot Street
+Ludlow, VT 05149","P.O. Box 307
+Ludlow, VT 05149",802-228-3232,treasure@ludlow.vt.us
+Lunenburg,Vermont,TRUE,"9 West Main Street
+Lunenburg, VT 05906","P.O. Box 53
+Lunenburg, VT 05906",802 892 5959,lunenburg01@live.com
+Lyndon,Vermont,TRUE,"119 Park Avenue
+Lyndonville, VT 05851","P.O Box 167
+Lyndonville, VT 05851",802-626-5785,dawn@lyndonvt.org
+Maidstone,Vermont,TRUE,"508 Vermont Route 102
+Maidstone, VT 05905","P.O. Box 118
+Guildhall, VT 05905",802 676-3210,maidstonetownclerk@gmail.com
+Manchester,Vermont,TRUE,"40 Jeff Williams Way
+Manchester Center, VT 05255","P.O. Box 830
+Manchester Center, VT 05255",802-362-1313,a.sheldon@manchester-vt.gov
+Marlboro,Vermont,TRUE,"510 South Road
+Marlboro, VT 05344","P.O. Box E
+Marlboro, VT 05344",802 254-2181,marlborotownclerk@gmail.com
+Marshfield,Vermont,TRUE,"122 School Street, Room 1
+Marshfield, VT 05658",,802-426-3305,clerk@town.marshfield.vt.us
+Mendon,Vermont,TRUE,"2282 US Route 4
+Mendon, VT 05701",,802-775-1662,mendonclerk@comcast.net
+Middlebury,Vermont,TRUE,"77 Main Street
+Middlebury, VT 05753",,"802-388-8100 x211, x212, x213",awebster@townofmiddlebury.org
+Middlesex,Vermont,TRUE,"5 Church Street
+Middlesex, VT 05602",,802-223-5915,middlesxtwnclrk@comcast.net
+Middletown Springs,Vermont,TRUE,"10 Park Avenue
+Middletown Springs, VT 05757","P.O. Box 1232
+Middletown Springs, VT 05757",802-235-2220,middletown@vermontel.net
+Milton,Vermont,TRUE,"43 Bombardier Road
+Milton, VT 05468","P.O. Box 18
+Milton, VT 05468",802-893-4111,sprince@miltonvt.gov
+Monkton,Vermont,TRUE,"280 Monkton Ridge
+N. Ferrisburgh, VT 05473","P.O. Box 12
+Monkton, VT 05469",802-453 3800,monktontc@comcast.net
+Montgomery,Vermont,TRUE,"98 Main Street
+Montgomery Center, VT 05471","P.O. Box 356
+Montgomery Center, VT 05471",802-326-4719,municipalclerkmontgomery@gmail.com
+Montpelier,Vermont,TRUE,"39 Main Street
+Montpelier, VT 05602",,802-223-9500,jodum@montpelier-vt.org
+Moretown,Vermont,TRUE,"79 School Street
+Moretown, VT 05660",,802-882-8218,townclerk@moretownvt.net
+Morgan,Vermont,TRUE,"41 Meade Hill Road
+Morgan, VT 05853","P.O. Box 45
+Morgan, VT 05853",802-895-2927,tmorganvt@comcast.net
+Morristown,Vermont,TRUE,"43 Portland St
+Morrisville, VT 05661","P. O. Box 748
+Morrisville, VT 05661",802-888-6370,shaskins@morristownvt.org
+Mount Holly,Vermont,TRUE,"50 School St
+Mount Holly, VT 05758","P.O. Box 248
+Mount Holly, VT 05758",802-259-2391,mthollytc@yahoo.com
+Mount Tabor,Vermont,TRUE,"522 Brooklyn Road
+Mount Tabor, VT 05739","P.O. Box 245
+Mount Tabor, VT 05739",802-293-5282,mttabor@vermontel.net
+New Haven,Vermont,TRUE,"78 North Street
+New Haven, VT 05472",,802-453-3516,newhavenclerk@gmavt.net
+Newark,Vermont,TRUE,"1336 Newark Street
+Newark, VT 05871",,802-467-3336,newarktownclerk@gmail.com
+Newbury,Vermont,TRUE,"4982 Main St S
+Newbury, VT 05051","P.O. Box 126
+Newbury, VT 05051",802-866-5521,clerk@newburyvt.org
+Newfane,Vermont,TRUE,"555 VT Route 30
+Newfane, VT 05345","P.O. Box 36
+Newfane, VT 05345",802-365-7772,tclerknewfane@svcable.net
+Newport City,Vermont,TRUE,"222 Main St
+Newport, VT 05855",,802-334-2112,james.johnson.clerk@newportvermont.org
+Newport Town,Vermont,TRUE,"102 Vance Hill Road
+Newport Center, VT 05857","P.O. Box 85
+Newport Center, VT 05857",802-334-6442,nctownclerk@comcast.net
+North Hero,Vermont,TRUE,"6441 US RT 2
+North Hero, VT 05474","P.O. Box 38
+North Hero, VT 05474",802-372-6926,townclerk@northherovt.com
+Northfield,Vermont,TRUE,"51 S Main Street
+Northfield, VT 05663",,802-485-5421,kpedley@northfield.vt.us
+Norton,Vermont,TRUE,"12 VT Route 114E
+Norton, VT 05907","P.O. Box 33
+Norton, VT 05907",802-822-9935,townofnorton@gmail.com
+Norwich,Vermont,TRUE,"300 Main Street
+Norwich, VT 05055","P.O. Box 376
+Norwich, VT 05055",802-649-1419 ext. 103,clerk@norwich.vt.us
+Orange,Vermont,TRUE,"392 US RT 302
+Orange, VT 05649","P.O. Box 233
+East Barre, VT 05649",802-479-2673,aeastman@orangevt.org
+Orwell,Vermont,TRUE,"436 Main Street
+Orwell, VT 05760","P.O. Box 32
+Orwell, VT 05760",802-948-2032,tckorwel@sover.net
+Panton,Vermont,TRUE,"3176 Jersey Street
+Panton, VT 05491",,802-475-2333,clerk-treasurer@pantonvt.us
+Pawlet,Vermont,TRUE,"122 School Street
+Pawlet, VT 05761","P.O. Box 128
+Pawlet, VT 05761",802-325-3309,pawletclerk@vermontel.net
+Peacham,Vermont,TRUE,"79 Church Street
+Peacham, VT 05862","P.O. Box 244
+Peacham, VT 05862",802-592-3218,townclerk@peacham.org
+Peru,Vermont,TRUE,"402 Main St
+Peru, VT 05152","P.O. Box 127
+Peru, VT 05152",802-824-3065,peruclerk@gmail.com
+Pittsfield,Vermont,TRUE,"40 Village Green
+Pittsfield, VT 05762-0556","P.O. Box 556
+Pittsfield, VT 05762-0556",802-746-8170,townofpittsfieldvt@gmail.com
+Pittsford,Vermont,TRUE,"426 Plains Road
+Pittsford, VT 05763","P.O. Box 10
+Pittsford, VT 05763",802-483-6500 Ext. 13,clerktreasurer@pittsfordvermont.com
+Plainfield,Vermont,TRUE,"149 Main Street
+Plainfield, VT 05667","P.O. Box 217
+Plainfield, VT 05667",802-454-8461,plainfieldtc@gmail.com
+Plymouth,Vermont,TRUE,"68 Town Office Road
+Plymouth, VT 05056",,802-672-3655,clerk@plymouthvt.org
+Pomfret,Vermont,TRUE,"5218 Pomfret Road
+North Pomfret, VT 05053",,802-457-3861,clerk@pomfretvt.us
+Poultney,Vermont,TRUE,"9 Main Street, Suite 2
+Poultney, VT 05764",,802-287-5761,poultneytownclerk@comcast.net
+Pownal,Vermont,TRUE,"467 Center Street
+Pownal, VT 05261","P.O. Box 411
+Pownal, VT 05261",802-823-7757,town.clerk@townofpownal.org
+Proctor,Vermont,TRUE,"45 Main Street
+Proctor, VT 05765",,802-459-3333,proctor_tc@comcast.net
+Putney,Vermont,TRUE,"127 Main Street
+Putney, VT 05346","P.O. Box 233
+Putney, VT 05346",802-387-5862x13,clerk@putneyvt.org
+Randolph,Vermont,TRUE,"7 Summer Street
+Randolph, VT 05060","Drawer B
+Randolph, VT 05060","802-728-5433, ext. 11",joyce@randolphvt.org
+Reading,Vermont,TRUE,"799 VT Route 106
+Reading, VT 05062","P.O. Box 72
+Reading, VT 05062",802-484-7250,readingvermont@comcast.net
+Readsboro,Vermont,TRUE,"301 Phelps Lane
+Readsboro, VT 05350","P.O. Box 187
+Readsboro, VT 05350",802-423-5405,readsto@gmail.com
+Richford,Vermont,TRUE,"94 Main Street
+Richford, VT 05476","P.O. Box 236
+Richford, VT 05476",802-848-7751,townclerk@richfordvt.org
+Richmond,Vermont,TRUE,"203 Bridge Street, 2nd Floor
+Richmond, VT 05477","P.O. Box 285
+Richmond, VT 05477-0285",802-434-2221,lparent@richmondvt.gov
+Ripton,Vermont,TRUE,"1311 Route 125
+Ripton, VT 05766","P.O. Box 10
+Ripton, VT 05766",802-388-2266,townclerk@riptonvt.org
+Rochester,Vermont,TRUE,"67 School St
+Rochester, VT 05767","P.O. Box 238
+Rochester, VT 05767",802-767-3631,rochestertown@comcast.net
+Rockingham,Vermont,TRUE,"7 Village Square
+Bellows Falls, VT 05101","P.O. Box 339
+Bellows Falls, VT 05101",802-463-4336,clerk@rockbf.org
+Roxbury,Vermont,TRUE,"1664 Roxbury Road
+Roxbury, VT 05669","P.O. Box 53
+Roxbury, VT 05669",802-485-7840,townrox@tds.net
+Royalton,Vermont,TRUE,"2460 VT. Route 14
+S Royalton, VT 05068","P.O. Box 680
+S Royalton, VT 05068",802-763-7207,royalclerk@bluemoo.net
+Rupert,Vermont,TRUE,"187 East Street
+West Rupert, VT 05776","P.O. Box 140
+West Rupert, VT 05776",802-394-7728,rupert187@myfairpoint.net
+Rutland City,Vermont,TRUE,"1 Strongs Avenue
+Rutland, VT 05701","P.O. Box 969
+Rutland, VT 05701",802-773-1800,henryh@rutlandcity.org
+Rutland Town,Vermont,TRUE,"181 Business Route 4
+Center Rutland, VT 05736",,802-773-2528x11,khathaway@rutlandtown.com
+Ryegate,Vermont,TRUE,"18 S. Bayley-Hazen Road
+Ryegate, VT 05042","P.O. Box 332
+Ryegate, VT 05042",802-584-3880,ryegateclerk@yahoo.com
+Saint Albans City,Vermont,TRUE,"100 North Main Street
+St. Albans, VT 05478","P.O. Box 867
+St. Albans, VT 05478",802-524-1500 ext. 264,c.galloway@stalbansvt.com
+Saint Albans Town,Vermont,TRUE,"579 Lake Road
+St. Albans, VT 05478","P.O. Box 37
+St. Albans Bay, VT 05481",802-524-2415,a.bourdon@stalbanstown.com
+Saint George,Vermont,TRUE,"21 Barber Road
+St. George, VT 05495",,802-482-5272,stgeorgevtclerk@comcast.net
+Saint Johnsbury,Vermont,TRUE,"51 Depot Square, Suite. 101
+St Johnsbury, VT 05819",,802-748-4331,townclerk@stjvt.com
+Salisbury,Vermont,TRUE,"25 Schoolhouse Road
+Salisbury, VT 05769","P.O.Box 66
+Salisbury, VT 05769",802-352-4228,town.clerk@comcast.net
+Sandgate,Vermont,TRUE,"3266 Sandgate Road
+Sandgate, VT 05250",,802-375-9075,sandgateclerk2@outlook.com
+Searsburg,Vermont,TRUE,"18 Town Garage Road
+Searsburg, VT 05363","P.O. Box 157
+Wilmington, VT 05363",802-464-8081,searsburgtc@gmail.com
+Shaftsbury,Vermont,TRUE,"61 Buck Hill Road
+Shaftsbury, VT 05262","P.O. Box 409
+Shaftsbury, VT 05262",802-442-4038x1,townclerk@shaftsburyvt.gov
+Sharon,Vermont,TRUE,"69 VT Route 132
+Sharon, VT 05065","P.O. Box 250
+Sharon, VT 05065",802-763-8268x1,clerk@sharonvt.net
+Sheffield,Vermont,TRUE,"37 Dane Toad
+Sheffield, VT 05866","P.O. Box 165
+Sheffield, VT 05866",802-626-8862,townclerk@sheffieldvt.org
+Shelburne,Vermont,TRUE,"5420 Shelburne Road
+Shelburne, VT 05482","P.O. Box 88
+Shelburne, VT 05482",802-985-5116,dvachon@shelburnevt.org
+Sheldon,Vermont,TRUE,"1640 Main Street
+Sheldon, VT 05483","P.O. Box 66
+Sheldon, VT 05483",802-933-2524,tc@sheldonvt.com
+Shoreham,Vermont,TRUE,"297 Main St
+Shoreham, VT 05770",,802-897-5841,shorehamtown@shoreham.net
+Shrewsbury,Vermont,TRUE,"9823 Cold River Road
+Shrewsbury, VT 05738",,802-492-3511,shrewsburyclerk@vermontel.net
+South Burlington,Vermont,TRUE,"575 Dorset St
+S Burlington, VT 05403",,802-846-4105,dkinville@sburl.com
+South Hero,Vermont,TRUE,"333 Route 2
+South Hero, VT 05486-0175","P.O. Box 175
+South Hero, VT 05486-0175",802-372-5552,townclerk@southherovt.org
+Springfield,Vermont,TRUE,"96 Main Street
+Springfield, VT 05156",,802-885-2104,tosclerk@vermontel.net
+Stamford,Vermont,TRUE,"986 Main Road
+Stamford, VT 05352",,802-694-1361,stamfordvt@live.com
+Stannard,Vermont,TRUE,"615 Stannard Mountain Road
+Stannard, VT 05836","P.O. Box 94
+Greensboro Bend, VT 05842",802-533-2577,townofstannard@myfairpoint.net
+Starksboro,Vermont,TRUE,"2849 Vt Route 116
+Starksboro, VT 05487","P.O. Box 91
+Starksboro, VT 05487",802-453-2639,starksboro@madriver.com
+Stockbridge,Vermont,TRUE,"1722 VT Route 100
+Stockbridge, VT 05772","P.O. Box 39
+Stockbridge, VT 05772",802-746-8400,townofstockbridgevt@gmail.com
+Stowe,Vermont,TRUE,"67 Main Street
+Stowe, VT 05672","P.O. Box 730
+Stowe, VT 05672",802-253-6133,lwalker@stowevt.gov
+Strafford,Vermont,TRUE,"227 Justin Morrill Highway
+Strafford, VT 05072","P.O. Box 27
+Strafford, VT 05072",802-765-4411,townclerk@straffordvt.org
+Stratton,Vermont,TRUE,"9 West Jamaica Road.
+Stratton, VT 05360",,802-896-6184,townclerk@townofstrattonvt.com
+Sudbury,Vermont,TRUE,"36 Blacksmith Lane
+Sudbury, VT 05733",,802-623-7296,sudburytownclerk@gmail.com
+Sunderland,Vermont,TRUE,"104 Mountain View Road
+Sunderland, VT 05250",,802-375-6106,town@sunderlandvt.org
+Sutton,Vermont,TRUE,"167 Underpass Road
+Sutton, VT 05867",,802.467.3377,townclerksutton@gmail.com
+Swanton,Vermont,TRUE,"1 Academy Street
+Swanton, VT 05488","P.O. Box 711
+Swanton, VT 05488",802-868-4421,townclerk@swantonvermont.org
+Thetford,Vermont,TRUE,"3910 VT Route 113
+Thetford Ctr, VT 05075","P.O. Box 126
+Thetford Ctr, VT 05075",802-785-2922x5,townclerk@thetfordvermont.us
+Tinmouth,Vermont,TRUE,"9 Mountain View Road
+Tinmouth, VT 05773","515 North End Road
+Tinmouth, VT 05773",802-446-2498,tinmouthtown@vermontel.net
+Topsham,Vermont,TRUE,"6 Harts Road
+Topsham, VT 05076","P.O. Box 69
+Topsham, VT 05076",802-439-5505,topsham@tops-tele.com
+Townshend,Vermont,TRUE,"2006 VT route 30
+Townshend, VT 05353","P.O. Box 223
+Townshend, VT 05353",802-365-7300,townshendtownclerk@gmail.com
+Troy,Vermont,TRUE,"142 Main Street
+North Troy, VT 05859",,802-988-2663,townoftroy@comcast.net
+Tunbridge,Vermont,TRUE,"271 VT RT 110
+Tunbridge, VT 05077","P.O. Box 6
+Tunbridge, VT 05077",802-889-5521,tctunbridge@live.com
+Underihill,Vermont,TRUE,"12 Pleasant Valley Road
+Underhill, VT 05489","P.O. Box 120
+Underhill, VT 05489",802-899-4434 x101,smorin@underhillvt.gov
+Vergennes,Vermont,TRUE,"120 Main Street
+Vergennes, VT 05491","P.O. Box 35
+Vergennes, VT 05491",802-877-2841,clerk@vergennes.org
+Vernon,Vermont,TRUE,"567 Governor Hunt Road
+Vernon, VT 05354",,802-257-0292,clerk@vernonvt.org
+Vershire,Vermont,TRUE,"6894 VT RT 113
+Vershire, VT 05079",,802-685-2227,clerk-treasurer@vershirevt.org
+Victory,Vermont,TRUE,"102 Radar Road
+Victory, VT 05858","P.O. Box 609
+North Concord, VT 05858",802.328.2400,townofvictory@myfairpoint.net
+Waitsfield,Vermont,TRUE,"4144 Main Street
+Waitsfield, VT 05673",,802-496-2218x3,waitsfieldclerk@gmavt.net
+Walden,Vermont,TRUE,"12 VT Route 215
+West Danville, VT 05873",,802-563-2220,waldentc@pivot.net
+Wallingford,Vermont,TRUE,"75 School Street
+Wallingford, VT 05773",,802-446-2336,townclerk@wallingfordvt.com
+Waltham,Vermont,TRUE,"2053 Maple Street
+Waltham, VT 05491","P.O. Box 175
+Vergennes, VT 05491",802-877-3641,waltham@myfairpoint.net
+Wardsboro,Vermont,TRUE,"71 Main Street
+Wardsboro, VT 05355","P.O. Box 48
+Wardsboro, VT 05355",802-896-6055,wardsborotownoffice@myfairpoint.net
+Warren,Vermont,TRUE,"42 Cemetery Road
+Warren, VT 05674","P.O. Box 337
+Warren, VT 05674",802-496-2709,clerk@warrenvt.org
+Washington,Vermont,TRUE,"2895 VT Route 110
+Washington, VT 05675",,802-883-2218,washingtontownclerk@gmail.com
+Waterbury,Vermont,TRUE,"28 North Main Street, Suite. 1
+Waterbury, VT 05676",,802-244-8447,clawrence@waterburyvt.com
+Waterford,Vermont,TRUE,"532 Maple Street
+Lower Waterford, VT 05848","P.O. Box 56
+Lower Waterford, VT 05848",802-748-2122,townofwaterford@gmail.com
+Waterville,Vermont,TRUE,"850 VT Route 109
+Waterville, VT 05492","P.O. Box 31
+Waterville, VT 05492",802-644-8865,townofwaterville@myfairpoint.net
+Weathersfield,Vermont,TRUE,"5259 Route 5
+Ascutney, VT 05030","P.O. Box 550
+Ascutney, VT 05030",802-674-9500,townclerk@weathersfield.org
+Wells,Vermont,TRUE,"1064 VT Route 30
+Wells, VT 05774","P.O. Box 585
+Wells, VT 05774",802.645.0486,wellstownclerk@comcast.net
+West Fairlee,Vermont,TRUE,"870 VT Route 113
+West Fairlee, VT 05083",,802-333-9696,westfairleetc@hotmail.com
+West Haven,Vermont,TRUE,"2919 Main Road
+West Haven, VT 05743",,802-265-4880,townofwesthaven@myfairpoint.net
+West Rutland,Vermont,TRUE,"35 Marble Street
+West Rutland, VT 05777",,802-438-2204,cwener@westrutlandvt.org
+West Windsor,Vermont,TRUE,"22 Brownsville-Hartland Road
+West Windsor, VT 05089","P.O. Box 6
+Brownsville, VT 05037",802-484-7212,townclerk@westwindsorvt.org
+Westfield,Vermont,TRUE,"38 School St
+Westfield, VT 05874",,802-744-2484,townofwestfield@comcast.net
+Westford,Vermont,TRUE,"1713 VT Route 128
+Westford, VT 05494",,802-878-4587,townclerk@westfordvt.us
+Westminster,Vermont,TRUE,"3651 US Route 5
+Westminster, VT 05158","P.O. Box 147
+Westminster, VT 05158",802-722-4091,clerk@westminstervt.org
+Westmore,Vermont,TRUE,"54 Hinton Hill Road
+Orleans, VT 05860",,802-525-3007,clerk@westmoreonline.org
+Weston,Vermont,TRUE,"12 Lawrence Hill Road
+Weston, VT 05161","P.O. Box 98
+Weston, VT 05161",802-824-6645,clerk@westonvt.org
+Weybridge,Vermont,TRUE,"1727 Quaker Village Road
+Weybridge, VT 05753",,802-545-2450,clerk@townofweybridge.org
+Wheelock,Vermont,TRUE,"1192 Route 122
+Wheelock, VT 05851","P.O. Box 1328
+Lyndonville, VT 05851",802 626-9094,wheelocktown@gmail.com
+Whiting,Vermont,TRUE,"29 South Main Street
+Whiting, VT 05778",,802-623-7813,townofwhiting@shoreham.net
+Whitingham,Vermont,TRUE,"2948 Vermont Route 100
+Jacksonville, VT 05342","P.O. Box 529
+Jacksonville, VT 05342",802-368-7887,whitinghamtownclerk@yahoo.com
+Williamstown,Vermont,TRUE,"2470 VT RT 14
+Williamstown, VT 05679","P.O. Box 646
+Williamstown, VT 05679",802-433-5455,clerk@williamstownvt.org
+Williston,Vermont,TRUE,"7900 Williston Road
+Williston, VT 05495",,802-878-5121,dbeckett@willistonvt.org
+Wilmington,Vermont,TRUE,"2 East Main Street
+Wilmington, VT 05363","P.O. Box 217
+Wilmington, VT 05363",802-464-5836,shaughwout@wilmingtonvt.us
+Windham,Vermont,TRUE,"5976 Windham Hill Road
+Windham, VT 05359",,802-874-4211,windham.town@gmail.com
+Windsor,Vermont,TRUE,"29 Union Street
+Windsor, VT 05089",,802-674-5610,amcmullen@windsorvt.org
+Winhall,Vermont,TRUE,"115 VT Route. 30
+Bondville, VT 05340",,802-297-2122,winclerk@comcast.net
+Winooski,Vermont,TRUE,"27 West Allen Street
+Winooski, VT 05404",,802-655-6419,cbarrett@winooskivt.gov
+Wolcott,Vermont,TRUE,"28 Railroad Street
+Wolcott, VT 05680","P.O. Box 100
+Wolcott, VT 05680",802-888-2746,wolcott@pshift.com
+Woodbury,Vermont,TRUE,"1672 Route 14
+Woodbury, VT 05681","P.O. Box 10
+Woodbury, VT 05681",802 456 7051,woodburyclerk@comcast.net
+Woodford,Vermont,TRUE,"1391 VT Route 9
+Woodford, VT 05201",,802 442-4895,woodfordvt@comcast.net
+Woodstock,Vermont,TRUE,"31 The Green
+Woodstock, VT 05091",,802-457-3611,clerk@townofwoodstock.org
+Worcester,Vermont,TRUE,"20 Worcester Village Road
+Worcester, VT 05682","P.O. Box 161
+Worcester, VT 05682",802-223-6942,worcestertclerk@comcast.net
