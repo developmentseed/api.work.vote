@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
 from django.test import Client
+from django.core import mail
 from django.core.urlresolvers import reverse
 from jurisdiction.models import Jurisdiction, State, SurveyEmail
 
@@ -40,3 +41,23 @@ class JurisdictionAdminTestCase(TestCase):
     sm_url = survey_url.format(sm.id)
     self.assertContains(
         response, 'San Francisco,%s\nSan Mateo,%s\n' % (sf_url, sm_url))
+
+  def test_send_multirecipient_email(self):
+    ca = State.objects.create(name='California')
+    sf = Jurisdiction.objects.create(name='San Francisco', state=ca)
+
+    survey_email = SurveyEmail.objects.create(
+        name='Test email',
+        recipients='recipient1@state.notreal, recipient2@state.notreal')
+    survey_email.jurisdiction.add(sf)
+    url = reverse('admin:jurisdiction_surveyemail_changelist')
+    data = {'action': 'send_email',
+            '_selected_action': [survey_email.id]}
+    response = self.client.post(url, data)
+
+    # Response is expected to redirect us back to changelist view.
+    self.assertEqual(response.status_code, 302)
+
+    self.assertEqual(len(mail.outbox), 2)
+    self.assertEqual(mail.outbox[0].to, ['recipient1@state.notreal'])
+    self.assertEqual(mail.outbox[1].to, ['recipient2@state.notreal'])
