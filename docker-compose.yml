@@ -6,9 +6,10 @@ services:
     entrypoint: ./bin/entrypoint.sh
     environment:
       DATABASE_URL: postgres://test:test@db/test
-
+      HISTFILE: /root/hist/.bash_history
     volumes:
       - '.:/home/fec/api'
+      - bashhistory:/root/hist
     depends_on:
       - db
     links:
@@ -93,3 +94,6 @@ services:
       POSTGRES_DB: test
     volumes:
       - './.tmp/pg:/var/lib/postgresql/data'
+
+volumes:
+  bashhistory:
