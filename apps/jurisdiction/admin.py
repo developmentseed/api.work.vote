@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.http import HttpResponse
 from .models import Jurisdiction, State, SurveyEmail
-from mailman.mailer import MailSurvey
+from mailman import mailer
 
 
 class JurisdictionAdmin(admin.ModelAdmin):
@@ -66,22 +66,10 @@ def send_email(modeladmin, request, queryset):
             for jurisdiction in obj_list:
                 jurisdiction_list.append([jurisdiction.name, jurisdiction.pk])
             jurisdiction_list.sort(key=lambda x: x[0])
-
-            if ',' in email_req.recipients:
-                recipient_list = email_req.recipients.split(',')
-            elif '\r\n' in email_req.recipients:
-                recipient_list = email_req.recipients.split('\r\n')
-            elif '\n' in email_req.recipients:
-                recipient_list = email_req.recipients.split('\n')
-            elif ';' in email_req.recipients:
-                recipient_list = email_req.recipients.split(';')
-            else: #assume only one e-mail
-                recipient_list = [email_req.recipients]
-            
-            recipient_list = [item.strip(' ') for item in recipient_list]
+            recipient_list = mailer.clean_emails(email_req.recipients)
             
             # send email
-            mail = MailSurvey(
+            mail = mailer.MailSurvey(
                 jurisdiction_list, recipient_list, email_req.email_text,
                 subject=email_req.name)
             status = mail.send()

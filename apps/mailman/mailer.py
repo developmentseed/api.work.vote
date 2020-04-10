@@ -34,6 +34,21 @@ class PlainTextMailConverter(HTMLParser):
         return ''.join(self.fed)
 
 
+def clean_emails(email_string):
+    if ',' in email_string:
+        emails = email_string.split(',')
+    elif '\r\n' in email_string:
+        emails = email_string.split('\r\n')
+    elif '\n' in email_string:
+        emails = email_string.split('\n')
+    elif ';' in email_string:
+        emails = email_string.split(';')
+    else:
+        emails = [email_string]  # Assume only one e-mail.
+
+    return [item.strip(' ') for item in emails]
+
+
 class MailMaker(object):
 
     def __init__(
@@ -42,16 +57,15 @@ class MailMaker(object):
         subject='PollWorker application from workelections.com',
         **kwargs
     ):
-        # Make sure email is valid
         if settings.TEST_TO_EMAIL:
-            self.to_email = settings.TEST_TO_EMAIL
+            to_emails = settings.TEST_TO_EMAIL
         else:
-            self.to_email = jurisdiction.email
+            to_emails = jurisdiction.email
+        self.to_emails = clean_emails(to_emails)
+
         self.from_email = settings.DEFAULT_FROM_EMAIL
         self.subject = subject
-        self.context = {
-            'jurisdiction': jurisdiction,
-        }
+        self.context = {'jurisdiction': jurisdiction}
         self.context.update(kwargs)
         self.html_template = get_template('mailman/html_template.html')
         self.text_template = get_template('mailman/text_template.txt')
@@ -61,10 +75,11 @@ class MailMaker(object):
         html_content = self.html_template.render(self.context)
 
         msg = EmailMultiAlternatives(self.subject, text_content,
-                                     self.from_email, [self.to_email])
+                                     self.from_email, self.to_emails)
         msg.content_subtype = "html"
         msg.attach_alternative(html_content, "text/html")
         msg.send()
+
 
 # These two classes could be combined, but for now keep separate
 class MailSurvey(object):
