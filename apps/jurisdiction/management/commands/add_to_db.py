@@ -12,10 +12,8 @@ import datetime
 
 def prepare(path):
     """ Receives a GeoJson and returns a python object """
-
     f = open(path, 'U')
     obj = json.loads(f.read())
-
     return obj
 
 
@@ -23,23 +21,22 @@ def save_geometry(obj, state_name, name_var):
     """ Saves geometries of jurisdictions in each state """
     resp = {}
     # this will return only one item
-    state = [k for k,v in state_name_crosswalk.items() if v['name'] ==state_name][0]
-    old_data = Jurisdiction.objects.filter(state_id=state).filter(created_at__lte=datetime.date(2018, 8, 1))
+    state = [k for k,v in state_name_crosswalk.items()
+             if v['name'] == state_name][0]
+    existing_data = Jurisdiction.objects.filter(state_id=state)
 
-    if old_data: # If there's old data in the database, be careful when deleting
-        print("Old data here: {}".format(old_data))
+    # If there's existing data in the database, be careful when deleting
+    if existing_data:
+        print("Existing data here: {}".format(existing_data))
         return resp
     else:
         print("All new data; continuing")
 
-    # Delete counties from this state (as long as the data is old; if it's new, be sure before continuing)
-    Jurisdiction.objects.filter(state_id=state).delete()
-
     # Add jurisdictions
     for feature in obj['features']:
-        name = feature['properties'][name_var].title()
+        name = feature['properties'][name_var]
         geometry = feature['geometry']
-        city = True
+        city = False
 
         try:
             j = Jurisdiction.objects.get(state_id=int(state), name=name, city=city)
@@ -55,6 +52,7 @@ def save_geometry(obj, state_name, name_var):
         else:
             resp[j.state.name] = [name]
     return resp
+
 
 class Command(BaseCommand):
     help = 'Add additional states'
