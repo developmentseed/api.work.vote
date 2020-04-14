@@ -6,18 +6,15 @@ from jurisdiction.models import Jurisdiction, State
 
 
 def add_city_string(obj):
-
-    match = re.search('(city|county|City|County)', obj.name)
-
-    if not match:
-        if obj.city:
-            name = '%s (City)' % obj.name
-        else:
-            name = '%s County' % obj.name
+    match = re.search(
+            '(city|county|region|City|County|Region)',
+            obj.name)
+    if match:
+        return obj.name
+    if obj.city:
+        return '%s (City)' % obj.name
     else:
-        name = obj.name
-
-    return name
+        return '%s County' % obj.name
 
 
 class PageSerializer(serializers.ModelSerializer):
