@@ -3,6 +3,14 @@ from django.contrib import admin
 from django.http import HttpResponse
 from .models import Jurisdiction, State, SurveyEmail
 from mailman import mailer
+from django import forms
+
+
+class JurisdictionAdminForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(JurisdictionAdminForm, self).__init__(*args, **kwargs)
+        self.fields['city_model'].queryset = Jurisdiction.objects.filter(
+            city=True).order_by('name')
 
 
 class JurisdictionAdmin(admin.ModelAdmin):
@@ -10,7 +18,7 @@ class JurisdictionAdmin(admin.ModelAdmin):
     list_filter = 'state', 'city'
     fields = (
         'name', 'state',
-        'display', 'city',
+        'display', 'city','city_model', 'city_sub',
         'obtained_at',
         'website', 'application', 'student_website',
         'telephone', 'email',
@@ -30,6 +38,7 @@ class JurisdictionAdmin(admin.ModelAdmin):
 
     search_fields = 'name', 'state__name', 'telephone'
     ordering = ['name']
+    form = JurisdictionAdminForm
 
     def changelist_view(self, request, extra_context=None):
         extra_context = {
@@ -67,7 +76,6 @@ def send_email(modeladmin, request, queryset):
                 jurisdiction_list.append([jurisdiction.name, jurisdiction.pk])
             jurisdiction_list.sort(key=lambda x: x[0])
             recipient_list = mailer.clean_emails(email_req.recipients)
-            
             # send email
             mail = mailer.MailSurvey(
                 jurisdiction_list, recipient_list, email_req.email_text,
@@ -78,7 +86,6 @@ def send_email(modeladmin, request, queryset):
                 count_success += 1
         else:
             count_resend += 1
-        
     message = ''
     if count_success > 0:
         message += '{} out of {} e-mails were successfully sent.'.format(
