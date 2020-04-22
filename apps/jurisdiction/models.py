@@ -83,6 +83,8 @@ class Jurisdiction(models.Model):
     further_notes = models.TextField('Further Notes', null=True, blank=True)
     display = models.CharField(max_length = 1, choices = DISPLAY_OPTIONS, default='Y')
     student_website = models.CharField('Website for Student Pollworker Program', max_length=400, null=True, blank=True)
+    city_model = models.ForeignKey('self', blank=True, null=True)
+    city_sub = models.CharField('text for the message in the sub',  max_length=250,  null=True, blank=True)
 
     def __str__(self):
         return self.name + ', ' + self.state.name
