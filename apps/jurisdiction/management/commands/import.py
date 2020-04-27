@@ -9,7 +9,7 @@ from jurisdiction.models import Jurisdiction, State, Zipcode
 directory = 'exports'
 
 class Command(BaseCommand):
-    help = 'Export data'
+    help = 'Import data'
 
     def handle(self, *args, **options):
         print('Import data')
@@ -58,6 +58,3 @@ class Command(BaseCommand):
                     record['geometry'] = GEOSGeometry(json.dumps(geojson['geometry']))
                     Jurisdiction.objects.update_or_create(**record)
                     print('record for %s saved' % record['name'])
-
-
-
