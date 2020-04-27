@@ -6,19 +6,12 @@ from mailman import mailer
 from django import forms
 
 
-class JurisdictionAdminForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(JurisdictionAdminForm, self).__init__(*args, **kwargs)
-        self.fields['city_model'].queryset = Jurisdiction.objects.filter(
-            city=True).order_by('name')
-
-
 class JurisdictionAdmin(admin.ModelAdmin):
     list_display = 'name', 'state', 'website', 'telephone', 'email', 'city'
     list_filter = 'state', 'city'
     fields = (
         'name', 'state',
-        'display', 'city','city_model', 'city_sub',
+        'display', 'city','jurisdiction_link', 'jurisdiction_link_text',
         'obtained_at',
         'website', 'application', 'student_website',
         'telephone', 'email',
@@ -38,7 +31,6 @@ class JurisdictionAdmin(admin.ModelAdmin):
 
     search_fields = 'name', 'state__name', 'telephone'
     ordering = ['name']
-    form = JurisdictionAdminForm
 
     def changelist_view(self, request, extra_context=None):
         extra_context = {
