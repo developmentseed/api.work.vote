@@ -69,7 +69,7 @@ class JurisdictionSummarySerializer(serializers.ModelSerializer):
 class JurisdictionSerializer(JurisdictionSummarySerializer):
 
     state = StateSummarySerializer()
-    city_model = CityModelSerializer(read_only=True)
+    jurisdiction_link = CityModelSerializer(read_only=True)
 
     class Meta:
         model = Jurisdiction
