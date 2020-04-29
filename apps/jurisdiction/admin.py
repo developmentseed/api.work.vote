@@ -5,6 +5,11 @@ from .models import Jurisdiction, State, SurveyEmail
 from mailman import mailer
 from django import forms
 
+class JurisdictionAdminForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(JurisdictionAdminForm, self).__init__(*args, **kwargs)
+        self.fields['jurisdiction_link'].widget = forms.TextInput()
+
 
 class JurisdictionAdmin(admin.ModelAdmin):
     list_display = 'name', 'state', 'website', 'telephone', 'email', 'city'
@@ -28,9 +33,9 @@ class JurisdictionAdmin(admin.ModelAdmin):
         'geometry',
     )
 
-
     search_fields = 'name', 'state__name', 'telephone'
     ordering = ['name']
+    form = JurisdictionAdminForm
 
     def changelist_view(self, request, extra_context=None):
         extra_context = {
