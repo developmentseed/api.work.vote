@@ -47,6 +47,11 @@ class StateSummarySerializer(serializers.ModelSerializer):
         model = State
         fields = ['alpha']
 
+class CityModelSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Jurisdiction
+        fields = ['id','name']
 
 class JurisdictionSummarySerializer(serializers.ModelSerializer):
 
@@ -64,6 +69,7 @@ class JurisdictionSummarySerializer(serializers.ModelSerializer):
 class JurisdictionSerializer(JurisdictionSummarySerializer):
 
     state = StateSummarySerializer()
+    jurisdiction_link = CityModelSerializer(read_only=True)
 
     class Meta:
         model = Jurisdiction

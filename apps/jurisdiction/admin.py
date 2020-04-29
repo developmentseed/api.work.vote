@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.http import HttpResponse
 from .models import Jurisdiction, State, SurveyEmail
 from mailman import mailer
+from django import forms
 
 
 class JurisdictionAdmin(admin.ModelAdmin):
@@ -10,7 +11,7 @@ class JurisdictionAdmin(admin.ModelAdmin):
     list_filter = 'state', 'city'
     fields = (
         'name', 'state',
-        'display', 'city',
+        'display', 'city','jurisdiction_link', 'jurisdiction_link_text',
         'obtained_at',
         'website', 'application', 'student_website',
         'telephone', 'email',
@@ -67,7 +68,6 @@ def send_email(modeladmin, request, queryset):
                 jurisdiction_list.append([jurisdiction.name, jurisdiction.pk])
             jurisdiction_list.sort(key=lambda x: x[0])
             recipient_list = mailer.clean_emails(email_req.recipients)
-            
             # send email
             mail = mailer.MailSurvey(
                 jurisdiction_list, recipient_list, email_req.email_text,
@@ -78,7 +78,6 @@ def send_email(modeladmin, request, queryset):
                 count_success += 1
         else:
             count_resend += 1
-        
     message = ''
     if count_success > 0:
         message += '{} out of {} e-mails were successfully sent.'.format(
