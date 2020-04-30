@@ -71,7 +71,12 @@ def update_db_responses(answer_dict, jurisdiction_id):
             elif q_no == 16:
                 j.interview = a[0]
             elif q_no == 17:
-                j.training = a[0]
+                # Is this an Other, please specify response
+                if "specify" in q_list[1]: 
+                    j.training_note = a
+                # In the case of a "Yes/No" answer
+                else:
+                    j.training = a[0]
             elif q_no == 18:
                 j.complete_training = a[0]
             elif q_no == 19:
