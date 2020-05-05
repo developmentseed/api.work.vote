@@ -26,6 +26,7 @@ class JurisdictionAdmin(admin.ModelAdmin):
         'minimum_age', 'high_school_student',
         'full_day_req',
         'compensation',
+        'training', 'training_note',
         'complete_training', 'post_training_exam',
         'must_have_email',
         'how_obtained',
