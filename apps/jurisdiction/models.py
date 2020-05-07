@@ -67,6 +67,7 @@ class Jurisdiction(models.Model):
         null=True, blank=True)
     interview = models.TextField('Interview requirement - Input: Y or N', null=True, blank=True)
     training = models.TextField('Training - Input: Y or N', null=True, blank=True)
+    training_note = models.TextField('Training specific notes', null=True, blank=True)
     complete_training = models.TextField('Complete training for each election? - Input: Y or N',
                                          null=True, blank=True)
     post_training_exam = models.TextField('Pass a post-training exam or assessment - Input: Y or N',
