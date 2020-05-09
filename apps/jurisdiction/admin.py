@@ -30,7 +30,8 @@ class JurisdictionAdmin(admin.ModelAdmin):
         'complete_training', 'post_training_exam',
         'must_have_email',
         'how_obtained',
-        'notes', 'further_notes',
+        'further_notes',
+        'trusted_notes',
         'geometry',
     )
 
@@ -111,9 +112,7 @@ def get_csv_survey_links(modeladmin, request, queryset):
 
 
 class SurveyEmailAdmin(admin.ModelAdmin):
-    list_display = (
-        'name', 'send_email', 'recipients'
-    )
+    list_display = ('name', 'send_email', 'recipients')
     actions = [send_email, mark_unsent, get_csv_survey_links]
 
     def get_readonly_fields(self, request, obj=None):
