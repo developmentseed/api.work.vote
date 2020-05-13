@@ -78,10 +78,10 @@ class Jurisdiction(models.Model):
     candidate_prohibition = models.TextField(
         'Prohibition on being a candidate or related to a candidate - Y or N',
         null=True, blank=True)
-    notes = models.TextField('Notes', null=True, blank=True)
     geometry = models.MultiPolygonField('Jurisdiction Geometry', null=True, blank=True)
     city = models.BooleanField('Whether the jurisdiction is a city', default=False)
-    further_notes = models.TextField('Further Notes', null=True, blank=True)
+    further_notes = models.TextField('Further Notes (populated from survey responses)', null=True, blank=True)
+    trusted_notes = HTMLField('Notes (trusted content rendered without HTML escaping)', null=True, blank=True)
     display = models.CharField(max_length = 1, choices = DISPLAY_OPTIONS, default='Y')
     student_website = models.CharField('Website for Student Pollworker Program', max_length=400, null=True, blank=True)
     jurisdiction_link = models.ForeignKey('self', blank=True, null=True, verbose_name='link a jurisdiction')
