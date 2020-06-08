@@ -4,7 +4,8 @@ from django.test import Client
 from django.core import mail
 from django.core.urlresolvers import reverse
 from jurisdiction.models import Jurisdiction, State, SurveyEmail
-
+from jurisdiction.admin import JurisdictionAdmin
+import import_export
 
 class JurisdictionAdminTestCase(TestCase):
 
@@ -22,7 +23,28 @@ class JurisdictionAdminTestCase(TestCase):
     self.assertContains(response, 'Jurisdiction Name:')
     self.assertNotContains(response, 'candidate_prohibition')
 
-  def test_csv(self):
+  def test_import_export(self):
+    # Get the index of the CSV export format to use in POST request.
+    formats = JurisdictionAdmin(Jurisdiction, None).get_export_formats()
+    csv_index = None
+    for i, fmt in enumerate(formats):
+        if fmt == import_export.formats.base_formats.CSV:
+            csv_index = i
+
+    ca = State.objects.create(name='California')
+    sm = Jurisdiction.objects.create(name='San Mateo', state=ca)
+    sf = Jurisdiction.objects.create(name='San Francisco', state=ca)
+    url = reverse('admin:jurisdiction_jurisdiction_changelist')
+    data = {'action': 'export_admin_action',
+            'file_format': csv_index,
+            '_selected_action': [sm.id, sf.id]}
+    response = self.client.post(url, data)
+    self.assertEqual(response.status_code, 200)
+    self.assertContains(response, 'id,name,state,')
+    self.assertContains(response, '\n%d,San Mateo,%d,' % (sm.id, ca.id))
+    self.assertContains(response, '\n%d,San Francisco,%d,' % (sf.id, ca.id))
+
+  def test_csv_survey_links(self):
     ca = State.objects.create(name='California')
     sm = Jurisdiction.objects.create(name='San Mateo', state=ca)
     sf = Jurisdiction.objects.create(name='San Francisco', state=ca)
