@@ -18,4 +18,6 @@ django-nose==1.4.6
 -e git+https://github.com/digi604/django-smart-selects.git@js-unlinting-fixes#egg=smart_selects
 -e git://github.com/aljosa/django-tinymce.git@tinymce4#egg=tinymce4
 django-import-export==1.2.0
+
+# This is the most recent version that is compatible with v1.x django-import-export.
 tablib==0.14.0
