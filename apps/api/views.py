@@ -182,12 +182,15 @@ class SearchViewSet(viewsets.ViewSet):
 
     @method_decorator(cache_page(60*60*60*2))
     def list(self, request):
+        # jurisdictions
+        jurisdictions = Jurisdiction.objects.extra(order_by=['name'])
         response = []
+
+        if 'state' in request.GET:
+            state = request.GET.get('state')
+            jurisdictions = jurisdictions.filter(state__alpha=state)
+
         if 'q' in request.GET:
-
-            # jurisdictions
-            jurisdictions = Jurisdiction.objects.extra(order_by=['name'])
-
             query = request.GET.get('q')
 
             # look for zipcodes
