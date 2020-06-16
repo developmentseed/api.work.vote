@@ -38,7 +38,8 @@ THIRD_PARTY_APPS = (
     'rest_framework.authtoken',
     'corsheaders',
     'smart_selects',
-    'tinymce'
+    'tinymce',
+    'import_export',
 )
 
 # Apps specific for this project go here.

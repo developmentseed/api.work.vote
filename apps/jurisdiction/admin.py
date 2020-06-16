@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from .models import Jurisdiction, State, SurveyEmail
 from mailman import mailer
 from django import forms
+import import_export
+
 
 class JurisdictionAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
@@ -11,7 +13,15 @@ class JurisdictionAdminForm(forms.ModelForm):
         self.fields['jurisdiction_link'].widget = forms.TextInput()
 
 
-class JurisdictionAdmin(admin.ModelAdmin):
+class JurisdictionResource(import_export.resources.ModelResource):
+
+    class Meta:
+        model = Jurisdiction
+        exclude = 'geometry',
+
+
+class JurisdictionAdmin(import_export.admin.ExportActionModelAdmin):
+    resource_class = JurisdictionResource
     list_display = 'name', 'state', 'website', 'telephone', 'email', 'city'
     list_filter = 'state', 'city'
     fields = (
