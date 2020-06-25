@@ -5,7 +5,7 @@ from pages.models import Page
 from jurisdiction.models import Jurisdiction, State
 
 
-def add_city_string(obj):
+def format_jurisdiction_name(obj):
     match = re.search(
             '(city|county|region|City|County|Region)',
             obj.name)
@@ -14,7 +14,7 @@ def add_city_string(obj):
     if obj.city:
         return '%s (City)' % obj.name
     else:
-        return '%s County' % obj.name
+        return '{} {}'.format(obj.name, obj.state.subdivision_name)
 
 
 class PageSerializer(serializers.ModelSerializer):
@@ -57,7 +57,7 @@ class JurisdictionSummarySerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         context = super(JurisdictionSummarySerializer, self).to_representation(instance)
-        context['name'] = add_city_string(instance)
+        context['name'] = format_jurisdiction_name(instance)
 
         return context
 

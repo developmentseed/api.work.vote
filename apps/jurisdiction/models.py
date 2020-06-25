@@ -10,6 +10,7 @@ class State(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField('Whether state is active', default=True)
+    subdivision_name = models.CharField('Subdivision Name', max_length=250, default='County')
     notes = models.TextField('Notes', null=True, blank=True)
 
     def __str__(self):

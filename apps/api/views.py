@@ -16,7 +16,7 @@ from rest_framework import viewsets, permissions, status
 from pages.models import Page
 from jurisdiction.models import State, Jurisdiction, Zipcode
 from jurisdiction.export import export_jurisdiction_emails
-from .serializer import (StateSerializer, JurisdictionSerializer, add_city_string, JurisdictionSummarySerializer,
+from .serializer import (StateSerializer, JurisdictionSerializer, format_jurisdiction_name, JurisdictionSummarySerializer,
                          PageSerializer)
 
 
@@ -212,7 +212,7 @@ class SearchViewSet(viewsets.ViewSet):
                     response.append({
                         'type': 'jurisdiction',
                         'id': jur.id,
-                        'name': add_city_string(jur),
+                        'name': format_jurisdiction_name(jur),
                         'state_id': jur.state.id,
                         'state_alpha': jur.state.alpha
                     })
