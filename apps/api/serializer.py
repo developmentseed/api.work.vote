@@ -12,7 +12,7 @@ def format_jurisdiction_name(obj):
     if match:
         return obj.name
     if obj.city:
-        return '%s (City)' % obj.name
+        return '{} ({})'.format(obj.name, obj.city_label)
     else:
         return '{} {}'.format(obj.name, obj.state.subdivision_name)
 

@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from .models import Jurisdiction, State, SurveyEmail
 from mailman import mailer
 from django import forms
+from django.core.exceptions import ValidationError
 import import_export
 
 
@@ -12,6 +13,11 @@ class JurisdictionAdminForm(forms.ModelForm):
         super(JurisdictionAdminForm, self).__init__(*args, **kwargs)
         self.fields['jurisdiction_link'].widget = forms.TextInput()
 
+    def clean(self):
+        cleaned_data = super().clean()
+        print(cleaned_data)
+        if cleaned_data.get('city') and not cleaned_data.get('city_label'):
+            raise ValidationError('The local admin label should be set if the jurisdiction is a city')
 
 class JurisdictionResource(import_export.resources.ModelResource):
 
@@ -26,7 +32,7 @@ class JurisdictionAdmin(import_export.admin.ExportActionModelAdmin):
     list_filter = 'state', 'city'
     fields = (
         'name', 'state',
-        'display', 'city','jurisdiction_link', 'jurisdiction_link_text',
+        'display', 'city', 'city_label', 'jurisdiction_link', 'jurisdiction_link_text',
         'obtained_at',
         'website', 'application', 'student_website',
         'telephone', 'email',
