@@ -10,6 +10,7 @@ class State(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField('Whether state is active', default=True)
+    subdivision_name = models.CharField('Subdivision Name', max_length=250, default='County')
     notes = models.TextField('Notes', null=True, blank=True)
 
     def __str__(self):
@@ -80,6 +81,7 @@ class Jurisdiction(models.Model):
         null=True, blank=True)
     geometry = models.MultiPolygonField('Jurisdiction Geometry', null=True, blank=True)
     city = models.BooleanField('Whether the jurisdiction is a city', default=False)
+    city_label = models.CharField('Label for local government unit (if city)', max_length=250, default='City', blank=True)
     further_notes = models.TextField('Further Notes (populated from survey responses)', null=True, blank=True)
     trusted_notes = HTMLField('Notes (trusted content rendered without HTML escaping)', null=True, blank=True)
     display = models.CharField(max_length = 1, choices = DISPLAY_OPTIONS, default='Y')
@@ -90,7 +92,7 @@ class Jurisdiction(models.Model):
     def __str__(self):
         city = ''
         if self.city:
-            city = ', (city)'
+            city = ', ({})'.format(self.city_label)
         return '{} , {} {}'.format(self.name,self.state.name,city)
 
 

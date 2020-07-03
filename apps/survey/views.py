@@ -9,7 +9,7 @@ from django.core.mail import send_mail
 
 from survey.models import Application, Survey
 from mailman.mailer import MailMaker
-from api.serializer import add_city_string
+from api.serializer import format_jurisdiction_name
 from jurisdiction.models import Jurisdiction
 from survey.export import export_applications, export_surveys
 
@@ -156,7 +156,7 @@ class ContactViewSet(viewsets.ViewSet):
                             status=status.HTTP_400_BAD_REQUEST)
 
         context = {
-            'jurisdiction_name': add_city_string(jurisdiction),
+            'jurisdiction_name': format_jurisdiction_name(jurisdiction),
             'first_name': data.get('first_name', None),
             'last_name': data.get('last_name', None),
             'city': data.get('city', None),
