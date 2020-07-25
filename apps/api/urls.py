@@ -1,10 +1,9 @@
-from django.conf.urls import include, url
+from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
 from survey.views import ContactViewSet
 from .views import JurisdictionViewSet, StateViewSet, SearchViewSet, PageViewSet
 from .SurveyResponses.survey_responses import GetSurveyResponse
-
 
 router = DefaultRouter()
 router.register(r'contacts', ContactViewSet, 'contacts')
@@ -15,8 +14,8 @@ router.register(r'jurisdictions', JurisdictionViewSet, 'jurisdictions')
 
 # Redirect root to ReadMe.io
 urlpatterns = [
-    url(r'^api-auth/', include('rest_framework.urls',
-                               namespace='rest_framework')),
-    url(r'^response/$', GetSurveyResponse, name='response'),
-    url(r'^', include(router.urls))
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls',
+                              namespace='rest_framework')),
+    path('response/', GetSurveyResponse, name='response'),
 ]
