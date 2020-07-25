@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='application',
             name='jurisdiction',
-            field=models.ForeignKey(related_name='app_jurisdiction', default=1, to='jurisdiction.Jurisdiction'),
+            field=models.ForeignKey(related_name='app_jurisdiction', default=1, to='jurisdiction.Jurisdiction',on_delete=models.PROTECT),
             preserve_default=False,
         ),
     ]
