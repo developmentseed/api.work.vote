@@ -10,7 +10,7 @@ django-storages==1.9.1
 geocoder==1.38.1
 jsonfield==3.0.0
 django-enumfield==2.0.1
-django-jet==1.0.7
+django-jet==1.0.8
 spatialite==0.0.3
 python-binary-memcached==0.29.0
 django-bmemcached==0.3.0
