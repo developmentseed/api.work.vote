@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='jurisdiction',
             name='city_model',
-            field=models.ForeignKey(blank=True, null=True, to='jurisdiction.Jurisdiction',on_delete=models.PROTECT),
+            field=models.ForeignKey(blank=True, null=True, to='jurisdiction.Jurisdiction'),
         ),
         migrations.AddField(
             model_name='jurisdiction',

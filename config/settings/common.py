@@ -17,11 +17,7 @@ env = environ.Env()
 
 # APP CONFIGURATION
 DJANGO_APPS = (
-    #admin
-    'jet',
-    'django.contrib.admin',
     # Default Django apps:
-
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -32,6 +28,10 @@ DJANGO_APPS = (
 
     # Useful template tags:
     # 'django.contrib.humanize',
+
+    # Admin
+    'jet',
+    'django.contrib.admin',
 )
 THIRD_PARTY_APPS = (
     'rest_framework',  # REST Framework
@@ -55,9 +55,9 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # END APP CONFIGURATION
 
 # MIDDLEWARE CONFIGURATION
-MIDDLEWARE = (
+MIDDLEWARE_CLASSES = (
     # Make sure djangosecure.middleware.SecurityMiddleware is listed first
-    'django.middleware.security.SecurityMiddleware',
+    'djangosecure.middleware.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -85,6 +85,7 @@ SECRET_KEY = 'CHANGEME!!!'
 FIXTURE_DIRS = (
     str(CONFIG_DIR.path('fixtures')),
 )
+
 
 # END FIXTURE CONFIGURATION
 
@@ -170,13 +171,13 @@ TEMPLATES = [{
         'debug': DEBUG,
         'context_processors': [
             'django.contrib.auth.context_processors.auth',
-            'django.template.context_processors.debug',
-            'django.template.context_processors.i18n',
-            'django.template.context_processors.media',
-            'django.template.context_processors.static',
-            'django.template.context_processors.tz',
+            'django.core.context_processors.debug',
+            'django.core.context_processors.i18n',
+            'django.core.context_processors.media',
+            'django.core.context_processors.static',
+            'django.core.context_processors.tz',
             'django.contrib.messages.context_processors.messages',
-            'django.template.context_processors.request',
+            'django.core.context_processors.request',
         ],
     },
 }]
@@ -223,6 +224,7 @@ AUTHENTICATION_BACKENDS = (
 # Session management
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 USE_X_FORWARDED_HOST = env.bool('DJANGO_USE_X_FORWARDED_HOST', True)
+
 
 # Use nose to run all tests
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
@@ -319,6 +321,7 @@ SITE_TITLE = env.str('SITE_TITLE', 'FEC')
 SITE_HEADER = env.str('SITE_HEADER', 'Work Elections')
 SITE_URL = env.str('SITE_URL', 'https://workelections.com')
 JQUERY_URL = False
+
 
 SURVEY_MONKEY_URL = env.str('SURVEY_MONKEY_URL', 'http://example.com') + '{}'
 WORKELECTION_WEBHOOK_USERNAME = env.str('WORKELECTION_WEBHOOK_USERNAME', 'testusername')

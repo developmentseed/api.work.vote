@@ -2,21 +2,12 @@
 import os
 import sys
 
+if __name__ == "__main__":
 
-def main():
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
-    try:
-        from django.core.management import execute_from_command_line
-        sys.path.insert(0, os.path.abspath('apps'))
 
-    except ImportError as exc:
-        raise ImportError(
-            "Couldn't import Django. Are you sure it's installed and "
-            "available on your PYTHONPATH environment variable? Did you "
-            "forget to activate a virtual environment?"
-        ) from exc
+    from django.core.management import execute_from_command_line
+
+    sys.path.insert(0, os.path.abspath('apps'))
+
     execute_from_command_line(sys.argv)
-
-
-if __name__ == '__main__':
-    main()

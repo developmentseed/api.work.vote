@@ -2,7 +2,7 @@ from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
-from rest_framework.decorators import action
+from rest_framework.decorators import list_route
 
 from django.conf import settings
 from django.core.mail import send_mail
@@ -30,7 +30,7 @@ class ContactViewSet(viewsets.ViewSet):
         5: '65 and older'
     }
 
-    @action(detail=False, methods=['post'])
+    @list_route(methods=['post'])
     def us(self, request):
         # Make sure we have the parameters we need
         data = request.data
@@ -54,7 +54,7 @@ class ContactViewSet(viewsets.ViewSet):
         else:
             return Response({'detail': 'Nothing was sent'}, status=status.HTTP_400_BAD_REQUEST)
 
-    @action(detail=False, methods=['post'])
+    @list_route(methods=['post'])
     def survey(self, request):
         # Make sure we have the parameters we need
         data = request.data
@@ -71,8 +71,7 @@ class ContactViewSet(viewsets.ViewSet):
                 missing.append(field)
 
         if missing:
-            return Response({'detail': 'Missing fields: %s' % ', '.join(missing)},
-                            status=status.HTTP_400_BAD_REQUEST)
+            return Response({'detail': 'Missing fields: %s' % ', '.join(missing)}, status=status.HTTP_400_BAD_REQUEST)
 
         # make sure age and technology has a correct value
         try:
@@ -89,8 +88,7 @@ class ContactViewSet(viewsets.ViewSet):
 
         # make sure languages is a list
         if not isinstance(data.get('languages'), list):
-            return Response({'detail': 'Languages field must be a list'},
-                            status=status.HTTP_400_BAD_REQUEST)
+            return Response({'detail': 'Languages field must be a list'}, status=status.HTTP_400_BAD_REQUEST)
 
         Survey.objects.create(
             age_range=age_id,
@@ -100,7 +98,7 @@ class ContactViewSet(viewsets.ViewSet):
 
         return Response({'detail': 'Thank you.'}, status=status.HTTP_200_OK)
 
-    @action(detail=False, methods=['post'])
+    @list_route(methods=['post'])
     def application(self, request):
         # Make sure we have the parameters we need
         data = request.data
@@ -124,8 +122,7 @@ class ContactViewSet(viewsets.ViewSet):
                 missing.append(field)
 
         if missing:
-            return Response({'detail': 'Missing fields: %s' % ', '.join(missing)},
-                            status=status.HTTP_400_BAD_REQUEST)
+            return Response({'detail': 'Missing fields: %s' % ', '.join(missing)}, status=status.HTTP_400_BAD_REQUEST)
 
         # make sure age and technology has a correct value
         try:
@@ -142,15 +139,13 @@ class ContactViewSet(viewsets.ViewSet):
 
         # make sure languages is a list
         if not isinstance(data.get('languages'), list):
-            return Response({'detail': 'Languages field must be a list'},
-                            status=status.HTTP_400_BAD_REQUEST)
+            return Response({'detail': 'Languages field must be a list'}, status=status.HTTP_400_BAD_REQUEST)
 
         # get jurisdiction
         try:
             jurisdiction = Jurisdiction.objects.get(pk=int(data.get('jurisdiction_id')))
         except (Jurisdiction.DoesNotExist, KeyError, ValueError):
-            return Response({'detail': 'Jurisdiction was not found!'},
-                            status=status.HTTP_400_BAD_REQUEST)
+            return Response({'detail': 'Jurisdiction was not found!'}, status=status.HTTP_400_BAD_REQUEST)
 
         if jurisdiction.application:
             return Response({'detail': 'This jurisdiction supports online application'},
@@ -188,7 +183,7 @@ class ContactViewSet(viewsets.ViewSet):
 
         return Response({'detail': 'Thank you.'}, status=status.HTTP_200_OK)
 
-    @action(detail=False, )
+    @list_route()
     def applications_export(self, request):
         if request.user.is_authenticated():
             return export_applications()
@@ -196,7 +191,7 @@ class ContactViewSet(viewsets.ViewSet):
             return Response({'detail': 'Not allowed'},
                             status=status.HTTP_401_UNAUTHORIZED)
 
-    @action(detail=False, )
+    @list_route()
     def surveys_export(self, request):
         if request.user.is_authenticated():
             return export_surveys()
