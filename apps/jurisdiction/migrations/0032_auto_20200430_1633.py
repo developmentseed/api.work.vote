@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='jurisdiction',
             name='jurisdiction_link',
-            field=models.ForeignKey(to='jurisdiction.Jurisdiction', verbose_name='link a jurisdiction', null=True, blank=True,on_delete=models.PROTECT),
+            field=models.ForeignKey(to='jurisdiction.Jurisdiction', verbose_name='link a jurisdiction', null=True, blank=True),
         ),
         migrations.AlterField(
             model_name='jurisdiction',

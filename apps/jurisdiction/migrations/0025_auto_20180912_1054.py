@@ -27,6 +27,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='zipcode',
             name='state',
-            field=models.ForeignKey(to='jurisdiction.State',on_delete=models.PROTECT),
+            field=models.ForeignKey(to='jurisdiction.State'),
         ),
     ]
