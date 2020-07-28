@@ -33,7 +33,7 @@ class Application(models.Model):
     """ Model for handling application questions """
 
     created_at = models.DateTimeField(auto_now_add=True)
-    jurisdiction = models.ForeignKey(Jurisdiction, related_name='app_jurisdiction')
+    jurisdiction = models.ForeignKey(Jurisdiction, related_name='app_jurisdiction',on_delete=models.PROTECT)
     city = models.TextField('city', null=True, blank=True)
     county = models.TextField('county', null=True, blank=True)
     age_range = enum.EnumField(AgeRange, null=True, blank=True)
