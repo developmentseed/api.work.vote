@@ -295,7 +295,7 @@ CORS_ALLOW_CREDENTIALS = env.bool('DJANGO_CORS_ALLOW_CREDENTIALS', True)
 # TINY MCE
 TINYMCE_DEFAULT_CONFIG = {
     'plugins': "table,spellchecker,paste,searchreplace",
-    'theme': "advanced",
+    'theme': "silver",
     'cleanup_on_startup': True,
     'custom_undo_redo_levels': 10,
     'width': 600,
