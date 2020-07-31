@@ -1,7 +1,7 @@
 django==1.11.29
 django-secure==1.0.1
 psycopg2==2.7.1
-djangorestframework==3.3.0
+djangorestframework==3.7.0
 django-cors-headers==1.1.0
 boto==2.38.0
 django-environ==0.4.4
@@ -16,7 +16,7 @@ python-binary-memcached==0.28.0
 django-bmemcached==0.2.3
 django-nose==1.4.6
 -e git+https://github.com/digi604/django-smart-selects.git@js-unlinting-fixes#egg=smart_selects
--e git://github.com/aljosa/django-tinymce.git@tinymce4#egg=tinymce4
+django-tinymce==3.0.2
 django-import-export==1.2.0
 
 # This is the most recent version that is compatible with v1.x django-import-export.
