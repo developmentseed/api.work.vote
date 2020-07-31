@@ -16,7 +16,7 @@ python-binary-memcached==0.28.0
 django-bmemcached==0.2.3
 django-nose==1.4.6
 -e git+https://github.com/digi604/django-smart-selects.git@js-unlinting-fixes#egg=smart_selects
-django-tinymce==3.0.2
+django-tinymce==2.9.0
 django-import-export==1.2.0
 
 # This is the most recent version that is compatible with v1.x django-import-export.
