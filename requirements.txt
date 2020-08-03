@@ -1,6 +1,6 @@
 django==1.11.29
 django-secure==1.0.1
-psycopg2==2.7.1
+psycopg2-binary==2.8.5
 djangorestframework==3.7.0
 django-cors-headers==1.1.0
 boto==2.38.0
