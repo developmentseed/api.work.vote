@@ -7,8 +7,9 @@ Production Configurations
 - Use MEMCACHIER on Heroku
 '''
 
-from .common import *  # noqa
 import os
+
+from .common import *  # noqa
 
 # Also read .env file
 
@@ -49,6 +50,7 @@ STATICFILES_STORAGE = DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoSto
 AWS_ACCESS_KEY_ID = env('DJANGO_AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env('DJANGO_AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = env('DJANGO_AWS_STORAGE_BUCKET_NAME')
+AWS_S3_REGION_NAME = env.str('DJANGO_AWS_S3_REGION_NAME', 'us-east-1')
 AWS_AUTO_CREATE_BUCKET = True
 AWS_QUERYSTRING_AUTH = env.bool("DJANGO_AWS_QUERYSTRING_AUTH", default=False)
 
