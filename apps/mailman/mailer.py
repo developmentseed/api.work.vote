@@ -76,7 +76,6 @@ class MailMaker(object):
 
         msg = EmailMultiAlternatives(self.subject, text_content,
                                      self.from_email, self.to_emails)
-        msg.content_subtype = "html"
         msg.attach_alternative(html_content, "text/html")
         msg.send()
 
@@ -92,7 +91,7 @@ class MailSurvey(object):
         subject='WorkElections.com Survey',
         **kwargs
     ):
-        self.from_email = settings.DEFAULT_FROM_EMAIL
+        self.from_email = settings.DEFAULT_SURVEY_FROM_EMAIL
         self.subject = subject
         self.to_email = recipients
         self.email_text = email_text

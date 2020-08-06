@@ -95,7 +95,7 @@ EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND', default='django.core.mail.backends.s
 
 # MANAGER CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#admins
-ADMIN_EMAIL = env('ADMIN_EMAIL', default='test@example.com')
+ADMIN_EMAIL = env('ADMIN_EMAIL', default='info@fairelectionscenter.org')
 
 ADMINS = (
     ("""DevOps""", ADMIN_EMAIL),
@@ -106,8 +106,11 @@ MANAGERS = ADMINS
 # END MANAGER CONFIGURATION
 
 # Contact us email
-CONTACT_US = env('CONTACT_US', default='info@fairelectionsnetwork.com')
-DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='info@fairelectionsnetwork.com')
+CONTACT_US = env('CONTACT_US', default='info@fairelectionscenter.org')
+DEFAULT_FROM_EMAIL = env(
+    'DEFAULT_FROM_EMAIL', default='info@fairelectionscenter.org')
+DEFAULT_SURVEY_FROM_EMAIL = env(
+    'DEFAULT_SURVEY_FROM_EMAIL', default=DEFAULT_FROM_EMAIL)
 TEST_TO_EMAIL = env('TEST_TO_EMAIL', default=None)
 
 # DATABASE CONFIGURATION

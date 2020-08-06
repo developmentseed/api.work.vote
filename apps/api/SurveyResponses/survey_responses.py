@@ -105,7 +105,7 @@ def send_error_email(juris_no, juris_info):
         'WorkElections.com: Error on survey response import',
         'No data could be updated from the last survey response for Jurisdiction {}: {}, {}. Check whether the survey format has been changed.'.format(juris_no, juris_info[0], juris_info[1]),
         'info@workelections.com',
-        [settings.CONTACT_US],
+        [settings.ADMIN_EMAIL],
     )
 
 @csrf_exempt
