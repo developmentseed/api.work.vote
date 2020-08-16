@@ -1,10 +1,10 @@
 The following information was provided at workelections.com by a person who is interested in serving as a poll worker in your jurisdiction.  Workelections.com is a nonpartisan project which has collected poll worker information and applications for hundreds of counties and other jurisdictions nationwide, making it easy for local election officials and potential workers to connect. Workelections.com does not retain the personal or contact information of any user submitting this form.
 
 
-For more information or if you have any questions, please go to workelections.com</a> or email us at info@fairelectionsnetwork.com. Thank you.
+For more information or if you have any questions, please go to workelections.com</a> or email us at info@fairelectionscenter.org. Thank you.
 
 -----------------------------
-Poll Worker Application for {{jurisdiction_name}}, {{jurisdiction.state.alpha}}
+Poll Worker Letter of Interest for {{jurisdiction_name}}, {{jurisdiction.state.alpha}}
 
 First Name: {{first_name|default_if_none:'Not provided'}}
 
