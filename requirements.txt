@@ -1,5 +1,5 @@
 django==3.1.1
-djangorestframework== 3.11.1 
+djangorestframework==3.11.1
 django-cors-headers==3.5.0
 django-tinymce==3.0.2
 django-robots==4.0
@@ -8,7 +8,8 @@ django-secure==1.0.2
 django-environ==0.4.5
 django-storages==1.10.1
 django-enumfield==2.0.2
-django-jet==1.0.8
+#django-jet==1.0.8
+r-django-jet==2.0.8
 django-bmemcached==0.3.0
 django-nose==1.4.7
 django-import-export==2.3.0
@@ -17,11 +18,12 @@ boto==2.49.0
 gunicorn==20.0.4
 geocoder==1.38.1
 spatialite==0.0.3
-python-binary-memcached== 0.30.0
+python-binary-memcached==0.30.0
+django-smart-selects==1.5.9
 
 
 
--e git+https://github.com/digi604/django-smart-selects.git@js-unlinting-fixes#egg=smart_selects
+#-e git+https://github.com/digi604/django-smart-selects.git@js-unlinting-fixes#egg=smart_selects
 # Latest release django-tinymce is 3.0.1. It supports Python 3.6, 3.7 and 3.8 with Django 2.2 and 3.0
 # -e git://github.com/aljosa/django-tinymce.git@tinymce4#egg=tinymce4
 
