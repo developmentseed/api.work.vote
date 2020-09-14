@@ -29,3 +29,5 @@ python-binary-memcached== 0.30.0
 tablib==0.14.0
 # jsonfield 3.0.0 has requirement Django>=2.2,
 jsonfield==3.0.0
+
+#test
