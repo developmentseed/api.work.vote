@@ -1,22 +1,24 @@
-django==2.2.6
-djangorestframework==3.9.2
-django-cors-headers==3.2.0
-django-tinymce==3.0.1
+django==3.1.1
+djangorestframework== 3.11.1 
+django-cors-headers==3.5.0
+django-tinymce==3.0.2
+django-robots==4.0
 
-django-secure==1.0.1
-django-environ==0.4.4
-django-storages==1.6.6
-django-enumfield==1.3b2
-django-jet==1.0.7
-django-bmemcached==0.2.3
-django-nose==1.4.6
-django-import-export==1.2.0
+django-secure==1.0.2
+django-environ==0.4.5
+django-storages==1.10.1
+django-enumfield==2.0.2
+django-jet==1.0.8
+django-bmemcached==0.3.0
+django-nose==1.4.7
+django-import-export==2.3.0
 psycopg2==2.8.6
 boto==2.49.0
 gunicorn==20.0.4
 geocoder==1.38.1
 spatialite==0.0.3
 python-binary-memcached== 0.30.0
+
 
 
 -e git+https://github.com/digi604/django-smart-selects.git@js-unlinting-fixes#egg=smart_selects
@@ -26,8 +28,7 @@ python-binary-memcached== 0.30.0
 
 
 # This is the most recent version that is compatible with v1.x django-import-export.
-tablib==0.14.0
+tablib==2.0.0
 # jsonfield 3.0.0 has requirement Django>=2.2,
-jsonfield==3.0.0
+jsonfield==3.1.0
 
-#test
