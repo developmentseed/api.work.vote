@@ -7,11 +7,11 @@ from .SurveyResponses.survey_responses import GetSurveyResponse
 
 
 router = DefaultRouter()
-router.register(r'contacts', ContactViewSet, 'contacts')
-router.register(r'states', StateViewSet, 'states')
-router.register(r'search', SearchViewSet, 'search')
-router.register(r'pages', PageViewSet, 'pages')
-router.register(r'jurisdictions', JurisdictionViewSet, 'jurisdictions')
+router.register(r'contacts', ContactViewSet.as_view(), 'contacts')
+router.register(r'states', StateViewSet.as_view(), 'states')
+router.register(r'search', SearchViewSet.as_view(), 'search')
+router.register(r'pages', PageViewSet.as_view(), 'pages')
+router.register(r'jurisdictions', JurisdictionViewSet.as_view(), 'jurisdictions')
 
 # Redirect root to ReadMe.io
 urlpatterns = [

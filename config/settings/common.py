@@ -55,7 +55,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # END APP CONFIGURATION
 
 # MIDDLEWARE CONFIGURATION
-MIDDLEWARE = (
+MIDDLEWARE = [
     # Make sure djangosecure.middleware.SecurityMiddleware is listed first
     'djangosecure.middleware.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -65,7 +65,7 @@ MIDDLEWARE = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
+]
 # END MIDDLEWARE CONFIGURATION
 
 # DEBUG
