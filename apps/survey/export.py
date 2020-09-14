@@ -1,15 +1,8 @@
 import csv
 from django.http import HttpResponse
-# from django.utils.encoding import smart_str
+from django.utils.encoding import smart_str
 
 from survey.models import Application, Survey
-
-def smart_str(x):
-    if isinstance(x, unicode):
-        return unicode(x).encode("utf-8")
-    elif isinstance(x, int) or isinstance(x, float):
-        return str(x)
-    return x
 
 
 def base_export(model):
