@@ -55,17 +55,29 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # END APP CONFIGURATION
 
 # MIDDLEWARE CONFIGURATION
+# https://docs.djangoproject.com/en/3.1/topics/http/middleware/
+# MIDDLEWARE = [
+#     # Make sure djangosecure.middleware.SecurityMiddleware is listed first
+#     'djangosecure.middleware.SecurityMiddleware',
+#     'django.contrib.sessions.middleware.SessionMiddleware',
+#     'corsheaders.middleware.CorsMiddleware',
+#     'django.middleware.common.CommonMiddleware',
+#     'django.middleware.csrf.CsrfViewMiddleware',
+#     'django.contrib.auth.middleware.AuthenticationMiddleware',
+#     'django.contrib.messages.middleware.MessageMiddleware',
+#     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+# ]
+
 MIDDLEWARE = [
-    # Make sure djangosecure.middleware.SecurityMiddleware is listed first
-    'djangosecure.middleware.SecurityMiddleware',
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 # END MIDDLEWARE CONFIGURATION
 
 # DEBUG
@@ -181,6 +193,7 @@ TEMPLATES = [{
             'django.core.context_processors.tz',
             'django.contrib.messages.context_processors.messages',
             'django.core.context_processors.request',
+            'django.template.context_processors.request',
         ],
     },
 }]
