@@ -21,6 +21,7 @@ class PageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Page
+        exclude = ()
 
 
 class StateSerializer(serializers.ModelSerializer):
