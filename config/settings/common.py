@@ -56,21 +56,11 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 # MIDDLEWARE CONFIGURATION
 # https://docs.djangoproject.com/en/3.1/topics/http/middleware/
-# MIDDLEWARE = [
-#     # Make sure djangosecure.middleware.SecurityMiddleware is listed first
-#     'djangosecure.middleware.SecurityMiddleware',
-#     'django.contrib.sessions.middleware.SessionMiddleware',
-#     'corsheaders.middleware.CorsMiddleware',
-#     'django.middleware.common.CommonMiddleware',
-#     'django.middleware.csrf.CsrfViewMiddleware',
-#     'django.contrib.auth.middleware.AuthenticationMiddleware',
-#     'django.contrib.messages.middleware.MessageMiddleware',
-#     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-# ]
+# Make sure djangosecure.middleware.SecurityMiddleware is listed first
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

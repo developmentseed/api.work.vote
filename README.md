@@ -8,7 +8,7 @@ This is the API for the Work the Elections project. The project is sponsored by 
 
 ### Dev Dependencies
 
-- Python 3.6.3 
+- Python 3.7.9
 - Postgres 9.6 with PostGIS support
 - docker
 

@@ -2,7 +2,6 @@ from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
-# from rest_framework.decorators import list_route
 from rest_framework.decorators import action
 
 from django.conf import settings
@@ -31,7 +30,6 @@ class ContactViewSet(viewsets.ViewSet):
         5: '65 and older'
     }
 
-    # @list_route(methods=['post'])
     @action(detail=False, methods=['post'])
     def us(self, request):
         # Make sure we have the parameters we need
@@ -56,7 +54,6 @@ class ContactViewSet(viewsets.ViewSet):
         else:
             return Response({'detail': 'Nothing was sent'}, status=status.HTTP_400_BAD_REQUEST)
 
-    # @list_route(methods=['post'])
     @action(detail=False, methods=['post'])
     def survey(self, request):
         # Make sure we have the parameters we need
@@ -101,7 +98,6 @@ class ContactViewSet(viewsets.ViewSet):
 
         return Response({'detail': 'Thank you.'}, status=status.HTTP_200_OK)
 
-    # @list_route(methods=['post'])
     @action(detail=False, methods=['post'])
     def application(self, request):
         # Make sure we have the parameters we need
@@ -187,7 +183,6 @@ class ContactViewSet(viewsets.ViewSet):
 
         return Response({'detail': 'Thank you.'}, status=status.HTTP_200_OK)
 
-    # @list_route()
     @action(detail=False)
     def applications_export(self, request):
         if request.user.is_authenticated():
@@ -196,7 +191,6 @@ class ContactViewSet(viewsets.ViewSet):
             return Response({'detail': 'Not allowed'},
                             status=status.HTTP_401_UNAUTHORIZED)
 
-    # @list_route()
     @action(detail=False)
     def surveys_export(self, request):
         if request.user.is_authenticated():

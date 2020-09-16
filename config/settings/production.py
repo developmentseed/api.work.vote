@@ -40,7 +40,6 @@ SECURE_SSL_REDIRECT = env.bool("DJANGO_SECURE_SSL_REDIRECT", default=True)
 # Hosts/domain names that are valid for this site
 # See https://docs.djangoproject.com/en/1.6/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['*'])
-# ALLOWED_HOSTS = ['0.0.0.0']
 # END SITE CONFIGURATION
 
 # See: http://django-storages.readthedocs.org/en/latest/backends/amazon-S3.html#settings

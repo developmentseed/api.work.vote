@@ -21,15 +21,6 @@ spatialite==0.0.3
 python-binary-memcached==0.30.0
 django-smart-selects==1.5.9
 
-
-
-#-e git+https://github.com/digi604/django-smart-selects.git@js-unlinting-fixes#egg=smart_selects
-# Latest release django-tinymce is 3.0.1. It supports Python 3.6, 3.7 and 3.8 with Django 2.2 and 3.0
-# -e git://github.com/aljosa/django-tinymce.git@tinymce4#egg=tinymce4
-#django-jet==1.0.8
-
-
-
 # This is the most recent version that is compatible with v1.x django-import-export.
 tablib==2.0.0
 # jsonfield 3.0.0 has requirement Django>=2.2,
