@@ -25,7 +25,9 @@ services:
     <<: *base_django_setup
     ports:
       - 8000:8000
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8000 --noreload
+
+
 
   prod:
     image: developmentseed/api.work.vote:latest
@@ -85,6 +87,14 @@ services:
   add_to_db:
     <<: *base_django_setup
     command: python manage.py add_to_db
+  
+  check:
+    <<: *base_django_setup
+    command: python manage.py add_to_db
+
+  showmigrations:
+    <<: *base_django_setup
+    command: python manage.py showmigrations
 
   db:
     image: mdillon/postgis:9.6-alpine
@@ -92,6 +102,8 @@ services:
       POSTGRES_PASSWORD: test
       POSTGRES_USER: test
       POSTGRES_DB: test
+    ports:
+      - 5432:5432
     volumes:
       - './.tmp/pg:/var/lib/postgresql/data'
 

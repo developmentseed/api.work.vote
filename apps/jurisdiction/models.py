@@ -19,7 +19,7 @@ class State(models.Model):
 
 class Zipcode(models.Model):
     code = models.CharField('Zip Code', max_length=5, primary_key=True)
-    state = models.ForeignKey(State)
+    state = models.ForeignKey(State, on_delete=models.CASCADE)
     geometry = models.MultiPolygonField('zipcode Geometry', null=True, blank=True)
 
     def __str__(self):
@@ -34,7 +34,7 @@ DISPLAY_OPTIONS = (
 
 class Jurisdiction(models.Model):
     name = models.CharField('Jurisdiction Name', max_length=250)
-    state = models.ForeignKey(State)
+    state = models.ForeignKey(State, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     obtained_at = models.DateField('Date obtained', null=True, blank=True)
@@ -86,7 +86,7 @@ class Jurisdiction(models.Model):
     trusted_notes = HTMLField('Notes (trusted content rendered without HTML escaping)', null=True, blank=True)
     display = models.CharField(max_length = 1, choices = DISPLAY_OPTIONS, default='Y')
     student_website = models.CharField('Website for Student Pollworker Program', max_length=400, null=True, blank=True)
-    jurisdiction_link = models.ForeignKey('self', blank=True, null=True, verbose_name='link a jurisdiction')
+    jurisdiction_link = models.ForeignKey('self', blank=True, null=True, verbose_name='link a jurisdiction', on_delete=models.CASCADE)
     jurisdiction_link_text = models.CharField('disambiguation notice',  max_length=250,  null=True, blank=True)
 
     def __str__(self):
@@ -104,7 +104,7 @@ class SurveyEmail(models.Model):
         max_length=250)
     recipients = models.TextField('List of emails', help_text='Use commas, semicolons or line breaks to separate emails. Do not enter e-mail addresses containing those special characters.')
     email_text = HTMLField('E-mail text', help_text='This text will be displayed above the survey links.', default = 'Thank you for your participation in our survey for WorkElections.com. Please click on the link corresponding with the jurisdiction for which you would like to update information.')
-    state = models.ForeignKey(State, default=1)
+    state = models.ForeignKey(State, default=1, on_delete=models.CASCADE)
     jurisdiction = ChainedManyToManyField(Jurisdiction, chained_field='state',
                                           chained_model_field='state')
     send_email = models.BooleanField(

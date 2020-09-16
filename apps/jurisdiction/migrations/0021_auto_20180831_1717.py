@@ -29,6 +29,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='surveyemail',
             name='state',
-            field=models.ForeignKey(to='jurisdiction.State', default=1),
+            field=models.ForeignKey(to='jurisdiction.State', default=1, on_delete=models.CASCADE),
         ),
     ]

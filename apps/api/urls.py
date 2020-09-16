@@ -5,7 +5,7 @@ from survey.views import ContactViewSet
 from .views import JurisdictionViewSet, StateViewSet, SearchViewSet, PageViewSet
 from .SurveyResponses.survey_responses import GetSurveyResponse
 
-
+# .as_view({'get': 'list'}),
 router = DefaultRouter()
 router.register(r'contacts', ContactViewSet, 'contacts')
 router.register(r'states', StateViewSet, 'states')

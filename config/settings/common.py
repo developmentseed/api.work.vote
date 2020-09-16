@@ -55,17 +55,20 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # END APP CONFIGURATION
 
 # MIDDLEWARE CONFIGURATION
-MIDDLEWARE_CLASSES = (
-    # Make sure djangosecure.middleware.SecurityMiddleware is listed first
-    'djangosecure.middleware.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+# https://docs.djangoproject.com/en/3.1/topics/http/middleware/
+# Make sure djangosecure.middleware.SecurityMiddleware is listed first
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
+]
+
 # END MIDDLEWARE CONFIGURATION
 
 # DEBUG
@@ -174,13 +177,14 @@ TEMPLATES = [{
         'debug': DEBUG,
         'context_processors': [
             'django.contrib.auth.context_processors.auth',
-            'django.core.context_processors.debug',
-            'django.core.context_processors.i18n',
-            'django.core.context_processors.media',
-            'django.core.context_processors.static',
-            'django.core.context_processors.tz',
+            'django.template.context_processors.debug',
+            'django.template.context_processors.i18n',
+            'django.template.context_processors.media',
+            'django.template.context_processors.static',
+            'django.template.context_processors.tz',
             'django.contrib.messages.context_processors.messages',
-            'django.core.context_processors.request',
+            'django.template.context_processors.request',
+            'django.template.context_processors.request',
         ],
     },
 }]

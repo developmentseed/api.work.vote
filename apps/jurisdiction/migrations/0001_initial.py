@@ -54,6 +54,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='jurisdiction',
             name='state',
-            field=models.ForeignKey(to='jurisdiction.State'),
+            field=models.ForeignKey(to='jurisdiction.State', on_delete=models.CASCADE),
         ),
     ]
