@@ -13,7 +13,6 @@ django-bmemcached==0.3.0
 django-nose==1.4.7
 django-import-export==2.3.0
 psycopg2==2.8.6
-boto==2.49.0
 boto3==1.14.60
 gunicorn==20.0.4
 geocoder==1.38.1
