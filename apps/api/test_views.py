@@ -2,6 +2,7 @@ import json
 from django.test import TestCase
 from django.test import Client
 from jurisdiction.models import Jurisdiction, State
+from survey.models import Survey, Application
 
 
 class JurisdictionViewSetTestCase(TestCase):
@@ -25,3 +26,4 @@ class JurisdictionViewSetTestCase(TestCase):
         response = self.client.get('/jurisdictions/%d/geojson/' % sf.id)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(json.loads(response.content.decode('utf-8')), {})
+

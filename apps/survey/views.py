@@ -89,10 +89,14 @@ class ContactViewSet(viewsets.ViewSet):
         # make sure languages is a list
         if not isinstance(data.get('languages'), list):
             return Response({'detail': 'Languages field must be a list'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        lan = data.get('languages')
+        if lan == 'other':
+            lan = data.get('other')
 
         Survey.objects.create(
             age_range=age_id,
-            languages=data.get('languages'),
+            languages= lan,
             familiarity_w_technology=technology
         )
 
@@ -172,12 +176,16 @@ class ContactViewSet(viewsets.ViewSet):
         mail = MailMaker(jurisdiction, **context)
         mail.send()
 
+        lan = data.get('languages')
+        if lan == 'other':
+            lan = data.get('other')
+            
         Application.objects.create(
             jurisdiction=jurisdiction,
             city=data.get('city'),
             county=data.get('county'),
             age_range=age_id,
-            languages=data.get('languages'),
+            languages=lan,
             familiarity_w_technology=technology
         )
 

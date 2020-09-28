@@ -10,6 +10,7 @@ class State(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField('Whether state is active', default=True)
+    all_mail_elections = models.BooleanField('Whether state has All Mail Elections', default=False)
     subdivision_name = models.CharField('Subdivision Name', max_length=250, default='County')
     notes = models.TextField('Notes', null=True, blank=True)
 
@@ -55,7 +56,8 @@ class Jurisdiction(models.Model):
         'Website for online voter regisration', max_length=300,
         blank=True, null=True)
     minimum_age = models.CharField('Minimum age - Input: ##', max_length=250, null=True, blank=True)
-    high_school_student = models.TextField('Can high school students work? - Input: Y or N', null=True, blank=True)
+    high_school_student = models.BooleanField('Can high school students work?', default=False)
+    under_eighteen_req = models.TextField('special under 18 requirements', null=True, blank=True)
     hours_start = models.CharField('Hours start', max_length=250, null=True, blank=True)
     hours_end = models.CharField('Hours end', max_length=250, null=True, blank=True)
     full_day_req = models.TextField('Full Day required - Input: Y or N', null=True, blank=True)

@@ -39,7 +39,7 @@ class JurisdictionAdmin(import_export.admin.ExportActionModelAdmin):
         'office_address', 'mailing_address',
         'hours_start', 'hours_end',
         'registration_status', 'voter_registration_url',
-        'minimum_age', 'high_school_student',
+        'minimum_age', 'high_school_student', 'under_eighteen_req',
         'full_day_req',
         'compensation',
         'training', 'training_note',
