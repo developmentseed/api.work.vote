@@ -1,4 +1,4 @@
-FROM python:3.5.6
+FROM python:3.7.9
 
 RUN apt-get update -y && \
     apt-get install --auto-remove -y \

@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='jurisdiction',
             name='display',
-            field=models.CharField(default=b'Y', max_length=1, choices=[(b'Y', b'Display Information'), (b'N', b'No information displayed')]),
+            field=models.CharField(default=b'Y', max_length=255, choices=[(b'Y', b'Display Information'), (b'N', b'No information displayed')]),
         ),
     ]

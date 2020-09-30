@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from django.test import Client
 from django.core import mail
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from jurisdiction.models import Jurisdiction, State, SurveyEmail
 from jurisdiction.admin import JurisdictionAdmin
 import import_export

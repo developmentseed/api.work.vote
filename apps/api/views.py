@@ -10,7 +10,7 @@ from django.views.decorators.cache import cache_page
 from jurisdiction.models import Jurisdiction
 from django.contrib.gis.geos import Point, GEOSGeometry, MultiPoint
 from rest_framework.response import Response
-from rest_framework.decorators import list_route, detail_route
+from rest_framework.decorators import action
 from rest_framework import viewsets, permissions, status
 
 from pages.models import Page
@@ -99,7 +99,7 @@ class JurisdictionViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Jurisdiction.objects.filter()
     serializer_class = JurisdictionSerializer
 
-    @list_route()
+    @action(detail=False)
     def emails(self, request):
         if request.user.is_authenticated():
             return export_jurisdiction_emails()
@@ -107,7 +107,8 @@ class JurisdictionViewSet(viewsets.ReadOnlyModelViewSet):
             return Response({'detail': 'Not allowed'},
                             status=status.HTTP_401_UNAUTHORIZED)
     
-    @detail_route()
+    # @detail_route()
+    @action(detail=True)
     def geojson(self, request, pk):
         geometry = self.queryset.get(pk=pk).geometry
         if not geometry:
